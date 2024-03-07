@@ -16,9 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-light text-dark">
         <section className="flex">
-          <div className="w-64 max-md:hidden" />
+          <div className="w-64 max-lg:hidden" />
           <Sidebar />
-          <div className="w-[calc(100vw-16rem)] flex flex-col">
+          <div className="w-full lg:max-w-[calc(100vw-16rem)] overflow-x-auto flex flex-col">
             <Topbar />
             {children}
           </div>

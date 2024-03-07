@@ -1,6 +1,6 @@
 export default function SecurityRating() {
   return (
-    <div className="dashboard-card col-span-5 flex flex-col gap-3">
+    <div className="dashboard-card w-full flex flex-col gap-3">
       <h1 className="opacity-80 text-xs">SECURITY RATING</h1>
       {tiles({
         security: true,

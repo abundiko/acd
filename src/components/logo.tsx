@@ -2,17 +2,19 @@ import Link from "next/link";
 
 export default function AppLogo() {
   return (
-    <Link href="/" className="flex gap-2 items-center">
-      <LogoSvg />
-      <h1 className="font-bold text-2xl md:text-4xl">
-        <span className="text-[#FEBD59]">A</span>
-        <span className="text-[#107BEF]">C</span>
-        <span className="text-[#FA17D6]">D</span>
-      </h1>
-      <div className="flex flex-col font-semibold text-[0.6rem] leading-tight">
-        <span>Accessibility</span>
-        <span>Compliance</span>
-        <span>Dashboard</span>
+    <Link href="/" className="">
+      <div className="flex gap-2 items-center">
+        <LogoSvg />
+        <h1 className="font-bold text-2xl md:text-4xl">
+          <span className="text-[#FEBD59]">A</span>
+          <span className="text-[#107BEF]">C</span>
+          <span className="text-[#FA17D6]">D</span>
+        </h1>
+        <div className="flex flex-col font-semibold text-[0.6rem] leading-tight">
+          <span>Accessibility</span>
+          <span>Compliance</span>
+          <span>Dashboard</span>
+        </div>
       </div>
     </Link>
   );

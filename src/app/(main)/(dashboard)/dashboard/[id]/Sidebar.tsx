@@ -1,3 +1,5 @@
+"use client";
+
 import AppLogo from "@/components/logo";
 import {
   GridFourTwo,
@@ -6,15 +8,28 @@ import {
   CalendarDot,
   ChartLine,
   Chat,
-  DocumentText
+  DocumentText,
+  Remove
 } from "react-huge-icons/outline";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
+import { useNavState } from "@/state/navStore";
 
 export default function Sidebar() {
+  const { isOpen, setOpen } = useNavState();
+
   return (
-    <aside className="w-64 flex flex-col gap-4 p-6 border-r h-screen fixed top-0 left-0">
-      <AppLogo />
+    <aside
+      className={`w-full lg:w-64 flex flex-col gap-4 p-6 border-r h-screen transition-all duration-300 fixed top-0 left-[-105%] lg:left-0 bg-light z-30 ${isOpen
+        ? "max-lg:[left:0_!important]"
+        : ""}`}
+    >
+      <div className="flex justify-between items-center">
+        <AppLogo />
+        <button className="p-2 lg:hidden" onClick={() => setOpen(false)}>
+          <Remove />
+        </button>
+      </div>
       {actions("1").map(({ title, actions }) => {
         return (
           <div

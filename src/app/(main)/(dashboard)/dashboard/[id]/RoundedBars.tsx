@@ -11,7 +11,7 @@ export type RoundedBarsProps = {
 
 export default function RoundedBars() {
   return (
-    <div className="col-span-6 flex gap-3">
+    <div className="flex  gap-3 sm:gap-4 md:gap-2 lg:gap-4">
       {tiles({
         compliance: 80,
         employment: 5,
