@@ -1,3 +1,5 @@
+"use client";
+
 import Others from "./Others";
 import RoundedBars from "./RoundedBars";
 import SecurityRating from "./SecurityRating";

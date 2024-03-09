@@ -8,9 +8,10 @@ import {
   CalendarDot,
   ChartLine,
   Chat,
-  DocumentText,
-  Remove
+  DocumentText
 } from "react-huge-icons/outline";
+
+import { Remove } from "react-huge-icons/solid";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
 import { useNavState } from "@/state/navStore";
@@ -73,11 +74,11 @@ const actions = (id: string) => [
   {
     title: "ANALYTICS",
     actions: [
-      {
-        name: "Compliance Rating",
-        icon: <ChartLine />,
-        href: `/dashboard/${id}/compliance-rating`
-      },
+      // {
+      //   name: "Compliance Rating",
+      //   icon: <ChartLine />,
+      //   href: `/dashboard/${id}/compliance-rating`
+      // },
       {
         name: "Evaluation Schedule",
         icon: <Calendar />,
@@ -96,7 +97,7 @@ const actions = (id: string) => [
       {
         name: "Apply for Evaluation",
         icon: <CalendarDot />,
-        href: `/dashboard/${id}/apply`
+        href: `/#apply-for-evaluation`
       }
     ]
   },
