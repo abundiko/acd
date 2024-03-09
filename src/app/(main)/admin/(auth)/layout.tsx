@@ -17,9 +17,7 @@ export default function RootLayout({ children }: AppLayoutProps) {
       <section className="py-10">
         <div className="app-container">
           <div className="md:rounded-md md:shadow-xl overflow-hidden flex justify-center items-center min-h-[500px] max-w-[500px] mx-auto">
-            <div className="w-full h-fit md:p-8">
-              {children}
-            </div>
+            <div className="w-full h-fit md:p-8">{children}</div>
           </div>
         </div>
       </section>
