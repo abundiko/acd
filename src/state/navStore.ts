@@ -5,9 +5,9 @@ type NavState = {
   setOpen: (v: boolean) => void;
 };
 
-export const useNavState = create<NavState>(set => ({
-  isOpen: true,
+export const useNavState = create<NavState>((set) => ({
+  isOpen: false,
   setOpen: (isOpen: boolean) => {
-    set(state => ({ isOpen }));
-  }
+    set((state) => ({ isOpen }));
+  },
 }));
