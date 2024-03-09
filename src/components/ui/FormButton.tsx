@@ -4,12 +4,13 @@ export type FormButtonProps = {
   className:string;
   children:React.ReactNode;
   loading?:boolean;
+  disabled?:boolean;
 }
 
 export default function FormButton({
-  className, children, loading = false
+  className, children, loading = false, disabled= false
 }:FormButtonProps) {
-return <button className={className}>
+return <button disabled={loading || disabled} className={className+" disabled:opacity-70 disabled:pointer-events-none"}>
   {
     loading ? <OutCircle className="animate-spin" /> : <>{children}</>
   }

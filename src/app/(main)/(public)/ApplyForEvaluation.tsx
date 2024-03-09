@@ -1,6 +1,6 @@
 "use client";
 
-import DatePicker from "@/components/DatePicker";
+import EvaluationForm from "./EvaluationForm";
 
 export default function ApplyForEvaluation() {
   return (
@@ -17,34 +17,7 @@ export default function ApplyForEvaluation() {
             minute to fill the form.
           </p>
 
-          <form action="#" method="post">
-            <h4>Contacts</h4>
-            <p>These contacts are used to reach you or your representative.</p>
-
-            <div className="form_input">
-              <img src="/ASSETS/Icons/mail.svg" width="20" alt="" />
-              <img src="/ASSETS/Icons/phone.svg" width="20" alt="" />
-              <img src="/ASSETS/Icons/location.svg" width="20" alt="" />
-              <input
-                type="email"
-                placeholder="yourcompanyemail@email.com"
-                required
-              />
-              <input type="text" placeholder="+234 0000 0000 000" required />
-              <input
-                type="text"
-                placeholder="15, Abubakar Str, Maitama, FCT"
-                required
-              />
-            </div>
-            <DatePicker />
-
-            <input
-              type="submit"
-              value="Submit Application →"
-              id="submit_form"
-            />
-          </form>
+          <EvaluationForm />
         </div>
       </div>
     </section>

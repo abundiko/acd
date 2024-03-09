@@ -1,3 +1,5 @@
+import SubscribeNewsletter from "./SubscribeNewsletter";
+
 export default function Footer() {
   return (
     <section className="footer">
@@ -73,10 +75,7 @@ export default function Footer() {
               Subscribe to stay tuned for our News letters and latest updates.
             </p>
 
-            <form action="" method="post" id="footer_email">
-              <input type="text" id="#" placeholder="Email address" required />
-              <input type="submit" value="Submit" id="footer_email_submit" />
-            </form>
+            <SubscribeNewsletter />
           </div>
 
           <div className="contact_us">

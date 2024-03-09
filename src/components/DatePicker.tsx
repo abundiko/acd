@@ -10,8 +10,8 @@ import { Calendar } from "@natscale/react-calendar";
 import "@natscale/react-calendar/dist/main.css";
 
 
-export default function DatePicker() {
-  const [title, setTitle] = useState('')
+export default function DatePicker({value, onValueChange}:{value:string|null, onValueChange: (e:string)=>void}) {
+  const [title, setTitle] = useState<string>(value??'')
 
     const takenDates = [
     "Mon Mar 18 2024 00:00:00 GMT+0100 (West Africa Standard Time)",
@@ -20,10 +20,11 @@ export default function DatePicker() {
   ];
   
   return <>
+  <input type="hidden" name="date" value={title} hidden />
    <Theme>
             <Popover.Root >
               <Popover.Trigger>
-  <div className="w-full flex border-b py-3 gap-3">
+  <div className="w-full flex rounded-md py-3 gap-3 bg-light border outline-primary text-dark-text px-4">
     <CalendarIcon className="opacity-50" />
     <span className={title ? 'opacity-80' : 'opacity-50 text-xs'}>{title == '' ? 'Select Date' : formatDate(title)}</span>
   </div>
@@ -32,7 +33,7 @@ export default function DatePicker() {
                 <Calendar
         onChange={(v)=>{
           setTitle(v.toString());
-          window.focus()
+          onValueChange(v.toString());
         }}
         value={new Date(title)}
         size={200}

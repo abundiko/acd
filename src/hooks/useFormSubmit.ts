@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { formDataToObject } from "../functions/test";
+import { formDataToObject } from "../utils/functions/test";
+
+export type FormState = {
+  loading: boolean;
+  errorMessage: string;
+  successMessage: string;
+};
 
 const useFormSubmit = <T>({
   url,
@@ -12,17 +18,34 @@ const useFormSubmit = <T>({
   hasFile?: boolean | string;
   headers?: { [key: string]: string };
 }) => {
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [key, setKey] = useState("");
+  const [formState, setFormState] = useState({
+    loading: false,
+    errorMessage: "",
+    successMessage: ""
+  });
+
+  function setErrorMessage(msg: string) {
+    setFormState(prev => ({ ...prev, errorMessage: msg }));
+  }
+  function reset() {
+    setKey(prev => prev + "1");
+  }
+  function setSuccessMessage(msg: string) {
+    setFormState(prev => ({ ...prev, successMessage: msg }));
+  }
+  function setLoading(loading: boolean) {
+    setFormState(prev => ({ ...prev, loading }));
+  }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     setLoading(true);
-    setErrorMessage("");
+    e.preventDefault();
+
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      // console.log(formDataToObject(formData));
+      console.log(formDataToObject(formData));
       let _hasFile: boolean = !!hasFile;
       if (typeof hasFile == "string") _hasFile = formData.get(hasFile) != null;
       const response = await fetch(url, {
@@ -36,11 +59,11 @@ const useFormSubmit = <T>({
             }
       });
 
-      const data = await response.json();
+      const data = await response.text();
 
       onComplete(data);
 
-      // console.log(data, 10);
+      console.log(data, 10);
     } catch (error) {
       setErrorMessage("An error occurred");
       console.error(error);
@@ -49,7 +72,15 @@ const useFormSubmit = <T>({
     }
   };
 
-  return { onSubmit, loading, errorMessage, setErrorMessage, setLoading };
+  const formProps = { key, onSubmit };
+  return {
+    formProps,
+    formState,
+    setErrorMessage,
+    setSuccessMessage,
+    setLoading,
+    reset
+  };
 };
 
 export default useFormSubmit;

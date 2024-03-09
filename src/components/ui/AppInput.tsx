@@ -11,6 +11,7 @@ export type AppInputProps = {
   textarea?: boolean;
   ps?: string;
   title?: string;
+  required?: boolean;
   onChange?: (value: string) => void;
   onErrorChange?: (hasError: boolean) => void;
 };
@@ -26,31 +27,36 @@ export default memo(function AppInput({
   onErrorChange,
   schema,
   ps,
-  title
+  title,
+  required
 }: AppInputProps) {
   const [val, setVal] = useState(value);
   const [error, setError] = useState<string | null>(null);
   const hasUpdated = useRef(false);
 
-  useEffect(() => {
-    if (schema)
-      try {
-        schema.parse(val);
-        if (error != null && onErrorChange) {
-          onErrorChange(false);
-          setError(null);
+  useEffect(
+    () => {
+      if (schema)
+        try {
+          schema.parse(val);
+          if (error != null && onErrorChange) {
+            onErrorChange(false);
+            setError(null);
+          }
+        } catch (e) {
+          setError(JSON.parse(e as any)[0].message);
+          if (onErrorChange) onErrorChange(true);
+          // alert((e as any).message[0].message);
+          // if (e instanceof z.ZodError && error == null && onErrorChange) {
+          // }
         }
-      } catch (e) {
-        if (e instanceof z.ZodError && error == null && onErrorChange) {
-          onErrorChange(true);
-          setError(e.errors[0].message);
-        }
+      else if (onErrorChange && !hasUpdated.current) {
+        onErrorChange(false);
+        hasUpdated.current = true;
       }
-    else if (onErrorChange && !hasUpdated.current) {
-      onErrorChange(false);
-      hasUpdated.current = true;
-    }
-  });
+    },
+    [val]
+  );
 
   return (
     <div className="">
@@ -68,6 +74,7 @@ export default memo(function AppInput({
         </span>
         {textarea
           ? <textarea
+              required={required}
               id={`${title}-input`}
               name={name}
               placeholder={placeholder}
@@ -82,6 +89,7 @@ export default memo(function AppInput({
                 : "ps-9"} pe-4 rounded-md ${error ? "bg-red-100" : ""}`}
             />
           : <input
+              required={required}
               id={`${title}-input`}
               name={name}
               placeholder={placeholder}
@@ -99,7 +107,7 @@ export default memo(function AppInput({
             />}
       </div>
       {error &&
-        <p className="text-red-900 text-xs">
+        <p className="text-red-900 text-xs p-[0px_!important] w-[auto_!important]">
           {error}
         </p>}
     </div>
