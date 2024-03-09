@@ -59,7 +59,7 @@ const useFormSubmit = <T>({
             }
       });
 
-      const data = await response.text();
+      const data = await response.json();
 
       onComplete(data);
 

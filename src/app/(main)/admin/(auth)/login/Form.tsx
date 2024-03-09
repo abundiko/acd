@@ -21,19 +21,18 @@ export default function LoginForm() {
     setSuccessMessage,
     reset
   } = useFormSubmit<ApiSignupData>({
-    url: `${API}login`,
+    url: `${API}`,
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
-      if (data.message === "account created") {
+      if (data.message === "login successful") {
         reset();
-        setSuccessMessage("Account Created Successfully");
+        setSuccessMessage("Signed In Successfully");
         setCookie("token", data.token, 24 * 30);
         setCookie("email", data.data.email, 24 * 30);
         setUser(data.data);
         router.replace("/admin");
         return;
-      }
-      setErrorMessage(data.message);
+      } else setErrorMessage(data.message);
     }
   });
 

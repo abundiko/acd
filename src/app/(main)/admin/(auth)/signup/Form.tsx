@@ -34,8 +34,7 @@ export default function LoginForm() {
         setUser(data.data);
         router.replace("/admin");
         return;
-      }
-      setErrorMessage(data.message);
+      } else setErrorMessage(data.message);
     }
   });
 
