@@ -8,7 +8,7 @@ export type OrgCardProps = {
 
 export default function Teamcard({ name, category, location }: OrgCardProps) {
   return (
-    <div className="p-4 border rounded-md border-gray-50">
+    <div className="p-4 border rounded-md border-gray-50  bg-light shadow">
       <div className=" justify-between grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col gap-1 lg:col-span-2">
           <h1 className="font-semibold">{name}</h1>

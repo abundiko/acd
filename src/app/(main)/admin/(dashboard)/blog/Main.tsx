@@ -5,7 +5,7 @@ export default function Main() {
   return (
     <div>
       <div className="flex justify-between max-md:flex-col">
-        <h1 className="text-2xl font-bold">blog page</h1>
+        <h1 className="text-2xl font-bold">Stories</h1>
 
         <div className="relative md:grid w-full max-w-[300px]">
           <input

@@ -50,7 +50,7 @@ export default function Teamcard({
   }
 
   return (
-    <div className="p-4 border rounded-md border-gray-50">
+    <div className="p-4 border rounded-md border-gray-50  bg-light shadow">
       <div className="flex sm:items-center justify-between max-sm:flex-col">
         <div className="flex gap-2 items-center">
           <img

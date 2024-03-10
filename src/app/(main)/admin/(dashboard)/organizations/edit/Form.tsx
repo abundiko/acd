@@ -168,7 +168,7 @@ export default function Page({
   ];
 
   return (
-    <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4">
+    <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Edit Company Data</h1>
       <form className="flex flex-col gap-3 py-3">
         {orgFields.map((item) => {

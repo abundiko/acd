@@ -1,11 +1,11 @@
 import { Search } from "react-huge-icons/outline";
-import NewsCard, { NewsCardProps } from "./NewsCard";
+import Categorycard, { CategoryCardProps } from "./CategoryCard";
 
 export default function Main() {
   return (
     <div>
-      <div className="flex justify-between max-md:flex-col">
-        <h1 className="text-2xl font-bold">Newsletter</h1>
+      <div className="flex justify-between max-md:flex-col pb-4">
+        <h1 className="text-2xl font-bold">Categories</h1>
 
         <div className="relative md:grid w-full max-w-[300px]">
           <input
@@ -18,28 +18,28 @@ export default function Main() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
         {dummy.map((dummy) => (
-          <NewsCard key={dummy.email} {...dummy} />
+          <Categorycard key={dummy.category} {...dummy} />
         ))}
       </div>
     </div>
   );
 }
 
-const dummy: NewsCardProps[] = [
+const dummy: CategoryCardProps[] = [
   {
-    email: "fonepo@tenizoke.dm",
+    category: "hello",
     _id: "01114",
   },
   {
-    email: "ibuvu@pueme.ge",
+    category: "hello",
     _id: "01114",
   },
   {
-    email: "mu@sehsohor.io",
+    category: "hello",
     _id: "01114",
   },
   {
-    email: "fijansul@raroh.jp",
+    category: "hello",
     _id: "01114",
   },
 ];

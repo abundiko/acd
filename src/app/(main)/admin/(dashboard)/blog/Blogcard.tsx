@@ -9,7 +9,7 @@ export type BlogCardProps = {
 
 export default function Teamcard({ title, url, _id }: BlogCardProps) {
   return (
-    <div className="p-4 border rounded-md border-gray-50">
+    <div className="p-4 border rounded-md border-gray-50  bg-light shadow">
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h1 className="font-semibold">{title}</h1>

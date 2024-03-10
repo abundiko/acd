@@ -4,7 +4,7 @@ import Teamcard, { TeamcardProps } from "./TeamCard";
 export default function Main() {
   return (
     <div>
-      <div className="flex justify-between max-md:flex-col">
+      <div className="flex justify-between max-md:flex-col pb-4">
         <h1 className="text-2xl font-bold">Experts</h1>
 
         <div className="relative md:grid w-full max-w-[300px]">

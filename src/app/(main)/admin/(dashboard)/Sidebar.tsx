@@ -4,12 +4,13 @@ import AppLogo from "@/components/logo";
 import {
   GridFourTwo,
   Home,
-  Calendar,
-  CalendarDot,
-  ChartLine,
-  Chat,
   DocumentText,
   Remove,
+  Briefcase,
+  Grid,
+  People,
+  Mail,
+  CalendarDot,
 } from "react-huge-icons/outline";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
@@ -20,7 +21,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`w-full lg:w-64 flex flex-col gap-4 p-6 border-r h-screen transition-all duration-300 fixed top-0 left-[-105%] lg:left-0 bg-light z-30 ${
+      className={`w-full lg:w-64 flex flex-col gap-4 p-6 overflow-y-auto border-r h-screen transition-all duration-300 fixed top-0 left-[-105%] lg:left-0 bg-light z-30 ${
         isOpen ? "max-lg:[left:0_!important]" : ""
       }`}
     >
@@ -75,18 +76,33 @@ const actions = (id: string) => [
     actions: [
       {
         name: "Organizations",
-        icon: <ChartLine />,
+        icon: <Briefcase />,
         href: `/admin/organizations`,
       },
       {
+        name: "Evaluation Schedule",
+        icon: <CalendarDot />,
+        href: `/admin/evaluation-schedule`,
+      },
+      {
         name: "Categories",
-        icon: <Calendar />,
+        icon: <Grid />,
         href: `/admin/categories`,
       },
       {
         name: "The Team",
-        icon: <DocumentText />,
+        icon: <People />,
         href: `/admin/team`,
+      },
+      {
+        name: "Stories",
+        icon: <DocumentText />,
+        href: `/admin/blog`,
+      },
+      {
+        name: "Newsletter",
+        icon: <Mail />,
+        href: `/admin/newsletter`,
       },
     ],
   },
@@ -95,18 +111,23 @@ const actions = (id: string) => [
     actions: [
       {
         name: "New Organization",
-        icon: <ChartLine />,
+        icon: <Briefcase />,
         href: `/admin/organizations/new`,
       },
       {
         name: "New Category",
-        icon: <Calendar />,
+        icon: <Grid />,
         href: `/admin/categories/new`,
       },
       {
         name: "New Team Member",
-        icon: <DocumentText />,
+        icon: <People />,
         href: `/admin/team/new`,
+      },
+      {
+        name: "New story",
+        icon: <DocumentText />,
+        href: `/admin/blog/new`,
       },
     ],
   },

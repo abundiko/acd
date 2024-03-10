@@ -2,15 +2,14 @@
 
 import AppInput, { AppInputProps } from "@/components/ui/AppInput";
 import FormButton from "@/components/ui/FormButton";
-import Link from "next/link";
 import { z } from "zod";
 import React, { useState } from "react";
-import AdminAuth from "@/components/AdminAuth";
-import FormMessage from "@/components/ui/FormMessage";
 import useFormSubmit from "@/hooks/useFormSubmit";
+import FormMessage from "@/components/ui/FormMessage";
 import { API } from "@/utils/constants";
-import { getCookie } from "@/utils/functions/cookies";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
+import { getCookie } from "@/utils/functions/cookies";
+import AdminAuth from "@/components/AdminAuth";
 
 export default function Page() {
   const [errors, setErrors] = useState([true]);
@@ -21,8 +20,7 @@ export default function Page() {
     setSuccessMessage,
     reset,
   } = useFormSubmit<ApiFormMessage>({
-    url: `${API}admin/addteam`,
-    hasFile: true,
+    url: `${API}admin/addcategory`,
     headers: {
       token: getCookie("token") ?? "",
     },
@@ -37,9 +35,11 @@ export default function Page() {
   });
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
-      <h1 className="r-text-xl r-font-bold">New Team Expert</h1>
+      <h1 className="r-text-xl r-font-bold">Add new category</h1>
       <form onSubmit={onSubmit} key={key} className="flex flex-col gap-3 py-3">
+        <FormMessage {...formState} />
         <AdminAuth />
+
         {formFields.map((item, i) => {
           return (
             <AppInput
@@ -53,7 +53,6 @@ export default function Page() {
             />
           );
         })}
-        <FormMessage {...formState} />
         <FormButton
           loading={formState.loading}
           disabled={errors.includes(true)}
@@ -68,57 +67,11 @@ export default function Page() {
 
 const formFields: AppInputProps[] = [
   {
-    name: "file",
-    title: "Upload Photo",
-    type: "file",
-    placeholder: "file",
-    schema: z.string().min(1, "select a file"),
+    name: "title",
+    title: "category",
+    type: "category",
+    placeholder: "category",
+    schema: z.string().min(1, "Category is required"),
     required: true,
-  },
-  {
-    name: "name",
-    title: "Name",
-    type: "text",
-    placeholder: "Name",
-    schema: z.string().min(5, "Fulname too short"),
-    required: true,
-  },
-  {
-    name: "role",
-    title: "Role",
-    type: "text",
-    placeholder: "team member role",
-    schema: z.string().min(1, "role is required"),
-    required: true,
-  },
-  {
-    name: "comment",
-    title: "Comment",
-    textarea: true,
-    type: "string",
-    placeholder: "Comment",
-    schema: z.string().min(1, "this field is required"),
-    required: true,
-  },
-  {
-    name: "instagram",
-    title: "Instagram",
-    type: "url",
-    placeholder: "instagram link",
-    schema: z.string(),
-  },
-  {
-    name: "facebook",
-    title: "Facebook",
-    type: "url",
-    placeholder: "facebook link",
-    schema: z.string(),
-  },
-  {
-    name: "twitter",
-    title: "Twitter",
-    type: "url",
-    placeholder: "twitter link",
-    schema: z.string(),
   },
 ];

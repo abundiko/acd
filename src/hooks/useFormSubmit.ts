@@ -11,7 +11,7 @@ const useFormSubmit = <T>({
   url,
   onComplete,
   hasFile = false,
-  headers
+  headers,
 }: {
   url: string;
   onComplete: (data: T) => void;
@@ -22,24 +22,28 @@ const useFormSubmit = <T>({
   const [formState, setFormState] = useState({
     loading: false,
     errorMessage: "",
-    successMessage: ""
+    successMessage: "",
   });
 
   function setErrorMessage(msg: string) {
-    setFormState(prev => ({ ...prev, errorMessage: msg }));
+    setFormState((prev) => ({ ...prev, errorMessage: msg }));
   }
   function reset() {
-    setKey(prev => prev + "1");
+    setKey((prev) => prev + "1");
   }
   function setSuccessMessage(msg: string) {
-    setFormState(prev => ({ ...prev, successMessage: msg }));
+    setFormState((prev) => ({ ...prev, successMessage: msg }));
   }
   function setLoading(loading: boolean) {
-    setFormState(prev => ({ ...prev, loading }));
+    setFormState((prev) => ({ ...prev, loading }));
   }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setLoading(true);
+    setFormState({
+      loading: true,
+      errorMessage: "",
+      successMessage: "",
+    });
     e.preventDefault();
 
     const formData = new FormData(e.target as HTMLFormElement);
@@ -55,8 +59,8 @@ const useFormSubmit = <T>({
           ? { ...headers }
           : {
               "Content-Type": "application/json",
-              ...headers
-            }
+              ...headers,
+            },
       });
 
       const data = await response.json();
@@ -79,7 +83,7 @@ const useFormSubmit = <T>({
     setErrorMessage,
     setSuccessMessage,
     setLoading,
-    reset
+    reset,
   };
 };
 
