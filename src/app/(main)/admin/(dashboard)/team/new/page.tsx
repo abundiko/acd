@@ -2,7 +2,6 @@
 
 import AppInput, { AppInputProps } from "@/components/ui/AppInput";
 import FormButton from "@/components/ui/FormButton";
-import Link from "next/link";
 import { z } from "zod";
 import React, { useState } from "react";
 import AdminAuth from "@/components/AdminAuth";
@@ -11,29 +10,34 @@ import useFormSubmit from "@/hooks/useFormSubmit";
 import { API } from "@/utils/constants";
 import { getCookie } from "@/utils/functions/cookies";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
+import revalidateRoutes from "@/serverActions";
 
 export default function Page() {
-  const [errors, setErrors] = useState([true]);
+  const [errors, setErrors] = useState([true, true, true, true]);
   const {
     formProps: { onSubmit, key },
     formState,
     setErrorMessage,
     setSuccessMessage,
-    reset,
+    reset
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}admin/addteam`,
-    hasFile: true,
+    hasFile: "file",
     headers: {
-      token: getCookie("token") ?? "",
+      'x-access-token': getCookie("token") ?? "",
     },
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
-      if (data.message === "category uploaded") {
+      if (data.message === "team member added") {
+        revalidateRoutes([
+          '/admin/team',
+          '/'
+        ])
         reset();
-        return setSuccessMessage("category uploaded successfully");
+        return setSuccessMessage("Expert Added Successfully");
       }
       setErrorMessage(data.message);
-    },
+    }
   });
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
@@ -45,8 +49,8 @@ export default function Page() {
             <AppInput
               key={item.name}
               {...item}
-              onErrorChange={(hasError) => {
-                setErrors((prev) =>
+              onErrorChange={hasError => {
+                setErrors(prev =>
                   prev.map((error, index) => (index === i ? hasError : error))
                 );
               }}
@@ -73,15 +77,15 @@ const formFields: AppInputProps[] = [
     type: "file",
     placeholder: "file",
     schema: z.string().min(1, "select a file"),
-    required: true,
+    required: true
   },
   {
     name: "name",
-    title: "Name",
+    title: "Full Name",
     type: "text",
     placeholder: "Name",
-    schema: z.string().min(5, "Fulname too short"),
-    required: true,
+    schema: z.string().min(5, "Fullname too short"),
+    required: true
   },
   {
     name: "role",
@@ -89,7 +93,7 @@ const formFields: AppInputProps[] = [
     type: "text",
     placeholder: "team member role",
     schema: z.string().min(1, "role is required"),
-    required: true,
+    required: true
   },
   {
     name: "comment",
@@ -98,27 +102,27 @@ const formFields: AppInputProps[] = [
     type: "string",
     placeholder: "Comment",
     schema: z.string().min(1, "this field is required"),
-    required: true,
+    required: true
   },
   {
     name: "instagram",
     title: "Instagram",
     type: "url",
     placeholder: "instagram link",
-    schema: z.string(),
+    schema: z.string()
   },
   {
     name: "facebook",
     title: "Facebook",
     type: "url",
     placeholder: "facebook link",
-    schema: z.string(),
+    schema: z.string()
   },
   {
     name: "twitter",
     title: "Twitter",
     type: "url",
     placeholder: "twitter link",
-    schema: z.string(),
-  },
+    schema: z.string()
+  }
 ];

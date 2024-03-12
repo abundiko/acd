@@ -9,9 +9,9 @@ import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { useState } from "react";
+import { deleteCookie, getCookie } from "@/utils/functions/cookies";
 
 export default function EvaluationForm() {
-  const searchParams = useSearchParams();
   const [errors, setErrors] = useState([true, true, true, true]);
   const {
     formProps: { onSubmit, key },
@@ -24,6 +24,7 @@ export default function EvaluationForm() {
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "evaluation uploaded") {
+        deleteCookie('evaluation=date');
         reset();
         return setSuccessMessage("Request Sent Successfully");
       }
@@ -49,7 +50,7 @@ export default function EvaluationForm() {
           />
         )}
         <DatePicker
-          value={searchParams.get("date")}
+          value={getCookie('evaluation-date')??''}
           onValueChange={_ => {
             console.log(errors);
             setErrors(prev =>

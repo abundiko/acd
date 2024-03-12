@@ -15,9 +15,16 @@ import {
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
 import { useNavState } from "@/state/navStore";
+import { useAdminState } from "@/state/adminStore";
+import useRunOnce from "@/hooks/useRunOnce";
+import { getCookie } from "@/utils/functions/cookies";
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useNavState();
+  const {setUser} = useAdminState();
+  useRunOnce(()=>{
+    setUser({email: getCookie('email')??'', _id:""})
+  })
 
   return (
     <aside

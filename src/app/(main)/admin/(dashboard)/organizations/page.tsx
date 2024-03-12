@@ -1,8 +1,7 @@
+import { fetchOrganizations } from "@/serverActions/fetchOrganizations";
 import Main from "./Main";
-export default function Page() {
-  return (
-    <div className="p-4">
-      <Main />
-    </div>
-  );
+export default async function Page() {
+  const data = await fetchOrganizations();
+  if (!data) return;
+  return <Main organizations={data!} />;
 }

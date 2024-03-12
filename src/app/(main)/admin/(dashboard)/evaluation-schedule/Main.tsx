@@ -1,53 +1,33 @@
-import { Search } from "react-huge-icons/outline";
-import OrgCard, { EvaluationCardProps } from "./EvaluationCard";
+"use client";
 
-export default function Main() {
+import EvaluationCard from "./EvaluationCard";
+import { ApiEvaluationData } from "@/utils/types/companyTypes";
+import SearchInput from "@/components/ui/SearchInput";
+import { useState } from "react";
+
+interface Props {
+  evaluation: ApiEvaluationData[];
+}
+
+export default function Main({ evaluation }: Props) {
+  const [filter, setFilter] = useState("");
   return (
-    <div className="">
-      <div className="flex justify-between max-md:flex-col">
+    <div className="p-4">
+      <div className="flex justify-between max-md:flex-col gap-1 pb-4">
         <h1 className="text-2xl font-bold">Evaluation Schedule</h1>
 
-        <div className="relative md:grid w-full max-w-[300px]">
-          <input
-            type="text"
-            placeholder="Search ..."
-            className="border border-gray-300 rounded-3xl p-2 w-full text-sm"
-          />
-          <Search className="absolute top-3 right-5" />
-        </div>
+        <SearchInput onSearch={v => setFilter(v)} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full p-4">
-        {dummy.map((dummy) => (
-          <OrgCard key={dummy.email} {...dummy} />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+        {evaluation
+          .filter(
+            _ =>
+              _.email.toLowerCase().includes(filter.toLowerCase()) ||
+              _.bookDate.toLowerCase().includes(filter.toLowerCase()) ||
+              _.phone.toLowerCase().includes(filter.toLowerCase())
+          )
+          .map(item => <EvaluationCard key={item._id} {...item} />)}
       </div>
     </div>
   );
 }
-
-const dummy: EvaluationCardProps[] = [
-  {
-    email: "example@gmail.com",
-    phone: "09045278563",
-    address: "Palau",
-    date: "2021-09-15",
-  },
-  {
-    email: "example@gmail.com",
-    phone: "09045278563",
-    address: "Palau",
-    date: "2021-09-15",
-  },
-  {
-    email: "example@gmail.com",
-    phone: "09045278563",
-    address: "Palau",
-    date: "2021-09-15",
-  },
-  {
-    email: "example@gmail.com",
-    phone: "09045278563",
-    address: "Palau",
-    date: "2021-09-15",
-  },
-];

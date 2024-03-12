@@ -13,17 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-light text-dark">
-        <section className="flex items-stretch">
-          <div className="w-64 max-lg:hidden" />
-          <Sidebar />
-          <div className="w-full lg:max-w-[calc(100vw-16rem)] overflow-x-auto flex flex-col bg-light-gray min-h-screen">
-            <Topbar />
-            {children}
-          </div>
-        </section>
-      </body>
-    </html>
+    <section className="flex items-stretch">
+      <div className="w-64 max-lg:hidden" />
+      <Sidebar />
+      <div className="w-full lg:max-w-[calc(100vw-16rem)] overflow-x-auto flex flex-col bg-light-gray min-h-screen">
+        <Topbar />
+        {children}
+      </div>
+    </section>
   );
 }

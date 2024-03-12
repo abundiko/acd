@@ -1,45 +1,28 @@
-import { Search } from "react-huge-icons/outline";
-import Categorycard, { CategoryCardProps } from "./CategoryCard";
+"use client";
 
-export default function Main() {
+import SearchInput from "@/components/ui/SearchInput";
+import Categorycard from "./CategoryCard";
+import { ApiCategoryData } from "@/utils/types/companyTypes";
+import { useState } from "react";
+
+type Props = {
+  categories: ApiCategoryData[];
+};
+
+export default function Main({ categories }: Props) {
+  const [filter, setFilter] = useState("");
   return (
-    <div>
-      <div className="flex justify-between max-md:flex-col pb-4">
+    <div className="p-4">
+      <div className="flex justify-between max-md:flex-col pb-4 gap-1">
         <h1 className="text-2xl font-bold">Categories</h1>
 
-        <div className="relative md:grid w-full max-w-[300px]">
-          <input
-            type="text"
-            placeholder="Search Team Members"
-            className="border border-gray-300 rounded-3xl p-2 w-full text-sm"
-          />
-          <Search className="absolute top-3 right-5" />
-        </div>
+        <SearchInput onSearch={v => setFilter(v)} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-        {dummy.map((dummy) => (
-          <Categorycard key={dummy.category} {...dummy} />
-        ))}
+        {categories
+          .filter(_ => _.title.toLowerCase().includes(filter.toLowerCase()))
+          .map(dummy => <Categorycard key={dummy._id} {...dummy} />)}
       </div>
     </div>
   );
 }
-
-const dummy: CategoryCardProps[] = [
-  {
-    category: "hello",
-    _id: "01114",
-  },
-  {
-    category: "hello",
-    _id: "01114",
-  },
-  {
-    category: "hello",
-    _id: "01114",
-  },
-  {
-    category: "hello",
-    _id: "01114",
-  },
-];

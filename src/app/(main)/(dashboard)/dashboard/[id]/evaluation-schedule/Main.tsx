@@ -6,6 +6,7 @@ import "@natscale/react-calendar/dist/main.css";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import { isBefore } from "@/utils/functions/functions";
 import { useRouter } from "next/navigation";
+import { setCookie } from "@/utils/functions/cookies";
 
 export default function Main() {
   const router = useRouter();
@@ -18,7 +19,8 @@ export default function Main() {
   ];
 
   const onChange = useCallback((value: any) => {
-    router.push(`/#apply-for-evaluation?date=${value}`);
+    setCookie("evaluation-date", value.toString(), 1);
+    router.push(`/#apply-for-evaluation`);
   }, []);
 
   return (

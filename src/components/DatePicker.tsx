@@ -8,16 +8,14 @@ import { formatDate, isBefore } from "@/utils/functions/functions";
 
 import { Calendar } from "@natscale/react-calendar";
 import "@natscale/react-calendar/dist/main.css";
+import { useIndexPageState } from "@/state/indexStore";
 
 
 export default function DatePicker({value, onValueChange}:{value:string|null, onValueChange: (e:string)=>void}) {
   const [title, setTitle] = useState<string>(value??'')
+  const evaluationDates = useIndexPageState(s => s.evaluationDates);
 
-    const takenDates = [
-    "Mon Mar 18 2024 00:00:00 GMT+0100 (West Africa Standard Time)",
-    "Tue Mar 19 2024 00:00:00 GMT+0100 (West Africa Standard Time)",
-    "Wed Mar 20 2024 00:00:00 GMT+0100 (West Africa Standard Time)"
-  ];
+    const takenDates = evaluationDates.map(_=>_.bookDate);
   
   return <>
   <input type="hidden" name="date" value={title} hidden />

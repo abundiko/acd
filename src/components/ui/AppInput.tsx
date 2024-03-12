@@ -39,9 +39,9 @@ export default memo(function AppInput({
       if (schema)
         try {
           schema.parse(val);
-          if (error != null && onErrorChange) {
+          setError(null);
+          if (onErrorChange) {
             onErrorChange(false);
-            setError(null);
           }
         } catch (e) {
           setError(JSON.parse(e as any)[0].message);

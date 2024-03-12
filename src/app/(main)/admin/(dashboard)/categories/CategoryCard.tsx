@@ -1,20 +1,53 @@
-import Link from "next/link";
-import { Facebook, Instagram, TwitterSparrow } from "react-huge-icons/solid";
+"use client";
 
-export type CategoryCardProps = {
-  category: string;
-  _id: string;
-};
+import AdminAuth from "@/components/AdminAuth";
+import useFormSubmit from "@/hooks/useFormSubmit";
+import revalidateRoutes from "@/serverActions";
+import { API } from "@/utils/constants";
+import { getCookie } from "@/utils/functions/cookies";
+import { ApiFormMessage } from "@/utils/types/basicTypes";
+import { ApiCategoryData } from "@/utils/types/companyTypes";
 
-export default function Teamcard({ category, _id }: CategoryCardProps) {
+export default function Teamcard({ title, _id }: ApiCategoryData) {
+const {
+    formProps: { onSubmit},
+    formState,
+    setSuccessMessage
+  } = useFormSubmit<ApiFormMessage>({
+    url: `${API}admin/editcategory`,
+    headers: {
+      'x-access-token': getCookie("token") ?? "",
+    },
+    onComplete(data) {
+      if (!data.message || !data) return;
+      if (data.message === "category deleted") {
+        revalidateRoutes([
+          "/admin/organizations/new",
+          "/admin/organizations/edit",
+          "/admin",
+          "/dashboard/[id]",
+          "/",
+        ]);
+        setSuccessMessage("category deleted successfully");
+      }
+    }
+  });
+  if(!formState.successMessage)
   return (
     <div className="p-4 border rounded-md border-gray-50  bg-light shadow">
-      <div className="flex justify-between">
-        <h1 className="font-semibold">{category}</h1>
-        <button className="bg-red-100 px-5 text-red-600 rounded-md border border-red-800">
-          Delete
-        </button>
-      </div>
+      <div className="flex justify-between items-center">
+        <h1 className="font-[500]">
+          {title}
+        </h1>
+        <form  onSubmit={onSubmit}>
+          <AdminAuth />
+          <input type="hidden" name="categoryid" value={_id} />
+          <input type="hidden" name="action" value="delete" />
+          <button disabled={formState.loading} className="btn-delete">
+            {formState.loading ? '....' : 'Delete'}
+          </button>
+        </form>
+      </div> 
     </div>
   );
 }

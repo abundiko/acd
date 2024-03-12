@@ -1,45 +1,30 @@
-import { Search } from "react-huge-icons/outline";
-import NewsCard, { NewsCardProps } from "./NewsCard";
+"use client";
 
-export default function Main() {
+import NewsCard from "./NewsCard";
+import { ApiNewsletterData } from "@/utils/types/companyTypes";
+import { useState } from "react";
+import SearchInput from "@/components/ui/SearchInput";
+
+export default function Main({
+  newsletters
+}: {
+  newsletters: ApiNewsletterData[];
+}) {
+  const [filter, setFilter] = useState("");
   return (
-    <div>
+    <div className="p-4">
       <div className="flex justify-between max-md:flex-col pb-4">
         <h1 className="text-2xl font-bold">Newsletter</h1>
 
-        <div className="relative md:grid w-full max-w-[300px]">
-          <input
-            type="text"
-            placeholder="Search Team Members"
-            className="border border-gray-300 rounded-3xl p-2 w-full text-sm"
-          />
-          <Search className="absolute top-3 right-5" />
-        </div>
+        <SearchInput onSearch={v => setFilter(v)} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-        {dummy.map((dummy) => (
-          <NewsCard key={dummy.email} {...dummy} />
-        ))}
+        {newsletters.length == 0
+          ? <p className="p-4 bg-light rounded">No Newsletters found</p>
+          : newsletters
+              .filter(_ => _.email.toLowerCase().includes(filter.toLowerCase()))
+              .map(item => <NewsCard key={item._id} {...item} />)}
       </div>
     </div>
   );
 }
-
-const dummy: NewsCardProps[] = [
-  {
-    email: "fonepo@tenizoke.dm",
-    _id: "01114",
-  },
-  {
-    email: "ibuvu@pueme.ge",
-    _id: "01114",
-  },
-  {
-    email: "mu@sehsohor.io",
-    _id: "01114",
-  },
-  {
-    email: "fijansul@raroh.jp",
-    _id: "01114",
-  },
-];

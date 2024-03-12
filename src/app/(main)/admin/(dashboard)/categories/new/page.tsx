@@ -10,6 +10,7 @@ import { API } from "@/utils/constants";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { getCookie } from "@/utils/functions/cookies";
 import AdminAuth from "@/components/AdminAuth";
+import revalidateRoutes from "@/serverActions";
 
 export default function Page() {
   const [errors, setErrors] = useState([true]);
@@ -22,11 +23,18 @@ export default function Page() {
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}admin/addcategory`,
     headers: {
-      token: getCookie("token") ?? "",
+      'x-access-token': getCookie("token") ?? "",
     },
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "category uploaded") {
+        revalidateRoutes([
+          "/admin/organizations/new",
+          "/admin/organizations/edit",
+          "/admin",
+          "/dashboard/[id]",
+          "/",
+        ]);
         reset();
         return setSuccessMessage("category uploaded successfully");
       }

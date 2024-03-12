@@ -1,49 +1,36 @@
+"use client";
+
 import { Search } from "react-huge-icons/outline";
-import OrgCard, { OrgCardProps } from "./OrgCard";
+import OrgCard from "./OrgCard";
+import { ApiOrganizationData } from "@/utils/types/companyTypes";
+import SearchInput from "@/components/ui/SearchInput";
+import { useState } from "react";
 
-export default function Main() {
+export default function Main({
+  organizations
+}: {
+  organizations: ApiOrganizationData[];
+}) {
+  const [filter, setFilter] = useState("");
   return (
-    <div>
-      <div className="flex justify-between max-md:flex-col">
-        <h1 className="text-2xl font-bold">Organization Page</h1>
+    <div className="p-4">
+      <div className="flex justify-between max-md:flex-col mb-4 gap-2">
+        <h1 className="text-2xl font-bold">Organizations</h1>
 
-        <div className="relative md:grid w-full max-w-[300px]">
-          <input
-            type="text"
-            placeholder="Search Team Members"
-            className="border border-gray-300 rounded-3xl p-2 w-full text-sm"
-          />
-          <Search className="absolute top-3 right-5" />
-        </div>
+        <SearchInput onSearch={v => setFilter(v)} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full p-4">
-        {dummy.map((dummy) => (
-          <OrgCard key={dummy.name} {...dummy} />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+        {organizations.length == 0
+          ? <p className="p-4 bg-light rounded">No Organizations</p>
+          : organizations
+              .filter(
+                _ =>
+                  _.name.toLowerCase().includes(filter.toLowerCase()) ||
+                  _.location.toLowerCase().includes(filter.toLowerCase()) ||
+                  _.category.toLowerCase().includes(filter.toLowerCase())
+              )
+              .map(item => <OrgCard key={item._id} {...item} />)}
       </div>
     </div>
   );
 }
-
-const dummy: OrgCardProps[] = [
-  {
-    name: "John Doe",
-    category: "longer",
-    location: "United States",
-  },
-  {
-    name: "John Doe",
-    category: "paragraph",
-    location: "Denmark",
-  },
-  {
-    name: "John Doe",
-    category: "willing",
-    location: "Uzbekistan",
-  },
-  {
-    name: "John Doe",
-    category: "hay",
-    location: "Indonesia",
-  },
-];

@@ -3,35 +3,25 @@
 import AppInput, { AppInputProps } from "@/components/ui/AppInput";
 import FormButton from "@/components/ui/FormButton";
 import { z } from "zod";
-import React from "react";
+import React, { useState } from "react";
 import { OrgCardProps } from "../OrgCard";
-
-export type Availaboolean = "Avalable" | "Not Available";
-
-export type Organization = OrgCardProps & {
-  quota: string;
-  rating: string;
-  srating: string;
-  building: string;
-  entrance: string;
-  room: string;
-  paths: string;
-  gtoilet: string;
-  atoilet: string;
-  lifts: string;
-  compscore: string;
-  spost: Availaboolean;
-  camera: Availaboolean;
-  point: Availaboolean;
-  emergency: Availaboolean;
-};
+import { ApiOrganizationData, Availaboolean } from "@/utils/types/companyTypes";
+import { API, NIGERIAN_STATES } from "@/utils/constants";
+import AdminAuth from "@/components/AdminAuth";
+import FormMessage from "@/components/ui/FormMessage";
+import useFormSubmit from "@/hooks/useFormSubmit";
+import revalidateRoutes from "@/serverActions";
+import { getCookie } from "@/utils/functions/cookies";
+import { ApiFormMessage } from "@/utils/types/basicTypes";
+import { useRouter } from "next/navigation";
 
 export default function Page({
+  _id,
   name,
   quota,
   location,
   category,
-  compscore,
+  compScore,
   rating,
   srating,
   building,
@@ -45,7 +35,8 @@ export default function Page({
   camera,
   point,
   emergency,
-}: Organization) {
+  categories
+}: ApiOrganizationData & { categories: string[] }) {
   const orgFields: AppInputProps[] = [
     {
       name: "name",
@@ -53,7 +44,7 @@ export default function Page({
       type: "text",
       value: name,
       placeholder: "Name of Organization",
-      schema: z.string().min(5, "organization name is required"),
+      schema: z.string().min(5, "organization name is required")
     },
     {
       name: "quota",
@@ -61,7 +52,7 @@ export default function Page({
       type: "number",
       value: quota,
       placeholder: "quota",
-      schema: z.string().min(1, "role is required"),
+      schema: z.string().min(1, "role is required")
     },
     {
       name: "rating",
@@ -69,7 +60,7 @@ export default function Page({
       type: "number",
       value: rating,
       placeholder: "accessibility rating",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "srating",
@@ -77,35 +68,31 @@ export default function Page({
       type: "number",
       value: srating,
       placeholder: "Total sercurity rating",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
+    {
+      name: "compScore",
+      title: "Compliance Score",
+      type: "number",
+      value: compScore,
+      placeholder: "Compliance Score",
+      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      required: true
+    }
   ];
+
+  console.log(spost, camera, point, emergency);
+  
 
   const securityFields: {
     name: string;
     title: string;
     value: Availaboolean;
   }[] = [
-    {
-      name: "spost",
-      title: "Presence of sercurity post",
-      value: spost,
-    },
-    {
-      name: "camera",
-      title: "presence of surveillance Camera",
-      value: camera,
-    },
-    {
-      name: "point",
-      title: "Muster Point",
-      value: point,
-    },
-    {
-      name: "emergency",
-      title: "Emergency Exit",
-      value: emergency,
-    },
+    { name: "spost", title: "Presence of sercurity post", value: spost },
+    { name: "camera", title: "presence of surveillance Camera", value: camera },
+    { name: "point", title: "Muster Point", value: point },
+    { name: "emergency", title: "Emergency Exit", value: emergency }
   ];
 
   const compFields: AppInputProps[] = [
@@ -115,7 +102,7 @@ export default function Page({
       type: "number",
       value: building,
       placeholder: "access to building",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "entrance",
@@ -123,7 +110,7 @@ export default function Page({
       type: "number",
       value: entrance,
       placeholder: "Entrance, Reception, waiting area (%score)",
-      schema: z.string().min(1, "this filed is required"),
+      schema: z.string().min(1, "this filed is required")
     },
     {
       name: "room",
@@ -131,7 +118,7 @@ export default function Page({
       type: "number",
       value: room,
       placeholder: "Rooms/Halls/offices",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "paths",
@@ -139,7 +126,7 @@ export default function Page({
       type: "number",
       value: paths,
       placeholder: "circulation paths/Internal way-finding",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "gtoilet",
@@ -147,7 +134,7 @@ export default function Page({
       type: "number",
       value: gtoilet,
       placeholder: "general toilet",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "atoilet",
@@ -155,7 +142,7 @@ export default function Page({
       type: "number",
       value: atoilet,
       placeholder: "Accessible toilet",
-      schema: z.string().min(1, "this field is required"),
+      schema: z.string().min(1, "this field is required")
     },
     {
       name: "lifts",
@@ -163,75 +150,112 @@ export default function Page({
       type: "number",
       value: lifts,
       placeholder: "Lifts/stair lifts",
-      schema: z.string().min(1, "this field is required"),
-    },
+      schema: z.string().min(1, "this field is required")
+    }
   ];
+
+  const router = useRouter();
+  const [errors, setErrors] = useState([
+    ...Array.from({ length: 12 }, () => true)
+  ]);
+  const {
+    formProps: { onSubmit, key },
+    formState,
+    setErrorMessage,
+    setSuccessMessage,
+  } = useFormSubmit<ApiFormMessage>({
+    url: `${API}admin/editstats`,
+    headers: {
+      'x-access-token': getCookie("token") ?? "",
+    },
+    onComplete(data) {
+      if (!data.message || !data) return setErrorMessage("An error occurred");
+      if (data.message === "organization updated") {
+        revalidateRoutes([
+          '/admin/organizations',
+          '/admin/organizations/edit',
+          '/dashoard/[id]',
+        ]);
+        setSuccessMessage("Evaluation Updated successfully");
+        return router.replace('/admin/organizations');
+      }
+      setErrorMessage(data.message);
+    }
+  });
 
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Edit Company Data</h1>
-      <form className="flex flex-col gap-3 py-3">
-        {orgFields.map((item) => {
-          return <AppInput key={item.name} {...item} />;
+      <form  onSubmit={onSubmit} key={key} className="flex flex-col gap-3 py-3">
+        <AdminAuth />
+        <input type="hidden" name="statid" value={_id} hidden />
+        {orgFields.map((item,i) => {
+          return <AppInput key={item.name} {...item} onErrorChange={hasError => {
+                setErrors(prev =>
+                  prev.map((error, index) => (index === i ? hasError : error))
+                );
+              }}/>;
         })}
         <div>
           <label htmlFor="location" className="pb-2">
             Location
           </label>
           <select className="select-option">
-            <option value="">Vanuatu</option>
-            <option value="">Spain</option>
-            <option value="">Niger</option>
-            <option value="">French Guiana</option>
-            <option value="">France</option>
+            {NIGERIAN_STATES.map(e =>
+              <option selected={e===location} key={e} value={e}>
+                {e}
+              </option>
+            )}
           </select>
         </div>
         <div>
-          <div>
-            <label htmlFor="compscore" className="pb-2">
-              compliance Score
-            </label>
-            <select className="select-option">
-              <option value=""></option>
-              <option value="">option2</option>
-              <option value="">option3</option>
-              <option value="">option4</option>
-              <option value="">option5</option>
-            </select>
-          </div>
           <label htmlFor="category" className="pb-2">
             categories
           </label>
           <select className="select-option">
-            <option value=""></option>
-            <option value="">option2</option>
-            <option value="">option3</option>
-            <option value="">option4</option>
-            <option value="">option5</option>
+            {categories.map(e =>
+              <option selected={e===category}  key={e} value={e}>
+                {e}
+              </option>
+            )}
           </select>
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
-        {securityFields.map((item) => {
+        {securityFields.map(item => {
           return (
             <div key={item.title}>
               <label htmlFor="category" className="pb-2">
                 {item.title}
               </label>
-              <select className="select-option">
-                {["Available", "Not Available"].map((e) => (
-                  <option selected={e === item.value} value={e}>
+              <select name={item.name} className="select-option">
+                {["Available", "Not Available"].map(e =>
+                  <option key={e} selected={e === item.value} value={e}>
                     {e}
                   </option>
-                ))}
+                )}
               </select>
             </div>
           );
         })}
         <p className="text-lg py-4">Structural Compliance matrics</p>
-        {compFields.map((item) => {
-          return <AppInput key={item.name} {...item} />;
+        {compFields.map((item, i) => {
+          return <AppInput key={item.name} {...item} onErrorChange={hasError => {
+                setErrors(prev =>
+                  prev.map(
+                    (error, index) =>
+                      index === i + orgFields.length ? hasError : error
+                  )
+                );
+              }}/>;
         })}
-        <FormButton className="btn-primary">Submit</FormButton>
+        <FormMessage {...formState} />
+        <FormButton
+          loading={formState.loading}
+          disabled={errors.includes(true)}
+          className="btn-primary"
+        >
+          Submit
+        </FormButton>
       </form>
     </div>
   );

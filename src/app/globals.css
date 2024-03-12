@@ -41,6 +41,9 @@
   .btn-dark-border {
     @apply bg-transparent border btn text-dark-text rounded-md shadow-sm transition duration-150 ease-in-out hover:bg-[#00000011] r-font-semibold text-lg py-2;
   }
+  .btn-delete {
+    @apply bg-red-100 px-4 py-1 text-red-600 rounded-md border border-red-800 btn disabled:opacity-50 disabled:pointer-events-none;
+  }
   .select-option {
     @apply bg-light w-full border outline-primary text-dark-text py-3 px-4 rounded-md;
   }

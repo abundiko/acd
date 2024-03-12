@@ -27,8 +27,8 @@ export default function LoginForm() {
       if (data.message === "login successful") {
         reset();
         setSuccessMessage("Signed In Successfully");
-        setCookie("token", data.token, 24 * 30);
-        setCookie("email", data.data.email, 24 * 30);
+        setCookie("token", data.token, 2);
+        setCookie("email", data.data.email, 2);
         setUser(data.data);
         router.replace("/admin");
         return;

@@ -1,4 +1,9 @@
+"use client";
+
+import { useIndexPageState } from "@/state/indexStore";
+
 export default function TheTeam() {
+  const team = useIndexPageState(s => s.team);
   return (
     <section className="accesibility container">
       <div className="accesibility_intro">
@@ -12,70 +17,50 @@ export default function TheTeam() {
         </p>
       </div>
 
-      <div className="accesibility_experts">
-        <div className="experts_reviews">
-          <div className="expert-review_images">
-            <img
-              src="/ASSETS/Images/experts images/expert1.svg"
-              alt="expert 01"
-            />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {team.map((item, index) =>
+          <div key={item._id} className="experts_reviews">
+            <div className="expert-review_images">
+              <img
+                src={item.img}
+                alt={item.name}
+                className="aspect-[4/3] object-cover"
+              />
+            </div>
+
+            <h4>
+              {item.name}
+            </h4>
+
+            <p>
+              {item.role}
+            </p>
+            <p>
+              {item.comment}
+            </p>
+
+            <div className="expert_socials">
+              {item.facebook &&
+                <a title="Facebook" href={item.facebook}>
+                  <div>
+                    <img src="/ASSETS/Icons/fb-icn.svg" alt="" />
+                  </div>
+                </a>}
+              {item.instagram &&
+                <a title="Instagram" href={item.instagram}>
+                  <div>
+                    <img src="/ASSETS/Icons/ig-icn.svg" alt="" />
+                  </div>
+                </a>}
+              {item.twitter &&
+                <a title="Twitter(X)" href={item.twitter}>
+                  <div>
+                    <img src="/ASSETS/Icons/x-icn.svg" alt="" />
+                  </div>
+                </a>}
+            </div>
           </div>
-
-          <h4>Jocelyn Schleifer</h4>
-
-          <p>Software Engineer</p>
-          <p>There are many variations of passages of Lorem Ipsum available</p>
-
-          <div className="expert_socials">
-            <a title="Facebook" href="#">
-              <div>
-                <img src="/ASSETS/Icons/fb-icn.svg" alt="" />
-              </div>
-            </a>
-            <a title="Instagram" href="#">
-              <div>
-                <img src="/ASSETS/Icons/ig-icn.svg" alt="" />
-              </div>
-            </a>
-            <a title="Twitter(X)" href="#">
-              <div>
-                <img src="/ASSETS/Icons/x-icn.svg" alt="" />
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div className="experts_reviews">
-          <div className="expert-review_images">
-            <img
-              src="/ASSETS/Images/experts images/expert2.svg"
-              alt="expert 01"
-            />
-          </div>
-
-          <h4>Martin Donin</h4>
-
-          <p>Software Engineer</p>
-          <p>There are many variations of passages of Lorem Ipsum available</p>
-
-          <div className="expert_socials">
-            <a title="Facebook" href="#">
-              <div>
-                <img src="/ASSETS/Icons/fb-icn.svg" alt="" />
-              </div>
-            </a>
-            <a title="Instagram" href="#">
-              <div>
-                <img src="/ASSETS/Icons/ig-icn.svg" alt="" />
-              </div>
-            </a>
-            <a title="Twitter(X)" href="#">
-              <div>
-                <img src="/ASSETS/Icons/x-icn.svg" alt="" />
-              </div>
-            </a>
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

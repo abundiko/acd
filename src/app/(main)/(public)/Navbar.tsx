@@ -1,36 +1,23 @@
+import AppLogo from "@/components/logo";
+import Link from "next/link";
+
 export default function Navbar() {
 return <>
  <div className="sticky_header" id="head">
         <header className="container">
             <div className="logo">
-                <a href="#" title="Accessibility Compliance Dashboard">
-                    <img src="/ASSETS/Images/logo01.png" alt="logo" width="90"/>
-                    <div className="logo_demacation"></div>
-                    <img src="/ASSETS/Icons/Union.svg" alt="logo" className="union"/>
-
-
-                    <div className="ac-dashboard">
-                        <div className="access-logo-txt">A</div>
-                        <div className="comply-logo-txt">C</div>
-                        <div className="dashboard-logo-txt">D</div>
-                    </div>
-
-                    <div className="acd-full">
-                        <p>Accessibility</p>
-                        <p>Complaince</p>
-                        <p>Dashboard</p>
-                    </div>
-                </a>
+                <AppLogo />
+                
 
             </div>
             <div className="navigation">
                 <nav>
                     <ul>
                         <li><a href="https://inclusivefriends.org/resources/publications/">Our Research</a></li>
-                        <li><a href="" className="compliance">
+                        <li><Link href="/dashboard" className="compliance">
                                 Compliance Dashboard
-                                <img src="/ASSETS/Icons/vctrswoosh.svg" alt="dashboard"/></a></li>
-                        <li><a href="#" className="evaluation">Apply for Evaluation<sup>New</sup></a></li>
+                                <img src="/ASSETS/Icons/vctrswoosh.svg" alt="dashboard"/></Link></li>
+                        <li><a href="#apply-for-evaluation" className="evaluation">Apply for Evaluation<sup>New</sup></a></li>
                     </ul>
                 </nav>
             </div>
@@ -54,12 +41,12 @@ return <>
         <ul>
             <li><a href="https://inclusivefriends.org/resources/publications/" target="_blank">Our Research</a></li>
             <li>
-              <a href="#" className="compliance">
+              <Link href="/dashboard" className="compliance">
                     Compliance Dashboard
                     <img src="/ASSETS/Icons/vctrswoosh.svg" alt="dashboard"/>
-                    </a>
+                    </Link>
                     </li>
-            <li><a href="#" className="evaluation">Apply for Evaluation<sup>New</sup></a></li>
+            <li><a href="#apply-for-evaluation" className="evaluation">Apply for Evaluation<sup>New</sup></a></li>
         </ul>
     </div>
 </>;

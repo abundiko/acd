@@ -1,8 +1,8 @@
+import { fetchNewsLetters } from "@/serverActions/fetchNewsLetters";
 import Main from "./Main";
-export default function Page() {
-  return (
-    <div className="p-4">
-      <Main />
-    </div>
-  );
+export default async function Page() {
+  const newsletters = await fetchNewsLetters();
+  if (!newsletters) return;
+
+  return <Main newsletters={newsletters!} />;
 }

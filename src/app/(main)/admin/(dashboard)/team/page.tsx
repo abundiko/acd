@@ -1,8 +1,7 @@
+import { fetchTeam } from "@/serverActions/fetchTeam";
 import Main from "./Main";
-export default function Page() {
-  return (
-    <div className="p-4">
-      <Main />
-    </div>
-  );
+export default async function Page() {
+  const team = await fetchTeam();
+  if (!team) return;
+  return <Main team={team!} />;
 }

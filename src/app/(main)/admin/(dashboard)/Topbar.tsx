@@ -10,7 +10,7 @@ export default function Topbar() {
   const toggleMenu = setOpen.bind(null, true);
   return (
     <header className="flex gap-4 items-center p-3 border-b bg-light">
-      <button className="p-2 md:hidden" onClick={toggleMenu}>
+      <button className="p-2 lg:hidden text-lg" onClick={toggleMenu}>
         <MenuLineHorizontal />
       </button>
       <div className="flex flex-col">

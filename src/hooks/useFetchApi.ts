@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import useRunOnce from "./useRunOnce";
-import { _JSON } from "./useApi";
 
 export default function useFetchApi<T, K = undefined >(
   url: string,
   onComplete?: (data: T | null) => void,
-  headers?: _JSON,
+  headers?: { [key: string]: string },
   initialFetch = true,
 ) {
   const [error, setError] = useState<unknown>();
-  const [loading, setLoading] = useState(!initialFetch);
+  const [loading, setLoading] = useState(initialFetch);
   const [data, setData] = useState<T | null>(null);
   const [mainData, setMainData] = useState<K | null>(null);
 

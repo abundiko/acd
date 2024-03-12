@@ -1,61 +1,34 @@
-import { Search } from "react-huge-icons/outline";
-import Teamcard, { TeamcardProps } from "./TeamCard";
+"use client";
 
-export default function Main() {
+import SearchInput from "@/components/ui/SearchInput";
+import { useState } from "react";
+import Teamcard from "./TeamCard";
+import { ApiTeamData } from "@/utils/types/companyTypes";
+
+interface Props {
+  team: ApiTeamData[];
+}
+
+export default function Main({ team }: Props) {
+  const [filter, setFilter] = useState("");
   return (
-    <div>
-      <div className="flex justify-between max-md:flex-col pb-4">
+    <div className="p-4">
+      <div className="flex justify-between max-md:flex-col pb-4 gap-1">
         <h1 className="text-2xl font-bold">Experts</h1>
 
-        <div className="relative md:grid w-full max-w-[300px]">
-          <input
-            type="text"
-            placeholder="Search Team Members"
-            className="border border-gray-300 rounded-3xl p-2 w-full text-sm"
-          />
-          <Search className="absolute top-3 right-5" />
-        </div>
+        <SearchInput onSearch={v => setFilter(v)} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-        {dummy.map((dummy) => (
-          <Teamcard key={dummy.name} {...dummy} />
-        ))}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 w-full">
+        {team.length == 0
+          ? <p className="p-4 bg-light rounded">No team members found</p>
+          : team
+              .filter(
+                _ =>
+                  _.name.toLowerCase().includes(filter.toLowerCase()) ||
+                  _.role.toLowerCase().includes(filter.toLowerCase())
+              )
+              .map(item => <Teamcard key={item._id} {...item} />)}
       </div>
     </div>
   );
 }
-
-const dummy: TeamcardProps[] = [
-  {
-    img: "/img/person.jpeg",
-    name: "John Doe",
-    role: "developer",
-    facebook: "www.facebook.com",
-    instagram: "www.instagram.com",
-    twitter: "www.twitter.com",
-  },
-  {
-    img: "/img/person.jpeg",
-    name: "John Doe",
-    role: "developer",
-    facebook: "www.facebook.com",
-    instagram: "www.instagram.com",
-    twitter: "www.twitter.com",
-  },
-  {
-    img: "/img/person.jpeg",
-    name: "John Doe",
-    role: "developer",
-    facebook: "www.facebook.com",
-    instagram: "www.instagram.com",
-    twitter: "www.twitter.com",
-  },
-  {
-    img: "/img/person.jpeg",
-    name: "John Doe",
-    role: "developer",
-    facebook: "www.facebook.com",
-    instagram: "www.instagram.com",
-    twitter: "www.twitter.com",
-  },
-];

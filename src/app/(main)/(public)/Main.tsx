@@ -21,33 +21,41 @@ import Sponsors from './Sponsors';
 import BlogBar from './BlogBar';
 import Navbar from './Navbar';
 import Hero from './Hero';
+import { useIndexPageState } from '@/state/indexStore';
+import useRunOnce from '@/hooks/useRunOnce';
+import { ApiCategoryData, ApiEvaluationData, ApiOrganizationData, ApiStoryData, ApiTeamData } from '@/utils/types/companyTypes';
 
-export default function Main() {
+type PageProps = {
+  evaluationDates: ApiEvaluationData[];
+  team: ApiTeamData[];
+  categories: ApiCategoryData[];
+  organizations: ApiOrganizationData[];
+  stories: ApiStoryData[];
+}
+
+export default function Main({
+  evaluationDates, team , stories, organizations, categories
+}:PageProps) {
+  const {setEvaluationDates, setTeam, setCategories, setOrganizations, setStories} = useIndexPageState();
+
+  useRunOnce(()=>{
+    setEvaluationDates(evaluationDates)
+    setTeam(team)
+    setStories(stories)
+    setOrganizations(organizations)
+    setCategories(categories)
+  })
+  
 return <>
   <BlogBar />
-
-
    <Navbar />
-
-
   <Hero />
   <Sponsors />
-
-
-
   <Reviews />
-
-
   <ApplyForEvaluation />
-
-
   <TheTeam />
-
-
   <Faq />
-
   <Footer />
-  
     <Script src='/main.js' defer />
 </>
 }
