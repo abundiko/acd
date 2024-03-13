@@ -4,7 +4,7 @@ import { useIndexPageState } from "@/state/indexStore";
 
 export default function BlogBar() {
   const stories = useIndexPageState(s => s.stories);
-  const lastStory = stories[stories.length - 1];
+  const lastStory = stories[0];
   if (stories.length > 0)
     return (
       <header>

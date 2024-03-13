@@ -10,6 +10,10 @@ export type ApiCategoryData = {
   title: string;
   _id: string;
 };
+export type ApiLogoData = {
+  img: string;
+  _id: string;
+};
 
 export type ApiTeamData = {
   _id: string;

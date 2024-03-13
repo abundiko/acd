@@ -1,8 +1,6 @@
 import React from "react";
 import ResetPasswordForm from "./Form";
 import Link from "next/link";
-import ContinueWithGoogleButton from "@/components/ContinueWithGoogleButton";
-import ContinueWithFacebookButton from "@/components/ContinueWithFacebookButton";
 
 export default function Page() {
   return (

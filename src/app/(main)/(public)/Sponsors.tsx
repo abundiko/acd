@@ -1,4 +1,9 @@
+"use client";
+
+import { useIndexPageState } from "@/state/indexStore";
+
 export default function Sponsors() {
+  const logos = useIndexPageState(s => s.logos);
   return (
     <section className="sponsors container">
       <div className="sponsors_left_content">
@@ -24,23 +29,14 @@ export default function Sponsors() {
       <div className="sponsor_scroller">
         <div className="container">
           <div className="sponsor_images">
-            <img src="/ASSETS/Images/Slider images/logoipsum-250.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-264.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-222.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-237.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-244.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-259.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-262.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-265.svg" alt="" />
-
-            <img src="/ASSETS/Images/Slider images/logoipsum-250.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-264.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-222.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-237.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-244.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-259.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-262.svg" alt="" />
-            <img src="/ASSETS/Images/Slider images/logoipsum-265.svg" alt="" />
+            {logos.map(e =>
+              <img
+                key={e.img}
+                src={e.img}
+                alt="featured Logo"
+                className="h-20 object-contain"
+              />
+            )}
           </div>
         </div>
       </div>

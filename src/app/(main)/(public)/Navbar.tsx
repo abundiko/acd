@@ -1,3 +1,4 @@
+import CheckVisits from "@/components/CheckVisits";
 import AppLogo from "@/components/logo";
 import Link from "next/link";
 
@@ -22,7 +23,7 @@ return <>
                 </nav>
             </div>
             <div className="disability-btn">
-                <a href="#" target="_blank">
+                <a href="/disability-act.pdf" download target="_blank">
                     <img src="/ASSETS/Icons/Book.svg" alt="disability book"/>
                     <p>Disability Act, 2018</p>
                 </a>
@@ -49,5 +50,6 @@ return <>
             <li><a href="#apply-for-evaluation" className="evaluation">Apply for Evaluation<sup>New</sup></a></li>
         </ul>
     </div>
+    <CheckVisits />
 </>;
 }

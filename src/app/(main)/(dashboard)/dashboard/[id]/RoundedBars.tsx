@@ -1,5 +1,6 @@
 "use client";
 
+import { useDashboardState } from "@/state/dashboardStore";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -10,12 +11,14 @@ export type RoundedBarsProps = {
 };
 
 export default function RoundedBars() {
+  const org = useDashboardState(s => s.org);
+
   return (
     <div className="flex  gap-3 sm:gap-4 md:gap-2 lg:gap-4">
       {tiles({
-        compliance: 80,
-        employment: 5,
-        accessibility: 90
+        compliance: org ? Number(org.compScore) : 0,
+        employment: org ? Number(org.quota) : 0,
+        accessibility: org ? Number(org.rating) : 0
       }).map(tile => <RoundedCard key={tile.title} {...tile} />)}
     </div>
   );

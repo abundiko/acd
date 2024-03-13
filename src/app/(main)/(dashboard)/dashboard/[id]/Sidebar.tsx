@@ -15,6 +15,7 @@ import { Remove } from "react-huge-icons/solid";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
 import { useNavState } from "@/state/navStore";
+import CheckVisits from "@/components/CheckVisits";
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useNavState();
@@ -25,6 +26,7 @@ export default function Sidebar() {
         ? "max-lg:[left:0_!important]"
         : ""}`}
     >
+      <CheckVisits />
       <div className="flex justify-between items-center">
         <AppLogo />
         <button className="p-2 lg:hidden" onClick={() => setOpen(false)}>
@@ -43,6 +45,7 @@ export default function Sidebar() {
             {actions.map(({ name, icon, href }) => {
               return name === "DISABILITY_ACT"
                 ? <Link
+                    download={true}
                     href={href}
                     key={name}
                     className="text-xs w-fit bg-primary rounded-3xl py-2 px-4 text-light border-primary hover:text-dark-text hover:bg-blue-100"
@@ -107,7 +110,7 @@ const actions = (id: string) => [
       {
         name: "DISABILITY_ACT",
         icon: <DocumentText />,
-        href: `/dashboard/${id}/about`
+        href: `/disability-act.pdf`
       },
       {
         name: "About The Dashboard",

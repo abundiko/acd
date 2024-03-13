@@ -10,6 +10,7 @@ import useFormSubmit from "@/hooks/useFormSubmit";
 import { API } from "@/utils/constants";
 import { getCookie } from "@/utils/functions/cookies";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
+import revalidateRoutes from "@/serverActions";
 
 export default function Page() {
   const [errors, setErrors] = useState([true]);
@@ -27,6 +28,10 @@ export default function Page() {
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "blog header uploaded") {
+        revalidateRoutes([
+          '/admin/blog',
+          '/'
+        ])
         reset();
         return setSuccessMessage("story uploaded successfully");
       }

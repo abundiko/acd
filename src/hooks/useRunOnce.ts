@@ -1,10 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 
 const useRunOnce = (hook: () => unknown) => {
   const hasRun = useRef(false);
   const value = useRef<unknown>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!hasRun.current) {
       value.current = hook();
       hasRun.current = true;

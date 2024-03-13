@@ -1,5 +1,6 @@
 "use client";
 
+import { useDashboardState } from "@/state/dashboardStore";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -63,12 +64,14 @@ const labels = [
 
 
 export default function StructuralComplianceMetrics() {
+  const {building, entrance, room, paths, gtoilet, atoilet, lifts} = useDashboardState(s=>s.org);
+
   const data:ChartData<"bar", number[], string> = {
   labels,
   datasets: [
     {
       label: '',
-      data: [20,30,50,60,54, 90, 10],
+      data: [building, entrance, room, paths, gtoilet, atoilet, lifts].map(_=>Number(_)??0),
       borderColor: '#1AA367',
       backgroundColor: '#1AA367',
     },

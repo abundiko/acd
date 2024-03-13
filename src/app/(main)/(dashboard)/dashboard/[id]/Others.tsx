@@ -1,5 +1,6 @@
 "use client";
 
+import { useDashboardState } from "@/state/dashboardStore";
 import Link from "next/link";
 import { useState } from "react";
 import { Search } from "react-huge-icons/outline";
@@ -8,6 +9,17 @@ import { Remove } from "react-huge-icons/solid";
 export default function Others() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  const orgs = useDashboardState(s => s.organizations);
+  const org = useDashboardState(s => s.org);
+
+  const filteredList = orgs
+    .filter(({ category, _id }) => {
+      return category == org.category && _id != org._id;
+    })
+    .filter(({ name }) => {
+      return name.toLowerCase().includes(searchValue.toLowerCase());
+    });
 
   return (
     <div className="dashboard-card w-full flex flex-col gap-3">
@@ -33,37 +45,20 @@ export default function Others() {
         </button>
       </div>
       <div className="flex flex-col border border-gray-400 rounded-md overflow-hidden divide-y divide-gray-400 bg-light-gray max-h-[500px] overflow-y-auto">
-        {dummy
-          .filter(({ title }) => {
-            return title.toLowerCase().includes(searchValue.toLowerCase());
-          })
-          .map(({ title, href }) => {
-            return (
-              <Link href={href} className="p-2 hover:bg-gray-200" key={title}>
-                {title}
-              </Link>
-            );
-          })}
+        {filteredList.length == 0
+          ? <p className="p-2 rounded">No Results Found</p>
+          : filteredList.map(({ name, _id }) => {
+              return (
+                <Link
+                  href={`/dashboard/${_id}`}
+                  className="p-2 hover:bg-gray-200"
+                  key={_id}
+                >
+                  {name}
+                </Link>
+              );
+            })}
       </div>
     </div>
   );
 }
-
-const dummy = [
-  {
-    title: "Organization of this and that",
-    href: "/dashboard/organization-of-this"
-  },
-  {
-    title: "Organization of us",
-    href: "/dashboard/organization-of-this"
-  },
-  {
-    title: "Organization of others",
-    href: "/dashboard/organization-of-this"
-  },
-  {
-    title: "Organization of peopls",
-    href: "/dashboard/organization-of-this"
-  }
-];

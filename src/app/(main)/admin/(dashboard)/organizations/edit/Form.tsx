@@ -81,7 +81,6 @@ export default function Page({
     }
   ];
 
-  console.log(spost, camera, point, emergency);
   
 
   const securityFields: {
@@ -200,9 +199,9 @@ export default function Page({
           <label htmlFor="location" className="pb-2">
             Location
           </label>
-          <select className="select-option">
+          <select className="select-option" defaultValue={location}>
             {NIGERIAN_STATES.map(e =>
-              <option selected={e===location} key={e} value={e}>
+              <option key={e} value={e}>
                 {e}
               </option>
             )}
@@ -212,9 +211,9 @@ export default function Page({
           <label htmlFor="category" className="pb-2">
             categories
           </label>
-          <select className="select-option">
+          <select className="select-option" defaultValue={category}>
             {categories.map(e =>
-              <option selected={e===category}  key={e} value={e}>
+              <option key={e} value={e}>
                 {e}
               </option>
             )}

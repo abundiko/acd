@@ -29,8 +29,8 @@ export default function LoginForm() {
       if (data.message === "account created") {
         reset();
         setSuccessMessage("Account Created Successfully");
-        setCookie("token", data.token, 24 * 30);
-        setCookie("email", data.data.email, 24 * 30);
+        setCookie("token", data.token, 24);
+        setCookie("email", data.data.email, 24);
         setUser(data.data);
         router.replace("/admin");
         return;

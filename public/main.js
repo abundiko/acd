@@ -23,7 +23,7 @@ function addAnimation() {
 
 window.addEventListener("scroll", () => {
   let headerloop = document.querySelector("#head");
-  headerloop.classList.toggle("stick", scrollY > 40);
+  if (headerloop) headerloop.classList.toggle("stick", scrollY > 40);
 });
 
 // accordion
@@ -50,18 +50,21 @@ cross.forEach(press => {
 });
 
 const verify = document.querySelector("#mobileaccess");
-const mobileshow = verify.addEventListener("click", () => {
-  let mobileresult = document.querySelector(".verify_mobile");
-  mobileresult.classList.add("mobileactivate");
+if (verify) {
+  const mobileshow = verify.addEventListener("click", () => {
+    let mobileresult = document.querySelector(".verify_mobile");
+    mobileresult.classList.add("mobileactivate");
 
-  const remover = document.querySelector("#mobilecloser");
-  remover.addEventListener("click", () => {
-    mobileresult.classList.remove("mobileactivate");
+    const remover = document.querySelector("#mobilecloser");
+    remover.addEventListener("click", () => {
+      mobileresult.classList.remove("mobileactivate");
+    });
   });
-});
+}
 
-window.addEventListener("load", () => {
-  document
-    .getElementById(window.location.hash)
-    .scrollIntoView({ behavior: "smooth" });
-});
+if (window.location.hash)
+  (() => {
+    document
+      .querySelector(window.location.hash)
+      .scrollIntoView({ behavior: "smooth" });
+  })();

@@ -11,6 +11,8 @@ import {
   People,
   Mail,
   CalendarDot,
+  ImageFavourite,
+  ImageAdd,
 } from "react-huge-icons/outline";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
@@ -111,6 +113,11 @@ const actions = (id: string) => [
         icon: <Mail />,
         href: `/admin/newsletter`,
       },
+      {
+        name: "Featured Logos",
+        icon: <ImageFavourite />,
+        href: `/admin/featured-logos`,
+      },
     ],
   },
   {
@@ -135,6 +142,11 @@ const actions = (id: string) => [
         name: "New story",
         icon: <DocumentText />,
         href: `/admin/blog/new`,
+      },
+      {
+        name: "New Logo",
+        icon: <ImageAdd />,
+        href: `/admin/featured-logos/new`,
       },
     ],
   },

@@ -1,16 +1,25 @@
+import { useDashboardState } from "@/state/dashboardStore";
+
 export default function SecurityRating() {
+  const org = useDashboardState(s => s.org);
+  function getAvailaboolean(value: any) {
+    return typeof value === "string" && value == "Available";
+  }
+
   return (
     <div className="dashboard-card w-full flex flex-col gap-3">
       <h1 className="opacity-80 text-xs">SECURITY RATING</h1>
       {tiles({
-        security: true,
-        emergency: true,
-        surveillance: false,
-        muster: true
+        security: getAvailaboolean(org ? org.spost : null),
+        emergency: getAvailaboolean(org ? org.emergency : null),
+        surveillance: getAvailaboolean(org ? org.camera : null),
+        muster: getAvailaboolean(org ? org.point : null)
       }).map(tile => <SecurityRatingCard key={tile.title} {...tile} />)}
       <div className="flex justify-end gap-1">
         <span>Security Rating:</span>
-        <span className="font-semibold">80%</span>
+        <span className="font-semibold">
+          {org.rating}%
+        </span>
       </div>
     </div>
   );

@@ -7,16 +7,11 @@ import useWindowWidth from "@/hooks/useWindowWidth";
 import { isBefore } from "@/utils/functions/functions";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/utils/functions/cookies";
+import CheckVisits from "@/components/CheckVisits";
 
-export default function Main() {
+export default function Main({ dates }: { dates: string[] }) {
   const router = useRouter();
   const windowWidth = useWindowWidth();
-
-  const dates = [
-    "Mon Mar 18 2024 00:00:00 GMT+0100 (West Africa Standard Time)",
-    "Tue Mar 19 2024 00:00:00 GMT+0100 (West Africa Standard Time)",
-    "Wed Mar 20 2024 00:00:00 GMT+0100 (West Africa Standard Time)"
-  ];
 
   const onChange = useCallback((value: any) => {
     setCookie("evaluation-date", value.toString(), 1);
@@ -25,6 +20,7 @@ export default function Main() {
 
   return (
     <section className="flex flex-col items-start max-md:items-center p-4 md:p-8">
+      <CheckVisits />
       <h1 className="font-semibold text-lg md:text-xl">Evaluation Schedule</h1>
       <p className="opacity-70 pt-2 pb-4">
         Select a date to apply for evaluation

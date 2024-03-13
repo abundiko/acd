@@ -23,7 +23,7 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import { useIndexPageState } from '@/state/indexStore';
 import useRunOnce from '@/hooks/useRunOnce';
-import { ApiCategoryData, ApiEvaluationData, ApiOrganizationData, ApiStoryData, ApiTeamData } from '@/utils/types/companyTypes';
+import { ApiCategoryData, ApiEvaluationData, ApiLogoData, ApiOrganizationData, ApiStoryData, ApiTeamData } from '@/utils/types/companyTypes';
 
 type PageProps = {
   evaluationDates: ApiEvaluationData[];
@@ -31,12 +31,13 @@ type PageProps = {
   categories: ApiCategoryData[];
   organizations: ApiOrganizationData[];
   stories: ApiStoryData[];
+  logos: ApiLogoData[];
 }
 
 export default function Main({
-  evaluationDates, team , stories, organizations, categories
+  evaluationDates, team , stories, organizations, categories, logos
 }:PageProps) {
-  const {setEvaluationDates, setTeam, setCategories, setOrganizations, setStories} = useIndexPageState();
+  const {setEvaluationDates, setTeam, setCategories, setOrganizations, setStories, setLogos} = useIndexPageState();
 
   useRunOnce(()=>{
     setEvaluationDates(evaluationDates)
@@ -44,6 +45,7 @@ export default function Main({
     setStories(stories)
     setOrganizations(organizations)
     setCategories(categories)
+    setLogos(logos)
   })
   
 return <>
