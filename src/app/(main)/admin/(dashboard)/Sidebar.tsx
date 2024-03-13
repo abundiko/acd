@@ -20,7 +20,8 @@ import Link from "next/link";
 import { useNavState } from "@/state/navStore";
 import { useAdminState } from "@/state/adminStore";
 import useRunOnce from "@/hooks/useRunOnce";
-import { getCookie } from "@/utils/functions/cookies";
+import { getCookie } from "@/utils/functions/cookies";import { useParams, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useNavState();
@@ -28,7 +29,11 @@ export default function Sidebar() {
   useRunOnce(()=>{
     setUser({email: getCookie('email')??'', _id:""})
   })
+  const pathname = usePathname();
 
+  useEffect(()=>{
+    setOpen(false)
+  },[pathname])
   return (
     <aside
       className={`w-full lg:w-64 flex flex-col gap-4 p-6 overflow-y-auto border-r h-screen transition-all duration-300 fixed top-0 left-[-105%] lg:left-0 bg-light z-30 ${

@@ -16,9 +16,20 @@ import SidebarButton from "./SidebarButton";
 import Link from "next/link";
 import { useNavState } from "@/state/navStore";
 import CheckVisits from "@/components/CheckVisits";
+import { useParams, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useNavState();
+  const { id } = useParams();
+  const pathname = usePathname();
+
+  useEffect(
+    () => {
+      setOpen(false);
+    },
+    [pathname]
+  );
 
   return (
     <aside
@@ -33,7 +44,7 @@ export default function Sidebar() {
           <Remove />
         </button>
       </div>
-      {actions("1").map(({ title, actions }) => {
+      {actions(String(id)).map(({ title, actions }) => {
         return (
           <div
             key={title}
