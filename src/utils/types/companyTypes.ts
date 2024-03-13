@@ -10,6 +10,11 @@ export type ApiCategoryData = {
   title: string;
   _id: string;
 };
+export type ApiCountData = {
+  date: string;
+  count: string;
+  _id: string;
+};
 export type ApiLogoData = {
   img: string;
   _id: string;

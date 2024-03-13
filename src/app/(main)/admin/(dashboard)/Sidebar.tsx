@@ -13,6 +13,7 @@ import {
   CalendarDot,
   ImageFavourite,
   ImageAdd,
+  Logout,
 } from "react-huge-icons/outline";
 import SidebarButton from "./SidebarButton";
 import Link from "next/link";
@@ -48,13 +49,13 @@ export default function Sidebar() {
           >
             <h3 className="pb-3 pl-2 text-sm">{title}</h3>
             {actions.map(({ name, icon, href }) => {
-              return name === "DISABILITY_ACT" ? (
+              return name === "Log Out" ? (
                 <Link
                   href={href}
                   key={name}
-                  className="text-xs w-fit bg-primary rounded-3xl py-2 px-4 text-light border-primary hover:text-dark-text hover:bg-blue-100"
+                  className="btn-delete"
                 >
-                  Disability Act, 2018
+                  {name}
                 </Link>
               ) : (
                 <SidebarButton
@@ -147,6 +148,17 @@ const actions = (id: string) => [
         name: "New Logo",
         icon: <ImageAdd />,
         href: `/admin/featured-logos/new`,
+      },
+    ],
+  },
+  {
+    title: "",
+    actions: [
+      
+      {
+        name: "Log Out",
+        icon: <Logout />,
+        href: `/admin/log-out`,
       },
     ],
   },

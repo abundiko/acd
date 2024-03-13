@@ -48,7 +48,6 @@ function SelectModal() {
   const router = useRouter();
 
    function checkAccessibility(){
-    console.log(_id)
     if(!_id) return;
     router.push(`/dashboard/${_id}`);
   }
