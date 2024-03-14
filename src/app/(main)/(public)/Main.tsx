@@ -11,7 +11,6 @@ import './assets/MediaQueries/faq.css';
 import './assets/MediaQueries/footer.css';
 import './assets/MediaQueries/accordionmenu.css';
 import './assets/MediaQueries/verifymobile.css';
-import Script from 'next/script';
 import Footer from './Footer';
 import Faq from './Faq';
 import TheTeam from './TheTeam';
@@ -37,6 +36,7 @@ type PageProps = {
 export default function Main({
   evaluationDates, team , stories, organizations, categories, logos
 }:PageProps) {
+  
   const {setEvaluationDates, setTeam, setCategories, setOrganizations, setStories, setLogos} = useIndexPageState();
 
   useRunOnce(()=>{
@@ -58,6 +58,6 @@ return <>
   <TheTeam />
   <Faq />
   <Footer />
-    <Script src='/main.js' defer />
+  <script src={`/main.js?cacheControl=${new Date().getTime()}`} async defer></script>
 </>
 }
