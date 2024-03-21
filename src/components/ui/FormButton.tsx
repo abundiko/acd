@@ -1,7 +1,11 @@
 import { RedoCircle } from "react-huge-icons/outline";
 
 export type FormButtonProps = {
+<<<<<<< HEAD
   className:string;
+=======
+  className?:string;
+>>>>>>> next-js
   children:React.ReactNode;
   loading?:boolean;
   disabled?:boolean;

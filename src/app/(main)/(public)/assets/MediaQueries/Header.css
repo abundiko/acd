@@ -2,7 +2,11 @@
 .sticky_header{
     position: sticky;
     top: 0;
+<<<<<<< HEAD
     z-index: 100000;
+=======
+    z-index: 50;
+>>>>>>> next-js
     width: 100%;
     background: white;
     padding-block: 20px;

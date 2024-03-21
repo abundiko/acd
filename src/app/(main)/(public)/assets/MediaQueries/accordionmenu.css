@@ -15,7 +15,11 @@
     z-index: 100;
     width: 100%;
     top: 0;
+<<<<<<< HEAD
     z-index: 100000;
+=======
+    z-index: 60;
+>>>>>>> next-js
     min-height: 100vh;
     height: 100%;
     align-items: center;

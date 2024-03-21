@@ -48,16 +48,20 @@ export default function Sidebar() {
           <Remove />
         </button>
       </div>
-      {actions("1").map(({ title, actions }) => {
+      {actions("1").map(({ title, actions },i) => {
         return (
           <div
-            key={title}
+            key={i}
             className="border-b flex flex-col text-dark-text py-2"
           >
             <h3 className="pb-3 pl-2 text-sm">{title}</h3>
             {actions.map(({ name, icon, href }) => {
               return name === "Log Out" ? (
-                <Link href={href} key={name} className="btn-delete">
+                <Link
+                  href={href}
+                  key={name}
+                  className="btn-delete"
+                >
                   {name}
                 </Link>
               ) : (
@@ -167,6 +171,7 @@ const actions = (id: string) => [
   {
     title: "",
     actions: [
+      
       {
         name: "Log Out",
         icon: <Logout />,

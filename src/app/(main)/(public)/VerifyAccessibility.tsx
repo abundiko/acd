@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useIndexPageState } from "@/state/indexStore";
 import { formDataToObject } from "@/utils/functions/test";
+<<<<<<< HEAD
+=======
+import AppSelect from "@/components/ui/AppSelect";
+>>>>>>> next-js
 
 export default function VerifyAccessibility() {
   const router = useRouter();
@@ -55,8 +59,13 @@ function SelectModal() {
       function hendleCategoryChange(e:React.ChangeEvent<HTMLSelectElement>){
       setCat(e.target.value);
     }
+<<<<<<< HEAD
     function hendleLocationChange(e:React.ChangeEvent<HTMLSelectElement>){
       setLoc(e.target.value);
+=======
+    function hendleLocationChange(value:string){
+      setLoc(value);
+>>>>>>> next-js
     }
     function hendleOrgChange(e:React.ChangeEvent<HTMLSelectElement>){
       setId(e.target.value);
@@ -85,7 +94,12 @@ function SelectModal() {
                           </option>
                         )}
                       </select>
+<<<<<<< HEAD
                       <select onChange={hendleLocationChange} defaultValue={loc} name="location" id="location" className="topbar-select">
+=======
+                      <AppSelect className="topbar-select" value={loc}  name="location" items={NIGERIAN_STATES} onChange={hendleLocationChange} />
+                      {/* <select onChange={hendleLocationChange} defaultValue={loc} id="location" className="topbar-select">
+>>>>>>> next-js
                         {NIGERIAN_STATES.map(e =>
                           <option
                             key={e}
@@ -94,7 +108,11 @@ function SelectModal() {
                             {e}
                           </option>
                         )}
+<<<<<<< HEAD
                       </select>
+=======
+                      </select> */}
+>>>>>>> next-js
                       <select onChange={hendleOrgChange} name="org" id="org" className="topbar-select">
                         {
                           availableOrgs.length == 0 ? <option disabled>not available</option> :

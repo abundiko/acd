@@ -57,7 +57,11 @@
 .hero-right-txt{
     display: flex;
     justify-content: center;
+<<<<<<< HEAD
     margin-top: 6rem;
+=======
+    /* margin-top: 6rem; */
+>>>>>>> next-js
 }
 
 
@@ -280,7 +284,11 @@
     }
 
     .hero-right-txt{
+<<<<<<< HEAD
         margin-top: 3rem;
+=======
+        /* margin-top: 3rem; */
+>>>>>>> next-js
     }
 
     .hero_innercontent p{
@@ -466,7 +474,11 @@
     }
 
     .hero-right-txt{
+<<<<<<< HEAD
         margin-top: 60px;
+=======
+        /* margin-top: 60px; */
+>>>>>>> next-js
     }
 
     .verify_accesibility p{

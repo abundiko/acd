@@ -19,8 +19,13 @@ return <>
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div className="hero-right-txt">
                 <div className="innerwaves">
+=======
+            <div className="hero-right-txt max-md:mt-32 relative xl:-top-10 xl:-left-[14%]">
+                <div className="innerwaves relative md:-top-7">
+>>>>>>> next-js
                     <div className="circle1"></div>
                     <div className="circle2"></div>
                     <div className="circle3"></div>

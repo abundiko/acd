@@ -78,7 +78,11 @@ const formFields: AppInputProps[] = [
     placeholder: "example@gmail.com",
     required: true,
     icon: <Mail />,
+<<<<<<< HEAD
     schema: z.string().email("enter a valid email")
+=======
+    schema: z.string()
+>>>>>>> next-js
   },
   {
     type: "text",
@@ -86,7 +90,11 @@ const formFields: AppInputProps[] = [
     placeholder: "+234 703 1111 2222",
     required: true,
     icon: <Call />,
+<<<<<<< HEAD
     schema: z.string().min(10, "this field is required")
+=======
+    schema: z.string()
+>>>>>>> next-js
   },
   {
     type: "text",
@@ -94,6 +102,10 @@ const formFields: AppInputProps[] = [
     placeholder: "Enter Location Address",
     required: true,
     icon: <Location />,
+<<<<<<< HEAD
     schema: z.string().min(2, "this field is required")
+=======
+    schema: z.string()
+>>>>>>> next-js
   }
 ];
