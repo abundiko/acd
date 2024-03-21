@@ -46,10 +46,10 @@ export default function Sidebar() {
           <Remove />
         </button>
       </div>
-      {actions("1").map(({ title, actions }) => {
+      {actions("1").map(({ title, actions },i) => {
         return (
           <div
-            key={title}
+            key={i}
             className="border-b flex flex-col text-dark-text py-2"
           >
             <h3 className="pb-3 pl-2 text-sm">{title}</h3>

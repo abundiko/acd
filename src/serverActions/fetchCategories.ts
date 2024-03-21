@@ -17,7 +17,6 @@ export async function fetchCategories(): Promise<
 
     const res = (await req.json()) as ApiCompressedData;
     const data = decompressApi<ApiCategoryData[]>(res.data.data);
-    console.log(data);
     return data;
   } catch (err) {
     console.error(err);

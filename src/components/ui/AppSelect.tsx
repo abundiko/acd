@@ -35,6 +35,7 @@ export default function AppSelect({
         placeholder={placeholder}
       />
       <Select.Content position="popper">
+                <Select.Group>
           <Select.Label>
             {title}
           </Select.Label>
@@ -50,6 +51,7 @@ export default function AppSelect({
                 {label}
               </Select.Item>
             })}
+                    </Select.Group>
       </Select.Content>
     </Select.Root>
       </div>

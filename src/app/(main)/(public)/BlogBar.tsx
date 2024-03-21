@@ -6,14 +6,14 @@ import { decompressApi } from "@/utils/functions/decompressApi";
 import { ApiCompressedData } from "@/utils/types/basicTypes";
 import { ApiStoryData } from "@/utils/types/companyTypes";
 
-export default async function BlogBar() {
+export default function BlogBar() {
   const { mainData:stories, setMainData } = useFetchApi<ApiCompressedData, ApiStoryData[]>(`${API}admin/blog`, _data=>{
     if(!_data) return;
     setMainData(decompressApi<ApiStoryData[]>(_data.data.data));
   });
   
   if(!stories) return <></>
-  
+
   const lastStory = stories[0];
   if (stories.length > 0)
     return (

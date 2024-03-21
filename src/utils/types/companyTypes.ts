@@ -6,9 +6,16 @@ export type ApiEvaluationData = {
   _id: string;
 };
 
+export type ApiSubCategory = {
+  name: string;
+  _id: string;
+  categoryid: string;
+};
+
 export type ApiCategoryData = {
   title: string;
   _id: string;
+  subcategories: ApiSubCategory[];
 };
 export type ApiCountData = {
   date: string;
