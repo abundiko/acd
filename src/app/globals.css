@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .topbar-select {
+    @apply w-full p-2;
+  }
+  .dashboard-card {
+    @apply border rounded-lg hover:shadow-xl p-3 bg-light;
+  }
+  .app-container {
+    @apply px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16;
+  }
+
+  .r-font-black {
+    @apply font-bold md:font-black;
+  }
+  .r-font-bold {
+    @apply font-[700] md:font-bold;
+  }
+  .r-font-semibold {
+    @apply font-semibold;
+  }
+  .r-text-lg {
+    @apply text-[1.1rem] md:text-lg;
+  }
+  .r-text-xl {
+    @apply text-xl md:text-2xl;
+  }
+  .r-text-2xl {
+    @apply text-2xl md:text-4xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center;
+  }
+  .btn-primary {
+    @apply bg-primary border border-primary btn text-light rounded-md shadow-sm transition duration-150 ease-in-out hover:bg-primary-dark r-font-semibold text-lg py-2;
+  }
+  .btn-dark-border {
+    @apply bg-transparent border btn text-dark-text rounded-md shadow-sm transition duration-150 ease-in-out hover:bg-[#00000011] r-font-semibold text-lg py-2;
+  }
+  .btn-delete {
+    @apply bg-red-100 px-4 py-1 text-red-600 rounded-md border border-red-800 btn disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .select-option {
+    @apply bg-light w-full border outline-primary text-dark-text py-3 px-4 rounded-md;
+  }
+}
+
+*{
+  scroll-behavior: smooth;
+}
