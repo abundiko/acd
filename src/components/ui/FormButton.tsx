@@ -1,4 +1,4 @@
-import { OutCircle } from "react-huge-icons/outline";
+import { RedoCircle } from "react-huge-icons/outline";
 
 export type FormButtonProps = {
   className:string;
@@ -12,7 +12,7 @@ export default function FormButton({
 }:FormButtonProps) {
 return <button disabled={loading || disabled} className={className+" disabled:opacity-70 disabled:pointer-events-none"}>
   {
-    loading ? <OutCircle className="animate-spin" /> : <>{children}</>
+    loading ? <RedoCircle className="animate-spin"/> : <>{children}</>
   }
 </button>;
 }

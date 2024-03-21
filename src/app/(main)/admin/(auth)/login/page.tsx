@@ -10,7 +10,7 @@ export default function Page() {
       <LoginForm />
       <div className="flex justify-center items-center text-sm gap-1">
         <span className="opacity-60">dont have an account?</span>
-        <Link href="/signup" className="text-primary">
+        <Link href="/admin/signup" className="text-primary">
           Sign Up
         </Link>
       </div>

@@ -19,26 +19,23 @@ export default function Page() {
     formState,
     setErrorMessage,
     setSuccessMessage,
-    reset,
+    reset
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}admin/addlogo`,
     hasFile: true,
-    headers: {
-      'x-access-token': getCookie("token") ?? "",
-    },
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "logo added") {
         revalidateRoutes([
           "/admin/featured-logos/new",
           "/admin/featured-logos",
-          "/",
+          "/"
         ]);
         reset();
         return setSuccessMessage("Logo uploaded successfully");
       }
       setErrorMessage(data.message);
-    },
+    }
   });
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
@@ -52,8 +49,8 @@ export default function Page() {
             <AppInput
               key={item.name}
               {...item}
-              onErrorChange={(hasError) => {
-                setErrors((prev) =>
+              onErrorChange={hasError => {
+                setErrors(prev =>
                   prev.map((error, index) => (index === i ? hasError : error))
                 );
               }}
@@ -72,13 +69,12 @@ export default function Page() {
   );
 }
 
-
 const formFields: AppInputProps[] = [
   {
     name: "file",
     title: "Logo Image",
     type: "file",
     schema: z.string().min(1, "Select an Image first"),
-    placeholder: ''
-  },
+    placeholder: ""
+  }
 ];

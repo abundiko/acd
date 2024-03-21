@@ -18,6 +18,7 @@ export function setCookie(name: string, value: string, hoursToExpire: number) {
 }
 
 export function getCookie(name: string) {
+  "use client";
   if (!document) return;
   const decodedCookie = decodeURIComponent(document.cookie);
   const cookieArray = decodedCookie.split(";");

@@ -170,7 +170,7 @@ const orgFields: AppInputProps[] = [
     name: "compScore",
     title: "Compliance Score",
     type: "number",
-    placeholder: "Total sercurity rating",
+    placeholder: "Compliance score",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
     required: true
   }

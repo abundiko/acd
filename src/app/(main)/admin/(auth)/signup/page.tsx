@@ -12,7 +12,7 @@ export default function Page() {
       <LoginForm />
       <div className="flex justify-center items-center text-sm gap-1">
         <span className="opacity-60">Already have an account?</span>
-        <Link href="/login" className="text-primary">
+        <Link href="/admin/login" className="text-primary">
           Log In
         </Link>
       </div>

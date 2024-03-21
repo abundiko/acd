@@ -48,3 +48,7 @@
     @apply bg-light w-full border outline-primary text-dark-text py-3 px-4 rounded-md;
   }
 }
+
+*{
+  scroll-behavior: smooth;
+}

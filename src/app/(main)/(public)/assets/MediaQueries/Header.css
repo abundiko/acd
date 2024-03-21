@@ -166,11 +166,10 @@ nav ul li a{
 .evaluation sup{
     position: absolute;
     right: -20px;
-    top: -15px;
     font-size: 10px;
     color: var(--clr-slate-dflt);
     background: var(--clr-slate-300);
-    padding: 1px 7px;
+    padding: 8px;
     border-radius: 10px;
     box-shadow: 0 1.17px 4.7px rgba(0, 0, 0, 25%);
 }
@@ -230,9 +229,6 @@ menu{
 
 @media (min-width:1200px) {
 
-    header{
-        padding-inline: 50px;
-    }
 
 
     .logo a img:first-child,
