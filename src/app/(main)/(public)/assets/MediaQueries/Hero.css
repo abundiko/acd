@@ -57,7 +57,7 @@
 .hero-right-txt{
     display: flex;
     justify-content: center;
-    margin-top: 6rem;
+    /* margin-top: 6rem; */
 }
 
 
@@ -280,7 +280,7 @@
     }
 
     .hero-right-txt{
-        margin-top: 3rem;
+        /* margin-top: 3rem; */
     }
 
     .hero_innercontent p{
@@ -466,7 +466,7 @@
     }
 
     .hero-right-txt{
-        margin-top: 60px;
+        /* margin-top: 60px; */
     }
 
     .verify_accesibility p{
