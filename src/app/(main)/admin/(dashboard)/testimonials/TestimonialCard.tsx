@@ -76,12 +76,13 @@ export default function Testimonialcard({
             <div className="flex flex-col ">
               <h1 className="text-xl font-bold">{fullname}</h1>
               <p className="text-sm opacity-70">{label}</p>
+              <p className="text-xs opacity-70">{message}</p>
               <div className="md:hidden">
                 <Socials />
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-2 w-full sm:w-40 justify-center">
+          <div className="flex flex-col flex-shrink-0 gap-2 w-full sm:w-40 justify-center">
             <div className="max-md:hidden">
               <Socials />
             </div>

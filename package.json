@@ -25,12 +25,8 @@
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.41",
-    "@types/node": "^20",
-<<<<<<< HEAD
-    "@types/react": "^18.2.67",
-=======
+    "@types/node": "^18",
     "@types/react": "^18",
->>>>>>> next-js
     "@types/react-chartjs-2": "^2.5.7",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

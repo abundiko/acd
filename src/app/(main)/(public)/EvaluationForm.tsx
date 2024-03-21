@@ -18,18 +18,18 @@ export default function EvaluationForm() {
     formState,
     setErrorMessage,
     setSuccessMessage,
-    reset
+    reset,
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}evaluation`,
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "evaluation uploaded") {
-        deleteCookie('evaluation=date');
+        deleteCookie("evaluation=date");
         reset();
         return setSuccessMessage("Request Sent Successfully");
       }
       setErrorMessage(data.message);
-    }
+    },
   });
 
   return (
@@ -38,22 +38,22 @@ export default function EvaluationForm() {
       <p>These contacts are used to reach you or your representative.</p>
       <div className="flex flex-col w-full gap-2">
         <FormMessage {...formState} />
-        {formFields.map((item, i) =>
+        {formFields.map((item, i) => (
           <AppInput
             key={item.name}
             {...item}
-            onErrorChange={hasError => {
-              setErrors(prev =>
+            onErrorChange={(hasError) => {
+              setErrors((prev) =>
                 prev.map((error, index) => (index === i ? hasError : error))
               );
             }}
           />
-        )}
+        ))}
         <DatePicker
-          value={getCookie('evaluation-date')??''}
-          onValueChange={_ => {
+          value={getCookie("evaluation-date") ?? ""}
+          onValueChange={(_) => {
             console.log(errors);
-            setErrors(prev =>
+            setErrors((prev) =>
               prev.map((error, index) => (index === 3 ? false : error))
             );
           }}
@@ -78,11 +78,7 @@ const formFields: AppInputProps[] = [
     placeholder: "example@gmail.com",
     required: true,
     icon: <Mail />,
-<<<<<<< HEAD
-    schema: z.string().email("enter a valid email")
-=======
-    schema: z.string()
->>>>>>> next-js
+    schema: z.string(),
   },
   {
     type: "text",
@@ -90,11 +86,7 @@ const formFields: AppInputProps[] = [
     placeholder: "+234 703 1111 2222",
     required: true,
     icon: <Call />,
-<<<<<<< HEAD
-    schema: z.string().min(10, "this field is required")
-=======
-    schema: z.string()
->>>>>>> next-js
+    schema: z.string(),
   },
   {
     type: "text",
@@ -102,10 +94,6 @@ const formFields: AppInputProps[] = [
     placeholder: "Enter Location Address",
     required: true,
     icon: <Location />,
-<<<<<<< HEAD
-    schema: z.string().min(2, "this field is required")
-=======
-    schema: z.string()
->>>>>>> next-js
-  }
+    schema: z.string(),
+  },
 ];

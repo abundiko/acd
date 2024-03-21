@@ -1,52 +1,62 @@
 import VerifyAccessibility from "./VerifyAccessibility";
 
-export default function Hero({isClient = false}:{isClient?:boolean}) {
-return <>
-    <section className="hero">
+export default function Hero({ isClient = false }: { isClient?: boolean }) {
+  return (
+    <>
+      <section className="hero">
         <div className="hero_content container">
-            <div className="hero-lft-txt">
-                <p>Welcome to the Inclusive Friends </p>
+          <div className="hero-lft-txt">
+            <p>Welcome to the Inclusive Friends </p>
 
-                <h1>The <span>Accessibility Compliance and Evaluation</span> Dashboard </h1>
+            <h1>
+              The <span>Accessibility Compliance and Evaluation</span> Dashboard{" "}
+            </h1>
 
-                <div className="hero_innercontent">
-                    <p>Get access to a comprehensive directory of our accessibility compliance evaluation across public,
-                        private and civil organisations in Nigeria</p>
+            <div className="hero_innercontent">
+              <p>
+                Get access to a comprehensive directory of our accessibility
+                compliance evaluation across public, private and civil
+                organisations in Nigeria
+              </p>
 
-                    <div className="">
-                     { !isClient &&  <VerifyAccessibility />}
-                    </div>
-                </div>
+              <div className="">{!isClient && <VerifyAccessibility />}</div>
             </div>
+          </div>
 
-<<<<<<< HEAD
-            <div className="hero-right-txt">
-                <div className="innerwaves">
-=======
-            <div className="hero-right-txt max-md:mt-32 relative xl:-top-10 xl:-left-[14%]">
-                <div className="innerwaves relative md:-top-7">
->>>>>>> next-js
-                    <div className="circle1"></div>
-                    <div className="circle2"></div>
-                    <div className="circle3"></div>
-                    <div className="inner_circle_play">
-                        <div>
-                            <a href="#" title="acd dashboard intro video"><img src="/ASSETS/Images/playimg.png"
-                                    alt="video play img"/></a>
-                        </div>
-                    </div>
-
-
-                    <img src="/ASSETS/Images/man1.png" alt="man1" className="man1"/>
-                    <img src="/ASSETS/Images/woman1.png" alt="woman1" className="woman1"/>
-                    <img src="/ASSETS/Images/woman2.png" alt="woman2" className="woman2"/>
-                    <img src="/ASSETS/Images/man2.png" alt="man2" className="man2"/>
+          <div className="hero-right-txt max-md:mt-32 relative xl:-top-10 xl:-left-[14%]">
+            <div className="innerwaves relative md:-top-7">
+              <div className="circle1"></div>
+              <div className="circle2"></div>
+              <div className="circle3"></div>
+              <div className="inner_circle_play">
+                <div>
+                  <a href="#" title="acd dashboard intro video">
+                    <img
+                      src="/ASSETS/Images/playimg.png"
+                      alt="video play img"
+                    />
+                  </a>
                 </div>
+              </div>
+
+              <img src="/ASSETS/Images/man1.png" alt="man1" className="man1" />
+              <img
+                src="/ASSETS/Images/woman1.png"
+                alt="woman1"
+                className="woman1"
+              />
+              <img
+                src="/ASSETS/Images/woman2.png"
+                alt="woman2"
+                className="woman2"
+              />
+              <img src="/ASSETS/Images/man2.png" alt="man2" className="man2" />
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    {/* <div className="verify_mobile">
+      {/* <div className="verify_mobile">
         <div className="mobile_verifybg">
         <h4>Verify Accessibility
             <svg xmlns="http://www.w3.org/2000/svg" width="12" id="mobilecloser" viewBox="0 0 384 512"><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
@@ -124,5 +134,6 @@ return <>
             </form>
     </div>
     </div> */}
-</>;
+    </>
+  );
 }

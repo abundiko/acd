@@ -6,11 +6,6 @@ export type ApiEvaluationData = {
   _id: string;
 };
 
-<<<<<<< HEAD
-export type ApiCategoryData = {
-  title: string;
-  _id: string;
-=======
 export type ApiSubCategory = {
   name: string;
   _id: string;
@@ -21,7 +16,6 @@ export type ApiCategoryData = {
   title: string;
   _id: string;
   subcategories: ApiSubCategory[];
->>>>>>> next-js
 };
 export type ApiCountData = {
   date: string;
@@ -43,7 +37,6 @@ export type ApiTeamData = {
   twitter: string;
   comment: string;
 };
-<<<<<<< HEAD
 export type ApiTestimonialData = {
   _id: string;
   img: string;
@@ -54,8 +47,6 @@ export type ApiTestimonialData = {
   instagram: string;
   twitter: string;
 };
-=======
->>>>>>> next-js
 
 export interface ApiStoryData {
   _id: string;
