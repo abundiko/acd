@@ -1,8 +1,7 @@
 "use client";
 
 import { useDashboardState } from "@/state/dashboardStore";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import RoundedCard from "@/components/ui/RoundedCard";
 
 export type RoundedBarsProps = {
   compliance: number;
@@ -19,7 +18,14 @@ export default function RoundedBars() {
         compliance: org ? Number(org.compScore) : 0,
         employment: org ? Number(org.quota) : 0,
         accessibility: org ? Number(org.rating) : 0
-      }).map(tile => <RoundedCard key={tile.title} {...tile} />)}
+      }).map(tile =>
+        <RoundedCard
+          key={tile.title}
+          {...tile}
+          showBlueBar
+          label="Not Accessible"
+        />
+      )}
     </div>
   );
 }
@@ -41,34 +47,3 @@ const tiles = ({ compliance, employment, accessibility }: RoundedBarsProps) => [
     color: "#F2A735"
   }
 ];
-
-function RoundedCard({
-  title,
-  value,
-  color
-}: {
-  title: string;
-  value: number;
-  color: string;
-}) {
-  return (
-    <div className="p-3 bg-light flex flex-col  gap-3 items-center justify-center rounded-lg text-center border">
-      <h1 className="text-[.6rem] opacity-80">
-        {title}
-      </h1>
-      <CircularProgressbar
-        value={value}
-        text={`${value}%`}
-        styles={buildStyles({
-          rotation: 0,
-          textSize: "16px",
-          pathTransitionDuration: 0.5,
-          pathColor: color,
-          textColor: "#121212",
-          trailColor: "fefefe",
-          backgroundColor: "#00000000"
-        })}
-      />
-    </div>
-  );
-}

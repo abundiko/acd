@@ -12,10 +12,10 @@
 
 .accordion_menu.active {
   background: var(--clr-slate-dflt);
-  z-index: 100;
+  z-index: 10;
   width: 100%;
   top: 0;
-  z-index: 60;
+  z-index: 12;
   min-height: 100vh;
   height: 100%;
   align-items: center;

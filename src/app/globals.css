@@ -4,7 +4,7 @@
 
 @layer utilities {
   .topbar-select {
-    @apply w-full p-2;
+    @apply w-full p-2 cursor-pointer;
   }
   .dashboard-card {
     @apply border rounded-lg hover:shadow-xl p-3 bg-light;
@@ -50,8 +50,23 @@
   .select-option {
     @apply bg-light w-full border outline-primary text-dark-text py-3 px-4 rounded-md;
   }
+
+  .dropdown-child{
+    @apply whitespace-nowrap rounded hover:bg-blue-100 hover:text-blue-950 px-1 w-full flex cursor-pointer items-center flex-shrink-0 justify-start gap-1 p-1
+  }
+  .app-popup{
+    @apply bg-light shadow-xl p-2 rounded-md border
+  }
+  .disabled{
+    @apply  opacity-70 pointer-events-none
+  }
 }
 
 *{
   scroll-behavior: smooth;
+}
+
+.rt-DialogOverlay,
+[data-radix-popper-content-wrapper]{
+  z-index: 99;
 }

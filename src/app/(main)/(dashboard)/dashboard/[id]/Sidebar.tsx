@@ -59,7 +59,7 @@ export default function Sidebar() {
                     download={true}
                     href={href}
                     key={name}
-                    className="text-xs w-fit bg-primary rounded-3xl py-2 px-4 text-light border-primary hover:text-dark-text hover:bg-blue-100"
+                    className="text-xs w-fit bg-primary mb-2 rounded-3xl py-2 px-4 text-light border-primary hover:text-dark-text hover:bg-blue-100"
                   >
                     Disability Act, 2018
                   </Link>
@@ -103,11 +103,11 @@ const actions = (id: string) => [
   {
     title: "SCHEDULE",
     actions: [
-      {
-        name: "Chat With an Expert",
-        icon: <Chat />,
-        href: `/dashboard/${id}/chat`
-      },
+      // {
+      //   name: "Chat With an Expert",
+      //   icon: <Chat />,
+      //   href: `/dashboard/${id}/chat`
+      // },
       {
         name: "Apply for Evaluation",
         icon: <CalendarDot />,

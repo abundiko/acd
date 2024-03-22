@@ -5,7 +5,7 @@ import FormButton from "@/components/ui/FormButton";
 import { z } from "zod";
 import React, { useState } from "react";
 import { OrgCardProps } from "../OrgCard";
-import { ApiOrganizationData, Availaboolean } from "@/utils/types/companyTypes";
+import { ApiCategoryData, ApiOrganizationData, Availaboolean } from "@/utils/types/companyTypes";
 import { API, NIGERIAN_STATES } from "@/utils/constants";
 import AdminAuth from "@/components/AdminAuth";
 import FormMessage from "@/components/ui/FormMessage";
@@ -14,6 +14,7 @@ import revalidateRoutes from "@/serverActions";
 import { getCookie } from "@/utils/functions/cookies";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { useRouter } from "next/navigation";
+import CategorySelect from "@/components/OrgSelect";
 
 export default function Page({
   _id,
@@ -36,7 +37,7 @@ export default function Page({
   point,
   emergency,
   categories
-}: ApiOrganizationData & { categories: string[] }) {
+}: ApiOrganizationData & { categories: ApiCategoryData[] }) {
   const orgFields: AppInputProps[] = [
     {
       name: "name",
@@ -182,6 +183,17 @@ export default function Page({
     }
   });
 
+  let prevCategoryId = '';
+  for (let i = 0; i < categories.length; i++) {
+    if(categories[i].subcategories.length > 0) {
+      for (const sub of categories[i].subcategories) {
+        if(sub.name === category) {
+        prevCategoryId = sub._id;
+        break;
+      }}
+  }
+}
+
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Edit Company Data</h1>
@@ -211,13 +223,18 @@ export default function Page({
           <label htmlFor="category" className="pb-2">
             categories
           </label>
-          <select className="select-option" defaultValue={category}>
+          <CategorySelect 
+          categories={categories} 
+          lastOrgCategory={category} 
+          value={prevCategoryId} 
+          onChange={e => {}} />
+          {/* <select className="select-option" defaultValue={category}>
             {categories.map(e =>
               <option key={e} value={e}>
                 {e}
               </option>
             )}
-          </select>
+          </select> */}
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
         {securityFields.map(item => {

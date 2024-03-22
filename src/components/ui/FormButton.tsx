@@ -5,6 +5,7 @@ export type FormButtonProps = {
   children: React.ReactNode;
   loading?: boolean;
   disabled?: boolean;
+  onClick?: ()=>void;
 };
 
 export default function FormButton({
@@ -12,9 +13,11 @@ export default function FormButton({
   children,
   loading = false,
   disabled = false,
+  onClick
 }: FormButtonProps) {
   return (
     <button
+    onClick={onClick}
       disabled={loading || disabled}
       className={
         className + " disabled:opacity-70 disabled:pointer-events-none"

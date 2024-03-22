@@ -1,13 +1,13 @@
 function loadJS() {
   // code for the image slider
-  let scroller = document.querySelectorAll(".sponsor_scroller");
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     addAnimation();
   }
 
   function addAnimation() {
-    scroller.forEach(scroll => {
+    let scroller = document.querySelectorAll(".sponsor_scroller");
+    return scroller.forEach(scroll => {
       scroll.setAttribute("data-animated", true);
 
       let scroll_Inner = scroll.querySelector(".sponsor_images");

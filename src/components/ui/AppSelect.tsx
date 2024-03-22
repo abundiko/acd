@@ -26,20 +26,21 @@ export default function AppSelect({
   className
 }: AppSelectProps) {
   return (
-    <Theme>
       <div className={className}>
-        <Select.Root size="2" onValueChange={onChange} defaultValue={value??undefined} name={name}>
+    <Theme>
+        <Select.Root disabled={!items || items.length === 0} size="2" onValueChange={onChange} defaultValue={value??undefined} name={name}>
       <Select.Trigger
-        className="w-full"
+        className={"w-full py-1.5"}
         variant="ghost"
-        placeholder={placeholder}
+        placeholder={placeholder ?? title}
       />
       <Select.Content position="popper">
                 <Select.Group>
+                  
           <Select.Label>
             {title}
           </Select.Label>
-          {items &&
+          {items && items?.length > 0 ?
             items.map((option) =>{
               let value = typeof option === 'string' ? option : option.value;
               let label = typeof option === 'string' ? option : option.label;
@@ -50,11 +51,12 @@ export default function AppSelect({
               >
                 {label}
               </Select.Item>
-            })}
+            }) : <></>
+            }
                     </Select.Group>
       </Select.Content>
     </Select.Root>
-      </div>
     </Theme>
+      </div>
   );
 }

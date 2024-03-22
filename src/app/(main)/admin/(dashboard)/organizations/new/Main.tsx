@@ -11,9 +11,11 @@ import { API, NIGERIAN_STATES } from "@/utils/constants";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { getCookie } from "@/utils/functions/cookies";
 import revalidateRoutes from "@/serverActions";
+import { ApiCategoryData } from "@/utils/types/companyTypes";
+import CategorySelect from "@/components/OrgSelect";
 
 type Props = {
-  categories: string[];
+  categories: ApiCategoryData[];
 };
 
 export default function NewOrgForm({ categories }: Props) {
@@ -44,6 +46,17 @@ export default function NewOrgForm({ categories }: Props) {
       setErrorMessage(data.message);
     }
   });
+
+    let prevCategoryName = '';
+  let prevCategoryId = '';
+  for (let i = 0; i < categories.length; i++) {
+    if(categories[i] && categories[i].subcategories.length > 0) {
+      prevCategoryName = categories[i].subcategories[0].name;
+      prevCategoryId = categories[i].subcategories[0]._id;
+      break;
+  }
+}
+  
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Add New Company Data</h1>
@@ -78,13 +91,11 @@ export default function NewOrgForm({ categories }: Props) {
           <label htmlFor="category" className="pb-2">
             categories
           </label>
-          <select name="category" className="select-option">
-            {categories.map(e =>
-              <option key={e} value={e}>
-                {e}
-              </option>
-            )}
-          </select>
+          <CategorySelect 
+          categories={categories} 
+          lastOrgCategory={prevCategoryName} 
+          value={prevCategoryId} 
+          onChange={e => {}} />
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
         {securityFields.map(item => {

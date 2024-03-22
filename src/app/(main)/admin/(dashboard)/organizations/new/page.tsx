@@ -6,5 +6,5 @@ export default async function Page() {
 
   if (!categories) return;
 
-  return <NewOrgForm categories={categories.map(_ => _.title)} />;
+  return <NewOrgForm categories={categories} />;
 }

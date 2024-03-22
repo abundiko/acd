@@ -18,5 +18,5 @@ export default async function Page({
 
   if (res === 404) notFound();
   if (!res || !categories) return;
-  return <Form {...res.stats} categories={categories.map(_ => _.title)} />;
+  return <Form {...res.stats} categories={categories} />;
 }

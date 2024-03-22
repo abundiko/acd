@@ -46,7 +46,7 @@
     top: 0;
     width: 100%;
     margin-block: auto;
-    z-index: 100;
+    z-index: 12;
 }
 
 @media (min-width:768px) {

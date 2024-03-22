@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import { fetchOneOrganization } from "@/serverActions/fetchOneOrganizatios";
 import { notFound } from "next/navigation";
+import BlogBar from "@/app/(main)/(public)/BlogBar";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const org = await fetchOneOrganization(params.id);
@@ -22,6 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <>
+    <BlogBar />
     <section className="flex items-stretch">
       <div className="w-64 max-lg:hidden" />
       <Sidebar />
@@ -30,5 +33,6 @@ export default function RootLayout({
         {children}
       </div>
     </section>
+    </>
   );
 }

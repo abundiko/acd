@@ -6,7 +6,7 @@ import { Theme, Popover, Select } from "@radix-ui/themes";
 import { NIGERIAN_STATES } from "@/utils/constants";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useIndexPageState } from "@/state/indexStore";
+import { useDashboardState } from "@/state/dashboardStore";
 import { formDataToObject } from "@/utils/functions/test";
 import AppSelect from "@/components/ui/AppSelect";
 import CategorySelect from "@/components/OrgSelect";
@@ -14,8 +14,8 @@ import FormButton from "@/components/ui/FormButton";
 
 export default function VerifyAccessibility() {
   const router = useRouter();
-  const categories = useIndexPageState((s) => s.categories);
-  const organizations = useIndexPageState((s) => s.organizations);
+  const categories = useDashboardState((s) => s.categories);
+  const organizations = useDashboardState((s) => s.organizations);
 
   function checkAccessibility(e: any) {
     e.preventDefault();
@@ -23,23 +23,20 @@ export default function VerifyAccessibility() {
     console.log(formDataToObject(formdata));
 
     if (!formdata.get("org")) return;
-    router.push(`/?org=${formdata.get("org")}`);
+    router.push(`/dashboard/${formdata.get("org")}`);
   }
 
   if (organizations && categories && organizations.length > 0)
     return (
       <form
         onSubmit={checkAccessibility}
-        className="flex flex-col gap-2 p-3 border-b relative items-start"
+        className="flex flex-col gap-2 p-3 relative items-start"
       >
-        <h6 className="font-semibold text-sm opacity-70 max-xl:hidden">
-          Verify Accessibility
-        </h6>
         <div className="flex gap-4 w-full">
-          <div className=" xl:w-9/12">
+          <div className=" md:w-9/12">
             <SelectModal />
           </div>
-          <button className="max-xl:hidden xl:w-3/12 bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark">
+          <button className="max-md:hidden md:w-3/12 bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark">
             Verify
           </button>
         </div>
@@ -48,8 +45,8 @@ export default function VerifyAccessibility() {
 }
 
 function SelectModal() {
-  const categories = useIndexPageState((s) => s.categories);
-  const organizations = useIndexPageState((s) => s.organizations);
+  const categories = useDashboardState((s) => s.categories);
+  const organizations = useDashboardState((s) => s.organizations);
   const [cat, setCat] = useState(organizations[0].category);
   const [loc, setLoc] = useState(organizations[0].location);
   const [_id, setId] = useState(organizations[0]._id);
@@ -57,7 +54,7 @@ function SelectModal() {
 
   function checkAccessibility() {
     if (!_id) return;
-    router.push(`/?org=${_id}`);
+    router.push(`/dashboard/${_id}`);
   }
 
   function hendleCategoryChange(e: string, id:string) {
@@ -93,7 +90,7 @@ function SelectModal() {
           />
         
         <AppSelect
-          className="topbar-select xl:max-w-[30%]"
+          className="topbar-select md:max-w-[30%]"
           value={loc}
           name="location"
           title="Locaton:"
@@ -114,10 +111,10 @@ function SelectModal() {
 
   return (
     <Theme>
-      <div className="max-xl:hidden w-full border rounded-md flex items-center bg-light  text-dark-text h-full overflow-hidden divide-x-2 ">
+      <div className="max-md:hidden w-full border rounded-md flex items-center bg-light  text-dark-text h-full overflow-hidden divide-x-2 ">
         <SelectFields />
       </div>
-      <div className="xl:hidden">
+      <div className="md:hidden">
         <Popover.Root>
           <Popover.Trigger>
             <button className="bg-blue-100 border-primary text-primary rounded-md border px-5 py-2">
@@ -132,7 +129,7 @@ function SelectModal() {
               <FormButton
                 onClick={checkAccessibility}
                 disabled={!_id}
-                className="xl:hidden w-full bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark"
+                className="md:hidden w-full bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark"
               >Verify</FormButton>
             </div>
           </Popover.Content>

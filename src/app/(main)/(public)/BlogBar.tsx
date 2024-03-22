@@ -1,5 +1,6 @@
+'use client'
+
 import useFetchApi from "@/hooks/useFetchApi";
-import { useIndexPageState } from "@/state/indexStore";
 import { API } from "@/utils/constants";
 import { decompressApi } from "@/utils/functions/decompressApi";
 import { ApiCompressedData } from "@/utils/types/basicTypes";
@@ -20,8 +21,8 @@ export default function BlogBar() {
   if (stories.length > 0)
     return (
       <header>
-        <div className="mini_message w-full flex items-center gap-2 app-container text-white">
-          <div className="size-3 bg-white" />
+        <div className="mini_message bg-[#fa17d6] text-xs py-1 w-full flex items-center gap-2 app-container text-white">
+          <div className="size-2 bg-white" />
           <a href={lastStory.link} target="_blank">
             {lastStory.header}
           </a>
