@@ -5,7 +5,11 @@ import FormButton from "@/components/ui/FormButton";
 import { z } from "zod";
 import React, { useState } from "react";
 import { OrgCardProps } from "../OrgCard";
-import { ApiCategoryData, ApiOrganizationData, Availaboolean } from "@/utils/types/companyTypes";
+import {
+  ApiCategoryData,
+  ApiOrganizationData,
+  Availaboolean,
+} from "@/utils/types/companyTypes";
 import { API, NIGERIAN_STATES } from "@/utils/constants";
 import AdminAuth from "@/components/AdminAuth";
 import FormMessage from "@/components/ui/FormMessage";
@@ -25,18 +29,15 @@ export default function Page({
   compScore,
   rating,
   srating,
-  building,
-  entrance,
-  room,
-  paths,
-  gtoilet,
-  atoilet,
-  lifts,
+  external,
+  goods,
+  fixtures,
+  amenities,
   spost: spost,
   camera,
   point,
   emergency,
-  categories
+  categories,
 }: ApiOrganizationData & { categories: ApiCategoryData[] }) {
   const orgFields: AppInputProps[] = [
     {
@@ -45,7 +46,7 @@ export default function Page({
       type: "text",
       value: name,
       placeholder: "Name of Organization",
-      schema: z.string().min(5, "organization name is required")
+      schema: z.string().min(5, "organization name is required"),
     },
     {
       name: "quota",
@@ -53,7 +54,7 @@ export default function Page({
       type: "number",
       value: quota,
       placeholder: "quota",
-      schema: z.string().min(1, "role is required")
+      schema: z.string().min(1, "role is required"),
     },
     {
       name: "rating",
@@ -61,7 +62,7 @@ export default function Page({
       type: "number",
       value: rating,
       placeholder: "accessibility rating",
-      schema: z.string().min(1, "this field is required")
+      schema: z.string().min(1, "this field is required"),
     },
     {
       name: "srating",
@@ -69,7 +70,7 @@ export default function Page({
       type: "number",
       value: srating,
       placeholder: "Total sercurity rating",
-      schema: z.string().min(1, "this field is required")
+      schema: z.string().min(1, "this field is required"),
     },
     {
       name: "compScore",
@@ -78,11 +79,9 @@ export default function Page({
       value: compScore,
       placeholder: "Compliance Score",
       schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-      required: true
-    }
+      required: true,
+    },
   ];
-
-  
 
   const securityFields: {
     name: string;
@@ -92,71 +91,51 @@ export default function Page({
     { name: "spost", title: "Presence of sercurity post", value: spost },
     { name: "camera", title: "presence of surveillance Camera", value: camera },
     { name: "point", title: "Muster Point", value: point },
-    { name: "emergency", title: "Emergency Exit", value: emergency }
+    { name: "emergency", title: "Emergency Exit", value: emergency },
   ];
 
   const compFields: AppInputProps[] = [
     {
-      name: "building",
-      title: "Access to building (%score)",
+      name: "external",
+      title: "External",
       type: "number",
-      value: building,
-      placeholder: "access to building",
-      schema: z.string().min(1, "this field is required")
+      placeholder: "external",
+      value: external,
+      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      required: true,
     },
     {
-      name: "entrance",
-      title: "Entrance, Reception, waiting area (%score)",
+      name: "goods",
+      title: "Goods",
       type: "number",
-      value: entrance,
-      placeholder: "Entrance, Reception, waiting area (%score)",
-      schema: z.string().min(1, "this filed is required")
+      placeholder: "goods",
+      value: goods,
+      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      required: true,
     },
     {
-      name: "room",
-      title: "Rooms/Halls/offices",
+      name: "fixtures",
+      title: "Fixtures",
       type: "number",
-      value: room,
-      placeholder: "Rooms/Halls/offices",
-      schema: z.string().min(1, "this field is required")
+      placeholder: "fixtures",
+      value: fixtures,
+      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      required: true,
     },
     {
-      name: "paths",
-      title: "circulation paths/Internal way-finding",
+      name: "amenities",
+      title: "Amenities",
       type: "number",
-      value: paths,
-      placeholder: "circulation paths/Internal way-finding",
-      schema: z.string().min(1, "this field is required")
+      placeholder: "amenities",
+      value: amenities,
+      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      required: true,
     },
-    {
-      name: "gtoilet",
-      title: "general toilet",
-      type: "number",
-      value: gtoilet,
-      placeholder: "general toilet",
-      schema: z.string().min(1, "this field is required")
-    },
-    {
-      name: "atoilet",
-      title: "Accessible toilet",
-      type: "number",
-      value: atoilet,
-      placeholder: "Accessible toilet",
-      schema: z.string().min(1, "this field is required")
-    },
-    {
-      name: "lifts",
-      title: "Lifts/stair lifts",
-      type: "number",
-      value: lifts,
-      placeholder: "Lifts/stair lifts",
-      schema: z.string().min(1, "this field is required")
-    }
   ];
 
   const router = useRouter();
   const [errors, setErrors] = useState([
-    ...Array.from({ length: 12 }, () => true)
+    ...Array.from({ length: 9 }, () => true),
   ]);
   const {
     formProps: { onSubmit, key },
@@ -166,68 +145,76 @@ export default function Page({
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}admin/editstats`,
     headers: {
-      'x-access-token': getCookie("token") ?? "",
+      "x-access-token": getCookie("token") ?? "",
     },
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "organization updated") {
         revalidateRoutes([
-          '/admin/organizations',
-          '/admin/organizations/edit',
-          '/dashoard/[id]',
+          "/admin/organizations",
+          "/admin/organizations/edit",
+          "/dashoard/[id]",
         ]);
         setSuccessMessage("Evaluation Updated successfully");
-        return router.replace('/admin/organizations');
+        return router.replace("/admin/organizations");
       }
       setErrorMessage(data.message);
-    }
+    },
   });
 
-  let prevCategoryId = '';
+  let prevCategoryId = "";
   for (let i = 0; i < categories.length; i++) {
-    if(categories[i].subcategories.length > 0) {
+    if (categories[i].subcategories.length > 0) {
       for (const sub of categories[i].subcategories) {
-        if(sub.name === category) {
-        prevCategoryId = sub._id;
-        break;
-      }}
+        if (sub.name === category) {
+          prevCategoryId = sub._id;
+          break;
+        }
+      }
+    }
   }
-}
 
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Edit Company Data</h1>
-      <form  onSubmit={onSubmit} key={key} className="flex flex-col gap-3 py-3">
+      <form onSubmit={onSubmit} key={key} className="flex flex-col gap-3 py-3">
         <AdminAuth />
         <input type="hidden" name="statid" value={_id} hidden />
-        {orgFields.map((item,i) => {
-          return <AppInput key={item.name} {...item} onErrorChange={hasError => {
-                setErrors(prev =>
+        {orgFields.map((item, i) => {
+          return (
+            <AppInput
+              key={item.name}
+              {...item}
+              onErrorChange={(hasError) => {
+                setErrors((prev) =>
                   prev.map((error, index) => (index === i ? hasError : error))
                 );
-              }}/>;
+              }}
+            />
+          );
         })}
         <div>
           <label htmlFor="location" className="pb-2">
             Location
           </label>
           <select className="select-option" defaultValue={location}>
-            {NIGERIAN_STATES.map(e =>
+            {NIGERIAN_STATES.map((e) => (
               <option key={e} value={e}>
                 {e}
               </option>
-            )}
+            ))}
           </select>
         </div>
         <div>
           <label htmlFor="category" className="pb-2">
             categories
           </label>
-          <CategorySelect 
-          categories={categories} 
-          lastOrgCategory={category} 
-          value={prevCategoryId} 
-          onChange={e => {}} />
+          <CategorySelect
+            categories={categories}
+            lastOrgCategory={category}
+            value={prevCategoryId}
+            onChange={(e) => {}}
+          />
           {/* <select className="select-option" defaultValue={category}>
             {categories.map(e =>
               <option key={e} value={e}>
@@ -237,32 +224,37 @@ export default function Page({
           </select> */}
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
-        {securityFields.map(item => {
+        {securityFields.map((item) => {
           return (
             <div key={item.title}>
               <label htmlFor="category" className="pb-2">
                 {item.title}
               </label>
               <select name={item.name} className="select-option">
-                {["Available", "Not Available"].map(e =>
+                {["Available", "Not Available"].map((e) => (
                   <option key={e} selected={e === item.value} value={e}>
                     {e}
                   </option>
-                )}
+                ))}
               </select>
             </div>
           );
         })}
         <p className="text-lg py-4">Structural Compliance matrics</p>
         {compFields.map((item, i) => {
-          return <AppInput key={item.name} {...item} onErrorChange={hasError => {
-                setErrors(prev =>
-                  prev.map(
-                    (error, index) =>
-                      index === i + orgFields.length ? hasError : error
+          return (
+            <AppInput
+              key={item.name}
+              {...item}
+              onErrorChange={(hasError) => {
+                setErrors((prev) =>
+                  prev.map((error, index) =>
+                    index === i + orgFields.length ? hasError : error
                   )
                 );
-              }}/>;
+              }}
+            />
+          );
         })}
         <FormMessage {...formState} />
         <FormButton

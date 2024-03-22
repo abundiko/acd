@@ -20,43 +20,40 @@ type Props = {
 
 export default function NewOrgForm({ categories }: Props) {
   const [errors, setErrors] = useState([
-    ...Array.from({ length: 12 }, () => true)
+    ...Array.from({ length: 9 }, () => true),
   ]);
   const {
     formProps: { onSubmit, key },
     formState,
     setErrorMessage,
     setSuccessMessage,
-    reset
+    reset,
   } = useFormSubmit<ApiFormMessage>({
     url: `${API}admin/addstats`,
     headers: {
-      'x-access-token': getCookie("token") ?? "",
+      "x-access-token": getCookie("token") ?? "",
     },
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "evaluation uploaded") {
-        revalidateRoutes([
-          '/admin/organizations',
-          '/dashoard/[id]',
-        ]);
+        revalidateRoutes(["/admin/organizations", "/dashoard/[id]"]);
         reset();
         return setSuccessMessage("Evaluation uploaded successfully");
       }
       setErrorMessage(data.message);
-    }
+    },
   });
 
-    let prevCategoryName = '';
-  let prevCategoryId = '';
+  let prevCategoryName = "";
+  let prevCategoryId = "";
   for (let i = 0; i < categories.length; i++) {
-    if(categories[i] && categories[i].subcategories.length > 0) {
+    if (categories[i] && categories[i].subcategories.length > 0) {
       prevCategoryName = categories[i].subcategories[0].name;
       prevCategoryId = categories[i].subcategories[0]._id;
       break;
+    }
   }
-}
-  
+
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 max-w-[500px] mx-auto rounded md:border w-full mt-4  bg-light shadow">
       <h1 className="r-text-xl r-font-bold">Add New Company Data</h1>
@@ -67,8 +64,8 @@ export default function NewOrgForm({ categories }: Props) {
             <AppInput
               key={item.name}
               {...item}
-              onErrorChange={hasError => {
-                setErrors(prev =>
+              onErrorChange={(hasError) => {
+                setErrors((prev) =>
                   prev.map((error, index) => (index === i ? hasError : error))
                 );
               }}
@@ -80,36 +77,35 @@ export default function NewOrgForm({ categories }: Props) {
             Location
           </label>
           <select name="location" className="select-option">
-            {NIGERIAN_STATES.map(e =>
+            {NIGERIAN_STATES.map((e) => (
               <option key={e} value={e}>
                 {e}
               </option>
-            )}
+            ))}
           </select>
         </div>
         <div>
           <label htmlFor="category" className="pb-2">
             categories
           </label>
-          <CategorySelect 
-          categories={categories} 
-          lastOrgCategory={prevCategoryName} 
-          value={prevCategoryId} 
-          onChange={e => {}} />
+          <CategorySelect
+            categories={categories}
+            lastOrgCategory={prevCategoryName}
+            value={prevCategoryId}
+            onChange={(e) => {}}
+          />
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
-        {securityFields.map(item => {
+        {securityFields.map((item) => {
           return (
             <div key={item.title}>
-              <label className="pb-2">
-                {item.title}
-              </label>
+              <label className="pb-2">{item.title}</label>
               <select name={item.name} className="select-option">
-                {["Available", "Not Available"].map(e =>
+                {["Available", "Not Available"].map((e) => (
                   <option key={e} value={e}>
                     {e}
                   </option>
-                )}
+                ))}
               </select>
             </div>
           );
@@ -120,11 +116,10 @@ export default function NewOrgForm({ categories }: Props) {
             <AppInput
               key={item.name}
               {...item}
-              onErrorChange={hasError => {
-                setErrors(prev =>
-                  prev.map(
-                    (error, index) =>
-                      index === i + orgFields.length ? hasError : error
+              onErrorChange={(hasError) => {
+                setErrors((prev) =>
+                  prev.map((error, index) =>
+                    index === i + orgFields.length ? hasError : error
                   )
                 );
               }}
@@ -151,7 +146,7 @@ const orgFields: AppInputProps[] = [
     type: "text",
     placeholder: "Name of Organization",
     schema: z.string().min(5, "organization name is required"),
-    required: true
+    required: true,
   },
   {
     name: "quota",
@@ -159,7 +154,7 @@ const orgFields: AppInputProps[] = [
     type: "number",
     placeholder: "enployment quota",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
     name: "rating",
@@ -167,7 +162,7 @@ const orgFields: AppInputProps[] = [
     type: "number",
     placeholder: "accessibility rating",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
     name: "srating",
@@ -175,7 +170,7 @@ const orgFields: AppInputProps[] = [
     type: "number",
     placeholder: "Total sercurity rating",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
     name: "compScore",
@@ -183,8 +178,8 @@ const orgFields: AppInputProps[] = [
     type: "number",
     placeholder: "Compliance score",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
-  }
+    required: true,
+  },
 ];
 
 const securityFields: {
@@ -193,77 +188,53 @@ const securityFields: {
 }[] = [
   {
     name: "spost",
-    title: "Presence of sercurity post"
+    title: "Presence of sercurity post",
   },
   {
     name: "camera",
-    title: "presence of surveillance Camera"
+    title: "presence of surveillance Camera",
   },
   {
     name: "point",
-    title: "Muster Point"
+    title: "Muster Point",
   },
   {
     name: "emergency",
-    title: "Emergency Exit"
-  }
+    title: "Emergency Exit",
+  },
 ];
 
 const compFields: AppInputProps[] = [
   {
-    name: "building",
-    title: "Access to building (%score)",
+    name: "external",
+    title: "External",
     type: "number",
-    placeholder: "access to building",
+    placeholder: "external",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
-    name: "entrance",
-    title: "Entrance, Reception, waiting area (%score)",
+    name: "goods",
+    title: "Goods",
     type: "number",
-    placeholder: "Entrance, Reception, waiting area (%score)",
+    placeholder: "goods",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
-    name: "room",
-    title: "Rooms/Halls/offices",
+    name: "fixtures",
+    title: "Fixtures",
     type: "number",
-    placeholder: "Rooms/Halls/offices",
+    placeholder: "fixtures",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
   {
-    name: "paths",
-    title: "circulation paths/Internal way-finding",
+    name: "amenities",
+    title: "Amenities",
     type: "number",
-    placeholder: "circulation paths/Internal way-finding",
+    placeholder: "amenities",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
+    required: true,
   },
-  {
-    name: "gtoilet",
-    title: "general toilet",
-    type: "number",
-    placeholder: "general toilet",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
-  },
-  {
-    name: "atoilet",
-    title: "Accessible toilet",
-    type: "number",
-    placeholder: "Accessible toilet",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
-  },
-  {
-    name: "lifts",
-    title: "Lifts/stair lifts",
-    type: "number",
-    placeholder: "Lifts/stair lifts",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
-    required: true
-  }
 ];

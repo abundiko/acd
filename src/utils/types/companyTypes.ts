@@ -73,13 +73,10 @@ export type ApiOrganizationData = {
   point: Availaboolean;
   emergency: Availaboolean;
   srating: string;
-  building: string;
-  entrance: string;
-  room: string;
-  paths: string;
-  gtoilet: string;
-  atoilet: string;
-  lifts: string;
+  external: string;
+  goods: string;
+  fixtures: string;
+  amenities: string;
 };
 
 export type ApiDashboardOrganizationData = {
