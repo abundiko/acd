@@ -32,7 +32,7 @@ function loadJS() {
   let act = menu.addEventListener("click", () => {
     let result = document.querySelector(".accordion_menu");
 
-    result.classList.add("active");
+    result.classList.toggle("active");
 
     let accordioncloser = document.querySelector("#accordionclose");
 
