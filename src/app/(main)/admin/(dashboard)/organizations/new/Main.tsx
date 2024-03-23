@@ -207,7 +207,7 @@ const securityFields: {
 const compFields: AppInputProps[] = [
   {
     name: "external",
-    title: "External",
+          title: "External Way Finding",
     type: "number",
     placeholder: "external",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
@@ -215,7 +215,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "goods",
-    title: "Goods",
+          title: "Accessible Goods & Services",
     type: "number",
     placeholder: "goods",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
@@ -223,7 +223,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "fixtures",
-    title: "Fixtures",
+          title: "Accessible Furniture, Fixtures & Utilities",
     type: "number",
     placeholder: "fixtures",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
@@ -231,7 +231,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "amenities",
-    title: "Amenities",
+          title: "Accessible Additional Amenities",
     type: "number",
     placeholder: "amenities",
     schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),

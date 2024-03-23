@@ -45,9 +45,9 @@ function loadJS() {
 
   let cross = document.querySelectorAll(".questions");
   cross.forEach(press => {
-    press.addEventListener("click", () => {
+    press.onclick = () => {
       press.classList.toggle("activated");
-    });
+    };
   });
 
   let verify = document.querySelector("#mobileaccess");

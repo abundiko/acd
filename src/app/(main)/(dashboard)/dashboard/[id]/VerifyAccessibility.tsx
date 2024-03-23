@@ -47,10 +47,18 @@ export default function VerifyAccessibility() {
 function SelectModal() {
   const categories = useDashboardState((s) => s.categories);
   const organizations = useDashboardState((s) => s.organizations);
+  const org = useDashboardState((s) => s.org);
   const [cat, setCat] = useState(organizations[0].category);
   const [loc, setLoc] = useState(organizations[0].location);
   const [_id, setId] = useState(organizations[0]._id);
   const router = useRouter();
+
+  useEffect(()=>{
+    if(!org) return;
+    setId(org._id)
+    setCat(org.category);
+    setLoc(org.location);
+  }, [org])
 
   function checkAccessibility() {
     if (!_id) return;

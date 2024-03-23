@@ -2,7 +2,7 @@ import {
   ApiEvaluationData,
   ApiCategoryData,
   ApiOrganizationData,
-  ApiStoryData,
+  ApiTestimonialData,
   ApiTeamData,
   ApiLogoData
 } from "@/utils/types/companyTypes";
@@ -17,8 +17,8 @@ type IndexPageState = {
   setCategories: (v: ApiCategoryData[]) => void;
   organizations: ApiOrganizationData[];
   setOrganizations: (v: ApiOrganizationData[]) => void;
-  stories: ApiStoryData[];
-  setStories: (v: ApiStoryData[]) => void;
+  testimonials: ApiTestimonialData[];
+  setTestimonials: (v: ApiTestimonialData[]) => void;
   logos: ApiLogoData[];
   setLogos: (v: ApiLogoData[]) => void;
 };
@@ -40,9 +40,9 @@ export const useIndexPageState = create<IndexPageState>(set => ({
   setOrganizations: (organizations: ApiOrganizationData[]) => {
     set(state => ({ ...state, organizations }));
   },
-  stories: [],
-  setStories: (stories: ApiStoryData[]) => {
-    set(state => ({ ...state, stories }));
+  testimonials: [],
+  setTestimonials: (testimonials: ApiTestimonialData[]) => {
+    set(state => ({ ...state, testimonials }));
   },
   logos: [],
   setLogos: (logos: ApiLogoData[]) => {

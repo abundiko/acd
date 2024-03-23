@@ -97,7 +97,7 @@ export default function Page({
   const compFields: AppInputProps[] = [
     {
       name: "external",
-      title: "External",
+      title: "External Way Finding",
       type: "number",
       placeholder: "external",
       value: external,
@@ -106,7 +106,7 @@ export default function Page({
     },
     {
       name: "goods",
-      title: "Goods",
+      title: "Accessible Goods & Services",
       type: "number",
       placeholder: "goods",
       value: goods,
@@ -115,7 +115,7 @@ export default function Page({
     },
     {
       name: "fixtures",
-      title: "Fixtures",
+      title: "Accessible Furniture, Fixtures & Utilities",
       type: "number",
       placeholder: "fixtures",
       value: fixtures,
@@ -124,7 +124,7 @@ export default function Page({
     },
     {
       name: "amenities",
-      title: "Amenities",
+      title: "Accessible Additional Amenities",
       type: "number",
       placeholder: "amenities",
       value: amenities,
@@ -215,13 +215,6 @@ export default function Page({
             value={prevCategoryId}
             onChange={(e) => {}}
           />
-          {/* <select className="select-option" defaultValue={category}>
-            {categories.map(e =>
-              <option key={e} value={e}>
-                {e}
-              </option>
-            )}
-          </select> */}
         </div>
         <p className="text-lg py-4">Sercurity Rating</p>
         {securityFields.map((item) => {

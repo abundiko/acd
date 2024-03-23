@@ -14,14 +14,14 @@ export default function Testimonialcard({
   instagram,
   facebook,
   twitter,
-  _id,
+  _id
 }: ApiTestimonialData) {
   const { fetchAgain, loading, setMainData, mainData } = useFetchApi<
     ApiFormMessage,
     boolean
   >(
     `${API}admin/deletetestimonial/${_id}`,
-    (data) => {
+    data => {
       if (!data) return;
       if (data.message === "testimonial deleted") {
         setMainData(true);
@@ -35,30 +35,27 @@ export default function Testimonialcard({
   function Socials() {
     return (
       <div className="flex text-lg">
-        {instagram && (
+        {instagram &&
           <Link
             href={instagram}
             className="hover:bg-slate-200 rounded-full p-3 text-dark-text"
           >
             <Instagram />
-          </Link>
-        )}
-        {twitter && (
+          </Link>}
+        {twitter &&
           <Link
             href={twitter}
             className="hover:bg-slate-200 rounded-full p-3 text-dark-text"
           >
             <TwitterSparrow />
-          </Link>
-        )}
-        {facebook && (
+          </Link>}
+        {facebook &&
           <Link
             href={facebook}
             className="hover:bg-slate-200 rounded-full p-3 text-dark-text"
           >
             <Facebook />
-          </Link>
-        )}
+          </Link>}
       </div>
     );
   }
@@ -74,9 +71,15 @@ export default function Testimonialcard({
               className="rounded-full object-cover size-20"
             />
             <div className="flex flex-col ">
-              <h1 className="text-xl font-bold">{fullname}</h1>
-              <p className="text-sm opacity-70">{label}</p>
-              <p className="text-xs opacity-70">{message}</p>
+              <h1 className="text-xl font-bold">
+                {fullname}
+              </h1>
+              <p className="text-sm opacity-70">
+                {label}
+              </p>
+              <p className="text-xs opacity-70 line-clamp-3">
+                {message}
+              </p>
               <div className="md:hidden">
                 <Socials />
               </div>

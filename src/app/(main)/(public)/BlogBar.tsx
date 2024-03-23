@@ -20,7 +20,7 @@ export default function BlogBar() {
   const lastStory = stories[0];
   if (stories.length > 0)
     return (
-      <header>
+      <header className="relative z-40">
         <div className="mini_message bg-[#fa17d6] text-xs py-1 w-full flex items-center gap-2 app-container text-white">
           <div className="size-2 bg-white" />
           <a href={lastStory.link} target="_blank">

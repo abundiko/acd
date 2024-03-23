@@ -71,14 +71,14 @@
 
 /* container holding the icons */
 .arrow_navigation div{
-    width: 30px;
+    /* width: 30px;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     box-shadow: 0 0.3px 1px 0.4px #131022;
-    background:var(--clr-slate-500);
+    background:var(--clr-slate-500); */
 }
 
 .uppercard{

@@ -9,10 +9,12 @@ import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { useState } from "react";
-import { deleteCookie, getCookie } from "@/utils/functions/cookies";
+import { useCookies } from "@/hooks/useCookies";
+// import { deleteCookie, getCookie } from "@/utils/functions/cookies";
 
 export default function EvaluationForm() {
   const [errors, setErrors] = useState([true, true, true, true]);
+  const {getCookie, deleteCookie} = useCookies();
   const {
     formProps: { onSubmit, key },
     formState,
@@ -24,7 +26,7 @@ export default function EvaluationForm() {
     onComplete(data) {
       if (!data.message || !data) return setErrorMessage("An error occurred");
       if (data.message === "evaluation uploaded") {
-        deleteCookie("evaluation=date");
+        deleteCookie("evaluation-date");
         reset();
         return setSuccessMessage("Request Sent Successfully");
       }

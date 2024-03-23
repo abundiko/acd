@@ -1,48 +1,122 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useIndexPageState } from "@/state/indexStore";
+import { useState } from "react";
+
+const animations = {
+  initial: {
+    opacity: 0,
+    y: -50
+  },
+  animate: {
+    opacity: 1,
+    y: 0
+  },
+  exit: {
+    opacity: 0,
+    y: 50
+  },
+  transition: {
+    duration: 1,
+    ease: "easeInOut"
+  }
+};
+
 export default function Reviews() {
-  return (
-    <section className="reviews container">
-      <div className="expert_reviews">
-        <div className="expert_comments">
-          <p>Expert Comments on Disability Act, 2019</p>
+  const testimonials = useIndexPageState(_ => _.testimonials);
+  const testimonialsCount = testimonials.length;
+  const [index, setIndex] = useState(0);
 
-          <div className="expert_cmmnts_image">
-            <img src="/ASSETS/Images/commentors.svg" alt="" />
-          </div>
-        </div>
-      </div>
-      <div className="pro_reviewers">
-        <div className="uppercard">
-          <img src="/ASSETS/Icons/quotes.svg" alt="" />
-          <div className="arrow_navigation">
-            <div>
-              <img src="/ASSETS/Icons/left arrow.svg" alt="" />
-            </div>
-            <div>
-              <img src="/ASSETS/Icons/right arrow.svg" alt="" />
+  if (testimonialsCount > 0)
+    return (
+      <AnimatePresence mode="wait">
+        <section className="reviews container">
+          <div className="expert_reviews">
+            <div className="expert_comments">
+              <p>Expert Comments on Disability Act, 2019</p>
+
+              <div className="expert_cmmnts_image">
+                <img src="/ASSETS/Images/commentors.svg" alt="" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="uppercard_text">
-          <p>
-            This is a good development in the direction of the vulnerable
-            segment of the society. I have been with spinal cord injury for
-            almost 45 years now. We thanked GOD that we are having laws that
-            protect us now. I studied and worked under constant oppression from
-            colleagues.
-          </p>
-        </div>
+          <div className="pro_reviewers pb-3">
+            <div className="uppercard">
+              <img src="/ASSETS/Icons/quotes.svg" alt="" />
+              <div className="arrow_navigation">
+                <button
+                  onClick={() => {
+                    setIndex(index > 0 ? index - 1 : testimonialsCount - 1);
+                  }}
+                  className="rounded-full bg-light inline-flex items-center justify-center size-7 shadow-md"
+                >
+                  <img src="/ASSETS/Icons/left arrow.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => {
+                    setIndex(index < testimonialsCount - 1 ? index + 1 : 0);
+                  }}
+                  className="rounded-full bg-light inline-flex items-center justify-center size-7 shadow-md"
+                >
+                  <img src="/ASSETS/Icons/right arrow.svg" alt="" />
+                </button>
+              </div>
+            </div>
+            {[testimonials[index]].map(item =>
+              <div key={item._id} className="overflow-hidden">
+                <div className="uppercard_text">
+                  <motion.p layoutId={item._id} {...animations}>
+                    {item.message}
+                  </motion.p>
+                </div>
 
-        <div className="lowercard">
-          <div className="lowercard_img_holder">
-            <img src="/ASSETS/Images/Commenters/commenter1.svg" alt="" />
-          </div>
+                <div className="lowercard">
+                  <div className="lowercard_img_holder">
+                    <motion.img
+                      {...animations}
+                      className="rounded-full object-cover w-10 h-10 min-w-10 min-h-10 bg-gray-200 size-10"
+                      src={item.img}
+                      alt={item.fullname}
+                    />
+                  </div>
 
-          <div className="name_info">
-            <h3>Dr. Dahiru Faralu Ibrahim</h3>
-            <p>Disability Professional, Lagos, NG</p>
+                  <div className="name_info flex-shrink-0">
+                    <motion.h3 {...animations} className="whitespace-nowrap">
+                      {item.fullname}
+                    </motion.h3>
+                    <motion.p {...animations}>
+                      {item.label}
+                    </motion.p>
+                  </div>
+                  <motion.div
+                    {...animations}
+                    className="w-full flex gap-2 justify-end items-center pr-3"
+                  >
+                    {item.facebook &&
+                      <a title="Facebook" href={item.facebook}>
+                        <div>
+                          <img src="/ASSETS/Icons/fb-icn.svg" alt="" />
+                        </div>
+                      </a>}
+                    {item.instagram &&
+                      <a title="Instagram" href={item.instagram}>
+                        <div>
+                          <img src="/ASSETS/Icons/ig-icn.svg" alt="" />
+                        </div>
+                      </a>}
+                    {item.twitter &&
+                      <a title="Twitter(X)" href={item.twitter}>
+                        <div>
+                          <img src="/ASSETS/Icons/x-icn.svg" alt="" />
+                        </div>
+                      </a>}
+                  </motion.div>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+      </AnimatePresence>
+    );
 }

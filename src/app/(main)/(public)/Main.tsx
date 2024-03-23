@@ -22,7 +22,7 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import { useIndexPageState } from '@/state/indexStore';
 import useRunOnce from '@/hooks/useRunOnce';
-import { ApiCategoryData, ApiEvaluationData, ApiLogoData, ApiOrganizationData, ApiStoryData, ApiTeamData } from '@/utils/types/companyTypes';
+import { ApiCategoryData, ApiEvaluationData, ApiLogoData, ApiOrganizationData, ApiTestimonialData, ApiTeamData } from '@/utils/types/companyTypes';
 import {HelmetProvider, Helmet} from 'react-helmet-async'
 import VerifyModal from './VerifyModal';
 
@@ -31,20 +31,20 @@ type PageProps = {
   team: ApiTeamData[];
   categories: ApiCategoryData[];
   organizations: ApiOrganizationData[];
-  stories: ApiStoryData[];
+  testimonials: ApiTestimonialData[];
   logos: ApiLogoData[];
 }
 
 export default function Main({
-  evaluationDates, team , stories, organizations, categories, logos
+  evaluationDates, team , testimonials, organizations, categories, logos
 }:PageProps) {
   
-  const {setEvaluationDates, setTeam, setCategories, setOrganizations, setStories, setLogos} = useIndexPageState();
+  const {setEvaluationDates, setTeam, setCategories, setOrganizations, setTestimonials, setLogos} = useIndexPageState();
 
   useRunOnce(()=>{
     setEvaluationDates(evaluationDates)
     setTeam(team)
-    setStories(stories)
+    setTestimonials(testimonials)
     setOrganizations(organizations)
     setCategories(categories)
     setLogos(logos)
@@ -63,8 +63,9 @@ return <>
   <Footer />
   </main>
   <VerifyModal />
+ 
   {/* <script src={`/main.js?cacheControl=${new Date().getTime()}`} async defer></script> */}
-  <HelmetProvider>
+  {/* <HelmetProvider>
     <Helmet>
       <script src={`/main.js`} async defer></script>
       <script>
@@ -147,6 +148,7 @@ loadJS();
         `}
       </script>
     </Helmet>
-  </HelmetProvider>
+  </HelmetProvider> */}
+ <script async defer src='/entry.js'></script>
 </>
 }

@@ -4,7 +4,7 @@ import Main from "./Main";
 import { fetchEvaluationDates } from "@/serverActions/fetchEvaluationDates";
 import { fetchCategories } from "@/serverActions/fetchCategories";
 import { fetchOrganizations } from "@/serverActions/fetchOrganizations";
-import { fetchStories } from "@/serverActions/fetchStories";
+import { fetchTestimonials } from "@/serverActions/fetchTestimonials";
 import { fetchLogos } from "@/serverActions/fetchLogos";
 
 export default async function Page() {
@@ -12,13 +12,13 @@ export default async function Page() {
   const organizations = await fetchOrganizations();
   const categories = await fetchCategories();
   const team = await fetchTeam();
-  const stories = await fetchStories();
+  const testimonials = await fetchTestimonials();
   const logos = await fetchLogos();
 
   if (
     !evaluationDates ||
     !team ||
-    !stories ||
+    !testimonials ||
     !organizations ||
     !categories ||
     !logos
@@ -29,7 +29,7 @@ export default async function Page() {
     <main>
       <Main
         evaluationDates={evaluationDates}
-        stories={stories}
+        testimonials={testimonials}
         categories={categories}
         organizations={organizations}
         team={team}
