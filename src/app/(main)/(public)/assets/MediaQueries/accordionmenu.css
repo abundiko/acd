@@ -12,7 +12,7 @@
 
 .accordion_menu.active {
   background: var(--clr-slate-dflt);
-  z-index: 10;
+  z-index: 40;
   width: 100%;
   top: 0;
   z-index: 12;
