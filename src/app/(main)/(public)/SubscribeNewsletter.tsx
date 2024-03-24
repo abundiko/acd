@@ -27,10 +27,15 @@ export default function SubscribeNewsletter() {
   return (
     <div className="flex flex-col">
       <FormMessage {...formState} />
-      <form onSubmit={onSubmit} key={key} id="footer_email">
+      <form
+        onSubmit={onSubmit}
+        key={key}
+        id="footer_email"
+        className="flex flex-col"
+      >
         <input
           type="text"
-          id="#"
+          id="footer_email_field"
           placeholder="Email address"
           required
           name="email"
@@ -38,7 +43,7 @@ export default function SubscribeNewsletter() {
         <input
           disabled={formState.loading}
           type="submit"
-          value="Submit"
+          value="Subscribe"
           id="footer_email_submit"
           className="disabled:opacity-50 disabled:pointer-events-none"
         />

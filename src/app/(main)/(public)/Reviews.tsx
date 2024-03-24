@@ -41,7 +41,7 @@ export default function Reviews() {
               </div>
             </div>
           </div>
-          <div className="pro_reviewers pb-3">
+          <div className="pro_reviewers pb-3 lg:min-w-[60%] max-[1200px]:min-h-60 relative">
             <div className="uppercard">
               <img src="/ASSETS/Icons/quotes.svg" alt="" />
               <div className="arrow_navigation">
@@ -64,7 +64,7 @@ export default function Reviews() {
               </div>
             </div>
             {[testimonials[index]].map(item =>
-              <div key={item._id} className="overflow-hidden">
+              <div key={item._id} className="overflow-hidden h-full w-full">
                 <div className="uppercard_text">
                   <motion.p layoutId={item._id} {...animations}>
                     {item.message}
@@ -115,6 +115,19 @@ export default function Reviews() {
                 </div>
               </div>
             )}
+            <div className="absolute flex gap-2 bottom-0 w-full justify-center pb-2">
+              {testimonials.map((item, i) =>
+                <button
+                  key={item._id + i}
+                  onClick={() => {
+                    setIndex(i);
+                  }}
+                  className={`${i === index
+                    ? "bg-primary rounded-xl w-6"
+                    : "rounded-full w-2 bg-gray-300"} h-2 transition-all duration-300`}
+                />
+              )}
+            </div>
           </div>
         </section>
       </AnimatePresence>

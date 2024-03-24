@@ -18,7 +18,7 @@ export default function SecurityRating() {
       <div className="flex justify-end gap-1">
         <span>Security Rating:</span>
         <span className="font-semibold">
-          {org.rating}%
+          {org.srating}%
         </span>
       </div>
     </div>

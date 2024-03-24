@@ -2,6 +2,7 @@
 
 import { useDashboardState } from "@/state/dashboardStore";
 import RoundedCard from "@/components/ui/RoundedCard";
+import { getSuitableTitleForScore } from "@/utils/functions/functions";
 
 export type RoundedBarsProps = {
   compliance: number;
@@ -18,14 +19,7 @@ export default function RoundedBars() {
         compliance: org ? Number(org.compScore) : 0,
         employment: org ? Number(org.quota) : 0,
         accessibility: org ? Number(org.rating) : 0
-      }).map(tile =>
-        <RoundedCard
-          key={tile.title}
-          {...tile}
-          showBlueBar
-          label="Not Accessible"
-        />
-      )}
+      }).map(tile => <RoundedCard key={tile.title} {...tile} showBlueBar />)}
     </div>
   );
 }
@@ -34,16 +28,19 @@ const tiles = ({ compliance, employment, accessibility }: RoundedBarsProps) => [
   {
     title: "COMPLIANCE SCORE",
     value: compliance,
-    color: "#E53761"
+    color: "#E53761",
+    label: getSuitableTitleForScore(compliance, "accessibility")
   },
   {
     title: "5% EMPLOYMENT QUOTA",
     value: employment,
-    color: "#27A468"
+    color: "#27A468",
+    label: getSuitableTitleForScore(employment, "compliance")
   },
   {
     title: "ACCESSIBILITY",
     value: accessibility,
-    color: "#F2A735"
+    color: "#F2A735",
+    label: getSuitableTitleForScore(accessibility, "accessibility")
   }
 ];

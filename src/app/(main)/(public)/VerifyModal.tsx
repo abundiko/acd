@@ -20,7 +20,7 @@ export default function VerifyModal() {
 
   useEffect(
     () => {
-      if (!org || !orgs) return;
+      if (!org || !orgs) setOrganization(null);
       const available = orgs.find(o => o._id === org);
       if (available) setOrganization(available);
     },

@@ -6,14 +6,13 @@ import FormMessage from "@/components/ui/FormMessage";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import { API } from "@/utils/constants";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
-import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { useState } from "react";
 import { useCookies } from "@/hooks/useCookies";
 // import { deleteCookie, getCookie } from "@/utils/functions/cookies";
 
 export default function EvaluationForm() {
-  const [errors, setErrors] = useState([true, true, true, true]);
+  const [errors, setErrors] = useState([true]);
   const {getCookie, deleteCookie} = useCookies();
   const {
     formProps: { onSubmit, key },
@@ -44,11 +43,7 @@ export default function EvaluationForm() {
           <AppInput
             key={item.name}
             {...item}
-            onErrorChange={(hasError) => {
-              setErrors((prev) =>
-                prev.map((error, index) => (index === i ? hasError : error))
-              );
-            }}
+           
           />
         ))}
         <DatePicker
@@ -56,7 +51,7 @@ export default function EvaluationForm() {
           onValueChange={(_) => {
             console.log(errors);
             setErrors((prev) =>
-              prev.map((error, index) => (index === 3 ? false : error))
+              prev.map((error, index) => (index === 0 ? false : error))
             );
           }}
         />
@@ -64,7 +59,7 @@ export default function EvaluationForm() {
 
       <input
         disabled={formState.loading || errors.includes(true)}
-        className="disabled:opacity-50 disabled:pointer-events-none"
+        className=" bg-primary text-light disabled cursor-pointer"
         type="submit"
         value={formState.loading ? "loading..." : "Submit Application →"}
         id="submit_form"

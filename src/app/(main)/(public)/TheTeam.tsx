@@ -8,7 +8,7 @@ export default function TheTeam() {
     <section className="accesibility container">
       <div className="accesibility_intro">
         <h4>OUR TEAM</h4>
-        <h1>Meet our Accessibility Experts</h1>
+        <h1 className="font-bold">Meet our Accessibility Experts</h1>
 
         <p>
           Our team comprise certified experts in accessibility evaluation, we

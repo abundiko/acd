@@ -29,14 +29,14 @@ function loadJS() {
 
   // accordion
   let menu = document.getElementById("mnu-btn");
-  let act = menu.addEventListener("click", () => {
+  let act = (menu.onclick = () => {
     let result = document.querySelector(".accordion_menu");
 
     result.classList.toggle("active");
 
     let accordioncloser = document.querySelector("#accordionclose");
 
-    let closeaccordion = accordioncloser.addEventListener("click", () => {
+    let closeaccordion = (accordioncloser.onclick = () => {
       result.classList.remove("active");
     });
 

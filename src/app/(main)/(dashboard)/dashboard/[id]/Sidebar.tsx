@@ -33,7 +33,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`w-full lg:w-64 flex flex-col gap-4 p-6 border-r h-screen transition-all duration-300 fixed top-0 left-[-105%] lg:left-0 bg-light z-30 ${isOpen
+      className={`w-full lg:w-64 flex flex-col gap-4 p-6 border-r h-screen transition-all duration-300 absolute top-0 left-[-105%] lg:left-0 bg-light z-30 ${isOpen
         ? "max-lg:[left:0_!important]"
         : ""}`}
     >

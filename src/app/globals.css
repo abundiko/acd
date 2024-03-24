@@ -4,7 +4,7 @@
 
 @layer utilities {
   .topbar-select {
-    @apply w-full p-2 cursor-pointer;
+    @apply w-full p-2 cursor-pointer  max-w-[33.3%];
   }
   .dashboard-card {
     @apply border rounded-lg hover:shadow-xl p-3 bg-light;
@@ -58,7 +58,7 @@
     @apply bg-light shadow-xl p-2 rounded-md border
   }
   .disabled{
-    @apply  opacity-70 pointer-events-none
+    @apply  disabled:opacity-70 disabled:pointer-events-none
   }
 }
 

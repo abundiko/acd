@@ -86,9 +86,6 @@
 
 #submit_form{
     margin-top: 20px;
-    border: 1px solid var(--clr-slate-1140);
-    background-color: var(--clr-slate-dflt);
-    color: black;
     border-radius: 3px;
     padding: 10px 20px;
 }

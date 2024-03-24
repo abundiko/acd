@@ -30,10 +30,12 @@ export default function AppSelect({
     <Theme>
         <Select.Root disabled={!items || items.length === 0} size="2" onValueChange={onChange} defaultValue={value??undefined} name={name}>
       <Select.Trigger
-        className={"w-full py-1.5"}
         variant="ghost"
-        placeholder={placeholder ?? title}
-      />
+        placeholder={placeholder}
+      >
+        <h1
+        className={"w-full py-1.5 max-w-[100px] line-clamp-1"}>{placeholder ?? title}</h1>
+      </Select.Trigger>
       <Select.Content position="popper">
                 <Select.Group>
                   
