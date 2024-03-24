@@ -34,7 +34,7 @@ export default function Sponsors() {
                 key={e.img}
                 src={e.img}
                 alt="featured Logo"
-                className="h-20 object-contain"
+                className="h-12 lg:h-16 object-contain"
               />
             )}
           </div>

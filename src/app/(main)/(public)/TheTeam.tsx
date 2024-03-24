@@ -17,7 +17,7 @@ export default function TheTeam() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 xl:gap-4">
         {team.map((item, index) =>
           <div key={item._id} className="experts_reviews">
             <div className="expert-review_images">

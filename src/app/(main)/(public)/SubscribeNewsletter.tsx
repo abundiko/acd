@@ -43,9 +43,9 @@ export default function SubscribeNewsletter() {
         <input
           disabled={formState.loading}
           type="submit"
-          value="Subscribe"
+          value={formState.loading ? "Please Wait" : "Subscribe"}
           id="footer_email_submit"
-          className="disabled:opacity-50 disabled:pointer-events-none"
+          className="disabled cursor-pointer"
         />
       </form>
     </div>
