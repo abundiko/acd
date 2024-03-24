@@ -1,3 +1,4 @@
+import AppLogo from "@/components/logo";
 import SubscribeNewsletter from "./SubscribeNewsletter";
 
 export default function Footer() {
@@ -9,7 +10,14 @@ export default function Footer() {
       </div>
       <div className="footer_holder container">
         <div className="logo footer_logo">
-          <a href="#" title="Accessibility Compliance Dashboard">
+          <div className="rounded-md bg-light p-2 w-fit max-w-fit">
+            <AppLogo />
+          </div>
+          {/* <a
+            target="_blank"
+            href="#"
+            title="Accessibility Compliance Dashboard"
+          >
             <img src="/ASSETS/Images/logo01.png" alt="logo" width="90" />
             <img
               src="/ASSETS/Icons/union-footer.svg"
@@ -28,7 +36,7 @@ export default function Footer() {
               <p>Complaince</p>
               <p>Dashboard</p>
             </div>
-          </a>
+          </a> */}
         </div>
 
         <div className="lowerfooter">
@@ -36,18 +44,27 @@ export default function Footer() {
             <h4>Resources</h4>
 
             <p>
-              <a href="https://inclusivefriends.org/resources/publications/">
+              <a
+                target="_blank"
+                href="https://inclusivefriends.org/resources/publications/"
+              >
                 Our Research
               </a>
             </p>
             <p>
-              <a href="">Compliance Dashboard</a>
+              <a target="_blank" href="/dashboard">
+                Compliance Dashboard
+              </a>
             </p>
             <p>
-              <a href="">Disability Act, 2018</a>
+              <a target="_blank" href="/disability-act.pdf" download>
+                Disability Act, 2018
+              </a>
             </p>
             <p>
-              <a href="">Know Your Disability Rights</a>
+              <a target="_blank" href="/disability-act.pdf">
+                Know Your Disability Rights
+              </a>
             </p>
           </div>
 
@@ -55,16 +72,20 @@ export default function Footer() {
             <h4>Company</h4>
 
             <p>
-              <a href="#">About Us</a>
+              <a target="_blank" href="https://inclusivefriends.org/about/">
+                About Us
+              </a>
             </p>
             <p>
-              <a href="#">Careers</a>
+              <a target="_blank" href="https://inclusivefriends.org/contact/">
+                Career
+              </a>
             </p>
             <p>
-              <a href="#">FAQs</a>
+              <a href="#_faqs">FAQs</a>
             </p>
             <p>
-              <a href="#">Teams</a>
+              <a href="#_the-team">Teams</a>
             </p>
           </div>
 
@@ -82,17 +103,17 @@ export default function Footer() {
             <h4>Contact Us</h4>
 
             <div className="footer_socials">
-              <a href="#">
+              <a target="_blank" href="#">
                 <div>
                   <img src="/ASSETS/Icons/fb-icn.svg" alt="#" />
                 </div>
               </a>
-              <a href="https://twitter.com/inclusivefrnds">
+              <a target="_blank" href="https://twitter.com/inclusivefrnds">
                 <div>
                   <img src="/ASSETS/Icons/x-icn.svg" alt="#" />
                 </div>
               </a>
-              <a href="#">
+              <a target="_blank" href="#">
                 <div>
                   <img src="/ASSETS/Icons/ig-icn.svg" alt="#" />
                 </div>
@@ -196,16 +217,16 @@ export default function Footer() {
 
         <div className="footerextra">
           <div>
-            <a href="#" title="privacy policy">
+            <a target="_blank" href="#" title="privacy policy">
               Privacy Policy
             </a>
-            <a href="#" title="Terms of Use">
+            <a target="_blank" href="#" title="Terms of Use">
               Terms of Use
             </a>
-            <a href="#" title="Legal">
+            <a target="_blank" href="#" title="Legal">
               Legal
             </a>
-            <a href="#" title="Site Map">
+            <a target="_blank" href="#" title="Site Map">
               Site Map
             </a>
           </div>

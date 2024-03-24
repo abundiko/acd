@@ -5,7 +5,7 @@ import { useIndexPageState } from "@/state/indexStore";
 export default function TheTeam() {
   const team = useIndexPageState(s => s.team);
   return (
-    <section className="accesibility container">
+    <section className="accesibility container" id="_the-team">
       <div className="accesibility_intro">
         <h4>OUR TEAM</h4>
         <h1 className="font-bold">Meet our Accessibility Experts</h1>
