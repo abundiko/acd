@@ -1,4 +1,4 @@
-import Script from 'next/script'
+
 
 export default async function RootLayout({
   children
@@ -8,6 +8,5 @@ export default async function RootLayout({
 
   return <>
         {children}
-      {/* <Script src="/main.js" strategy="lazyOnload" /> */}
     </>;
 }
