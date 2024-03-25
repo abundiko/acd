@@ -6,6 +6,7 @@ import VerifyAccessibility from "./VerifyAccessibility";
 export default function Hero({ isClient = false }: { isClient?: boolean }) {
   const [reading, setReading] = useState(false);
   function startReading(e:any) {
+    return;
     e.preventDefault();
     // Check if speech synthesis is supported
     if ('speechSynthesis' in window) {

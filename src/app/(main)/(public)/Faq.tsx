@@ -98,5 +98,15 @@ export default function Faq() {
           Disability included long-term physical, mental, intellectual or sensory impairment which in inter action with various barriers may hinder full and effective participation on equal basis with others (Section 57 Disability Ac).
         </div>
       </div>
+
+      <div className="questions">
+        <div className="question_main">
+          <p>Where can I find information on accessibility?</p>
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+        </div>
+
+        <div className="hidden_answer">
+          Information on accessibility can be found on the National Accessibility Standards Regulation which was formulated by the National Commission for Persons with Disabilities.</div>
+      </div>
     </section>;
 }
