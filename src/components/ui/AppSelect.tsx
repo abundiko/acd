@@ -1,5 +1,6 @@
 'use client'
 import { Select, Theme } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
 
 export type SelectOption= {
   value: string;
@@ -25,19 +26,31 @@ export default function AppSelect({
   name,
   className
 }: AppSelectProps) {
+  const [v, sv] = useState(value??undefined)
+
+  function handleChange(e: string) {
+    sv(e);
+    if (onChange) onChange(e);
+  }
+
+  useEffect(()=>{
+    sv(value??undefined);
+  }, [value])
+  
   return (
       <div className={className}>
     <Theme>
-        <Select.Root disabled={!items || items.length === 0} size="2" onValueChange={onChange} defaultValue={value??undefined} name={name}>
+        <Select.Root disabled={!items || items.length === 0} size="2" onValueChange={handleChange}  value={v} name={name}>
       <Select.Trigger
-      className="px-1 overflow-x-hidden max-w-full line-clamp-1"
+      className="px-1 overflow-x-hidden max-w-full line-clamp-1 w-full"
         variant="ghost"
-        placeholder={placeholder}
+        value={placeholder??title}
+        
       >
         <h1
-        className={"w-full py-1.5"}>{placeholder ?? title}</h1>
+        className={"w-full py-1.5"}>{placeholder??title}</h1>
       </Select.Trigger>
-      <Select.Content position="popper">
+      <Select.Content position="popper" >
                 <Select.Group>
                   
           <Select.Label>
@@ -48,9 +61,11 @@ export default function AppSelect({
               let value = typeof option === 'string' ? option : option.value;
               let label = typeof option === 'string' ? option : option.label;
               return <Select.Item
+              onSelect={() => handleChange(value)}
                 className="whitespace-nowrap"
                 value={value}
                 key={value}
+                
               >
                 {label}
               </Select.Item>

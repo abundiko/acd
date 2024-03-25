@@ -62,7 +62,7 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              <a target="_blank" href="/disability-act.pdf">
+              <a target="_blank" href="/disability-act.pdf" download>
                 Know Your Disability Rights
               </a>
             </p>

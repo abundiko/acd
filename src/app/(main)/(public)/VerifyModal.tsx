@@ -2,6 +2,7 @@
 
 import RoundedCard from "@/components/ui/RoundedCard";
 import { useIndexPageState } from "@/state/indexStore";
+import { getSuitableTitleForScore } from "@/utils/functions/functions";
 import { ApiOrganizationData } from "@/utils/types/companyTypes";
 import { Theme, Dialog } from "@radix-ui/themes";
 import Link from "next/link";
@@ -33,7 +34,7 @@ export default function VerifyModal() {
         <Dialog.Trigger />
 
         <Dialog.Content
-          style={{ maxWidth: "clamp(280px,80vw,650px)", zIndex: 99999, backgroundColor: "#fdfdfd" }}
+          style={{ maxWidth: "clamp(280px,90vw,750px)", zIndex: 99999, backgroundColor: "#fdfdfd" }}
         >
           <div className="p-4 relative flex flex-col gap-2">
             <Dialog.Close>
@@ -63,7 +64,7 @@ export default function VerifyModal() {
                 employment: organization ? Number(organization.quota) : 0,
                 accessibility: organization ? Number(organization.rating) : 0,
                 security: organization ? Number(organization.srating) : 0
-              }).map(tile => <RoundedCard key={tile.title} {...tile} />)}
+              }).map(tile => <RoundedCard key={tile.title} {...tile} showBlueBar />)}
             </div>
             <Link href={`/dashboard/${organization?._id}`} className="btn-primary w-full py-2">
             Go to Dashboard
@@ -89,21 +90,25 @@ const tiles = ({
   {
     title: "COMPLIANCE SCORE",
     value: compliance,
-    color: "#E53761"
+    color: "#E53761",
+    label: getSuitableTitleForScore(compliance, 'accessibility'),
   },
   {
     title: "5% EMPLOYMENT QUOTA",
     value: employment,
-    color: "#27A468"
+    color: "#27A468",
+    label: getSuitableTitleForScore(employment, 'compliance'),
   },
   {
     title: "ACCESSIBILITY",
     value: accessibility,
-    color: "#F2A735"
+    color: "#F2A735",
+    label: getSuitableTitleForScore(accessibility, 'accessibility'),
   },
   {
     title: "SECURITY",
     value: security,
-    color: "#F2A7dd"
+    color: "#F2A7dd",
+    label: getSuitableTitleForScore(security, 'accessibility'),
   }
 ];

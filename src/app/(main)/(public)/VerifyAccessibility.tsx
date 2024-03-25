@@ -70,9 +70,15 @@ function SelectModal() {
     setId(value);
   }
 
-  const availableOrgs = organizations.filter(
+  const [availableOrgs, setAvailableOrgs] = useState(organizations.filter(
     (_) => _.category === cat && _.location === loc
-  );
+  ));
+
+  useEffect(() => {
+    setAvailableOrgs(organizations.filter(
+      (_) => _.category === cat && _.location === loc
+    ));
+  }, [cat, loc, organizations]);
 
   useEffect(() => {
     if (availableOrgs.length < 1) {
