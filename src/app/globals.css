@@ -4,7 +4,7 @@
 
 @layer utilities {
   .topbar-select {
-    @apply w-full p-2 cursor-pointer  max-w-[33.3%];
+    @apply w-full p-2 cursor-pointer  xl:max-w-[33.3%];
   }
   .dashboard-card {
     @apply border rounded-lg hover:shadow-xl p-3 bg-light;
