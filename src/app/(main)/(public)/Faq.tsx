@@ -5,7 +5,7 @@ export default function Faq() {
       <div className="questions">
         <div className="question_main">
           <p>What is Accessibility?</p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">
@@ -23,7 +23,7 @@ export default function Faq() {
       <div className="questions">
         <div className="question_main">
           <p>Where can I find information on accessibility?</p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">
@@ -49,7 +49,7 @@ export default function Faq() {
             Why should my company/organisation apply for accessibility
             evaluation?
           </p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">
@@ -68,7 +68,7 @@ export default function Faq() {
       <div className="questions">
         <div className="question_main">
           <p>What is 5% employment quota for persons with disabilities?</p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">
@@ -91,7 +91,7 @@ export default function Faq() {
       <div className="questions">
         <div className="question_main">
           <p>What is disability?</p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">
@@ -102,7 +102,7 @@ export default function Faq() {
       <div className="questions">
         <div className="question_main">
           <p>Where can I find information on accessibility?</p>
-          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" />
+          <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
         <div className="hidden_answer">

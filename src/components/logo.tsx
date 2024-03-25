@@ -21,7 +21,10 @@ export default function AppLogo() {
 }
 
 function LogoSvg() {
-  return <div dangerouslySetInnerHTML={{ __html: `
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: `
       
 <svg class="w-full h-full" viewBox="0 0 166 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="90.0339" height="37.9831" transform="translate(75.9661)" fill="white"/>
@@ -39,5 +42,8 @@ function LogoSvg() {
 </defs>
 </svg>
 
-      ` }} />;
+      `
+      }}
+    />
+  );
 }

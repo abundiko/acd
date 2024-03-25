@@ -14,7 +14,7 @@ export default function RoundedCard({
   label?: string;
 }) {
   return (
-    <div className=" bg-light flex flex-col  gap-3 items-center justify-center rounded-lg overflow-hidden text-center border">
+    <div className=" bg-light flex flex-col  gap-3 items-center justify-between rounded-lg overflow-hidden text-center border">
       <div className="p-3 flex flex-col gap-3">
         <h1 className="text-[.6rem] opacity-80 ">
           {title}

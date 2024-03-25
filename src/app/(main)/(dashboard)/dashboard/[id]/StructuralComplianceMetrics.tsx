@@ -53,10 +53,10 @@ export const options = {
 };
 
 const labels = [
-  "Access to Building\n(External way finding)",
-  "Accessible\n Goods and Services",
-  "Accessible furniture\n Fixtures & Utilities",
-  "Accessible Additional\n Amenities",
+  ["Access to Building","(External way finding)"],
+  ["Accessible"," Goods and Services"],
+  ["Accessible furniture"," Fixtures & Utilities"],
+  ["Accessible Additional"," Amenities"],
 ];
 
 export default function StructuralComplianceMetrics() {
@@ -65,7 +65,7 @@ export default function StructuralComplianceMetrics() {
   );
 
   const data: ChartData<"bar", number[], string> = {
-    labels,
+    labels:labels as any as string[],
     datasets: [
       {
         label: "",

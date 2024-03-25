@@ -95,7 +95,7 @@ body{
 @media (min-width:480px) {
     .container{
         padding-inline: 10px;
-        max-width: 480px;
+        max-width: 95vw;
     }
 
     .content_slider{
