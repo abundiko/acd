@@ -8,7 +8,7 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
+        <p className="hidden_answer">
           Accessibility aims to enable persons with disabilities to live
           independently and participate fully in all aspects of life. A
           building is said to be accessible where it afford persons with
@@ -17,7 +17,7 @@ export default function Faq() {
           fixtures, and devices that aids accessibility and assistive devices
           that assist, increases or improves the functional capabilities of
           persons with disabilities.
-        </div>
+        </p>
       </div>
 
       <div className="questions">
@@ -26,7 +26,7 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
+        <p className="hidden_answer">
           The Discrimination Against Persons with Disabilities (Prohibition)
           Act, 2018 (“the Disability Act”) provides information on
           accessibility. Part III and IV of the Disability Act provides for
@@ -40,7 +40,7 @@ export default function Faq() {
           special safety briefings at transportation facilities, including
           motor parks, train stations, seaports, and airports (see Sections
           9-15 of the Disability Act).
-        </div>
+        </p>
       </div>
 
       <div className="questions">
@@ -52,7 +52,7 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
+        <p className="hidden_answer">
           Having your company/organisation evaluated and profiled on the
           Accessibility Compliance Dashboard (ACD) will stand you out as a
           disability-complaint organisation. It is hoped that inclusive and
@@ -62,7 +62,7 @@ export default function Faq() {
           inclusive policies and projects your company/organisation as one
           with a strong commitment towards an all-inclusive and sustainable
           Corporate Social Responsibility to the community you serve.
-        </div>
+        </p>
       </div>
 
       <div className="questions">
@@ -71,7 +71,7 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
+        <p className="hidden_answer">
           The Inclusive Friends Association (IFA) is a Person with Disability
           (PWD) woman led non-profit and non-governmental organization that
           uses data to address inclusion the inclusion and participation
@@ -85,7 +85,7 @@ export default function Faq() {
           Disability Act and improve accessibility for persons with
           disabilities. To learn more about our other pioneering projects,
           please visit: <a href="https://inclusivefriends.org" className="text-blue-700 hover:text-blue-900">https://inclusivefriends.org</a>
-        </div>
+        </p>
       </div>
 
       <div className="questions">
@@ -94,9 +94,9 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
+        <p className="hidden_answer">
           Disability included long-term physical, mental, intellectual or sensory impairment which in inter action with various barriers may hinder full and effective participation on equal basis with others (Section 57 Disability Ac).
-        </div>
+        </p>
       </div>
 
       <div className="questions">
@@ -105,8 +105,8 @@ export default function Faq() {
           <img src="/ASSETS/Icons/cross.svg" alt="" id="cross_img" role="button" />
         </div>
 
-        <div className="hidden_answer">
-          Information on accessibility can be found on the National Accessibility Standards Regulation which was formulated by the National Commission for Persons with Disabilities.</div>
+        <p className="hidden_answer">
+          Expanded information on accessibility can be found on the National Accessibility Standards Regulation which was formulated by the National Commission for Persons with Disabilities.</p>
       </div>
     </section>;
 }

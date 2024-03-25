@@ -24,11 +24,11 @@ export default function DatePicker({value, onValueChange}:{value:string|null, on
   <input type="hidden" name="date" value={title} hidden />
    <Theme>
             <Popover.Root >
-              <Popover.Trigger>
-  <div className="w-full flex rounded-md py-3 gap-3 bg-light border outline-primary text-dark-text px-4">
+              <Popover.Trigger title="Select date">
+  <button role="button" type="button" className="w-full flex rounded-md py-3 gap-3 bg-light border outline-primary text-dark-text px-4">
     <CalendarIcon className="opacity-50" />
     <span className={title ? 'opacity-80' : 'opacity-50 text-xs'}>{title == '' ? 'Select Date' : formatDate(title)}</span>
-  </div>
+  </button>
               </Popover.Trigger>
               <Popover.Content
                side="top"

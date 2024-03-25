@@ -45,7 +45,8 @@ function loadJS() {
 
   let cross = document.querySelectorAll(".questions");
   cross.forEach(press => {
-    press.onclick = () => {
+    let trigger = press.querySelector(".question_main");
+    trigger.onclick = () => {
       press.classList.toggle("activated");
     };
   });
