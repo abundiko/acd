@@ -17,7 +17,10 @@ export default function Tts() {
       const msg = new SpeechSynthesisUtterance();
     const tags = document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,button,img,li,input,textarea');
     function runSpeech(tag:any) {
-      if(tag.tagName.toLocaleLowerCase() == 'img') {
+      
+    window.speechSynthesis.cancel()
+      setTimeout(() => {
+        if(tag.tagName.toLocaleLowerCase() == 'img') {
           msg.text = tag.alt ?? "Image";
         }else if(['button','a'].includes(tag.tagName.toLocaleLowerCase())) {
           msg.text = tag.title ? tag.title : tag.innerText ?? "button";
@@ -34,6 +37,7 @@ export default function Tts() {
           clearInterval(int);
           }
         }, 100)
+      }, 120);
     }
 
     tags.forEach((tag:any)=>{

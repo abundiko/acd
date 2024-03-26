@@ -59,7 +59,7 @@ body{
     margin-right: auto;
 }
 
-@media (min-width:270px) {
+/* @media (min-width:270px) {
     .container{
         max-width: 270px;
     }
@@ -75,11 +75,11 @@ body{
     .content_slider{
         max-width: 320px;
     }
-}
+} */
 
 
 /* 400px */
-@media (min-width:400px) {
+/* @media (min-width:400px) {
     .container{
         padding-inline: 10px;
         max-width: 400px;
@@ -88,7 +88,7 @@ body{
     .content_slider{
         max-width: 400px;
     }
-}
+} */
 
 
 /* 480px */
