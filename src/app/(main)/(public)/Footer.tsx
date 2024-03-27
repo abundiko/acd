@@ -232,13 +232,13 @@ export default function Footer() {
             </a>
           </div>
 
-          <p>© 2024 All Rights Reserved</p>
+          <p>© 2024 All Rights Reserved. &nbsp; <a target="_blank" href="mailto:circohq@gmail.com">Developed with &#10084; by The Circo Team </a></p>
         </div>
       </div>
     </section>
-    <footer className="flex justify-center py-2 bg-gray-900 text-light hover:text-blue-100">
+    {/* <footer className="flex justify-center py-2 bg-gray-900 text-light hover:text-blue-100">
       <a target="_blank" href="mailto:circohq@gmail.com">Developed with &#10084; by The Circo Team </a>
-    </footer>
+    </footer> */}
     </>
   );
 }
