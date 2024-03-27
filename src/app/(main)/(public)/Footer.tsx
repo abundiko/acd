@@ -3,6 +3,7 @@ import SubscribeNewsletter from "./SubscribeNewsletter";
 
 export default function Footer() {
   return (
+    <>
     <section className="footer">
       <div className="footer_waves">
         <img src="/ASSETS/Images/footer_waves.svg" alt="" />
@@ -235,5 +236,9 @@ export default function Footer() {
         </div>
       </div>
     </section>
+    <footer className="flex justify-center py-2 bg-gray-900 text-light hover:text-blue-100">
+      <a target="_blank" href="mailto:circohq@gmail.com">Developed with &#10084; by The Circo Team </a>
+    </footer>
+    </>
   );
 }
