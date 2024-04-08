@@ -13,7 +13,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const { name, compScore, quota, rating, category, location } = org.stats;
   return {
     title: "Accessibility Compliance Dashboard | " + name,
-    description: `Located at ${location}. ${category}. Compliance Score: ${compScore}. 5% Employment Quota: ${quota}. Accessibility Rating: ${rating}.`
+    description: `Located at ${location}. ${category}.
+    Accessibility Rating: ${rating}.
+    Total Compliance Score: ${compScore}.
+      5% Employment Quota: ${quota}.
+       `
   };
 }
 

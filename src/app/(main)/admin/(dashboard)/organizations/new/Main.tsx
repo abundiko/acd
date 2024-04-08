@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import FormMessage from "@/components/ui/FormMessage";
 import AdminAuth from "@/components/AdminAuth";
 import useFormSubmit from "@/hooks/useFormSubmit";
-import { API, NIGERIAN_STATES } from "@/utils/constants";
+import { API, NIGERIAN_STATES, formSchemas } from "@/utils/constants";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { getCookie } from "@/utils/functions/cookies";
 import revalidateRoutes from "@/serverActions";
@@ -153,7 +153,7 @@ const orgFields: AppInputProps[] = [
     title: " 5% Employment Quota",
     type: "number",
     placeholder: "enployment quota",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -161,7 +161,7 @@ const orgFields: AppInputProps[] = [
     title: "Accessibility rating",
     type: "number",
     placeholder: "accessibility rating",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -169,7 +169,7 @@ const orgFields: AppInputProps[] = [
     title: "Total sercurity rating",
     type: "number",
     placeholder: "Total sercurity rating",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -177,7 +177,7 @@ const orgFields: AppInputProps[] = [
     title: "Compliance Score",
     type: "number",
     placeholder: "Compliance score",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
 ];
@@ -210,7 +210,7 @@ const compFields: AppInputProps[] = [
           title: "External Way Finding",
     type: "number",
     placeholder: "external",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -218,7 +218,7 @@ const compFields: AppInputProps[] = [
           title: "Accessible Goods & Services",
     type: "number",
     placeholder: "goods",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -226,7 +226,7 @@ const compFields: AppInputProps[] = [
           title: "Accessible Furniture, Fixtures & Utilities",
     type: "number",
     placeholder: "fixtures",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
   {
@@ -234,7 +234,7 @@ const compFields: AppInputProps[] = [
           title: "Accessible Additional Amenities",
     type: "number",
     placeholder: "amenities",
-    schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+    schema: formSchemas.validNumber,
     required: true,
   },
 ];

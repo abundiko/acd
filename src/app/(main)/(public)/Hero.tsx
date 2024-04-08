@@ -46,7 +46,7 @@ export default function Hero({ isClient = false }: { isClient?: boolean }) {
             <div className="hero_innercontent">
               <p>
                 Get access to a comprehensive directory of our accessibility
-                compliance evaluation across public, private and civil
+                compliance evaluation across public, private and civil society
                 organisations in Nigeria
               </p>
 

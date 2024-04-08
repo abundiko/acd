@@ -34,7 +34,7 @@ export default function Reviews() {
         <section className="reviews container">
           <div className="expert_reviews">
             <div className="expert_comments">
-              <p>Expert Comments on Disability Act, 2019</p>
+              <p>Expert Comments on Accessibility, 2018</p>
 
               <div className="expert_cmmnts_image">
                 <img src="/ASSETS/Images/commentors.svg" alt="" />

@@ -11,6 +11,7 @@ import {
   Legend,
   ChartData,
 } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Suspense } from "react";
 import { Bar } from "react-chartjs-2";
 
@@ -20,7 +21,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 export const options = {
@@ -43,10 +45,14 @@ export const options = {
       display: false,
     },
     datalabels: {
-      anchor: "end",
-      align: "end",
+      color: '#fff',
+      font: {
+        weight: 500
+      },
+      anchor: "center" as const,
+      align: "center" as const,
       formatter: function (value: string, context: any) {
-        return value + "%";
+        return (Number(value) / 10) + "/10";
       },
     },
   },

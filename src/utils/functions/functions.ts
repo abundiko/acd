@@ -16,12 +16,23 @@ export function getSuitableTitleForScore(
   score: number,
   metric: "accessibility" | "compliance"
 ): string {
-  const title = metric == "compliance" ? "Compliant" : "Accessible";
-  if (score < 25) {
-    return metric == "compliance" ? "Non-Compliant" : "Inaccessible";
-  } else if (score < 50) {
-    return `Poorly ${title}`;
-  } else if (score < 75) {
-    return `Moderately ${title}`;
-  } else return `${title}`;
+  if (metric === "compliance") {
+    const title = "Compliant";
+    if (score < 1) {
+      return `Non-${title}`;
+    } else if (score < 3) {
+      return `Poorly ${title}`;
+    } else if (score < 5) {
+      return `Moderately ${title}`;
+    } else return `${title}`;
+  } else {
+    const title = "Accessible";
+    if (score < 25) {
+      return "Inaccessible";
+    } else if (score < 50) {
+      return `Poorly ${title}`;
+    } else if (score < 75) {
+      return `Moderately ${title}`;
+    } else return `${title}`;
+  }
 }

@@ -70,7 +70,12 @@ export default function Tts() {
   
 
 if(ready)
-return <>
+return <div className="relative">
+<div
+onClick={()=>setEnabled(_=>!_)}
+ className="rounded-3xl size-10 scale-[6] !bg-transparent absolute left-0 !shadow-none !-top-4">
+
+</div>
 {
   enabled ? <button title="disable screen reader" onClick={() => setEnabled(false)}><SpeakerDisable className="size-10 text-white" />
     </button> :
@@ -90,5 +95,5 @@ return <>
   </button>
 }
 
-</>;
+</div>;
 }

@@ -43,7 +43,7 @@ const tiles = ({
     available: security
   },
   {
-    title: "Emargency Exit",
+    title: "Emergency Exit",
     available: emergency
   },
   {

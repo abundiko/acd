@@ -4,13 +4,12 @@ import AppInput, { AppInputProps } from "@/components/ui/AppInput";
 import FormButton from "@/components/ui/FormButton";
 import { z } from "zod";
 import React, { useState } from "react";
-import { OrgCardProps } from "../OrgCard";
 import {
   ApiCategoryData,
   ApiOrganizationData,
   Availaboolean,
 } from "@/utils/types/companyTypes";
-import { API, NIGERIAN_STATES } from "@/utils/constants";
+import { API, NIGERIAN_STATES, formSchemas } from "@/utils/constants";
 import AdminAuth from "@/components/AdminAuth";
 import FormMessage from "@/components/ui/FormMessage";
 import useFormSubmit from "@/hooks/useFormSubmit";
@@ -78,7 +77,7 @@ export default function Page({
       type: "number",
       value: compScore,
       placeholder: "Compliance Score",
-      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      schema: formSchemas.validNumber,
       required: true,
     },
   ];
@@ -101,7 +100,7 @@ export default function Page({
       type: "number",
       placeholder: "external",
       value: external,
-      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      schema: formSchemas.validNumber,
       required: true,
     },
     {
@@ -110,7 +109,7 @@ export default function Page({
       type: "number",
       placeholder: "goods",
       value: goods,
-      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      schema: formSchemas.validNumber,
       required: true,
     },
     {
@@ -119,7 +118,7 @@ export default function Page({
       type: "number",
       placeholder: "fixtures",
       value: fixtures,
-      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      schema: formSchemas.validNumber,
       required: true,
     },
     {
@@ -128,7 +127,7 @@ export default function Page({
       type: "number",
       placeholder: "amenities",
       value: amenities,
-      schema: z.string().regex(/^(?:100|\d{1,2})$/, "provide numbers 1 - 100"),
+      schema: formSchemas.validNumber,
       required: true,
     },
   ];

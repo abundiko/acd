@@ -26,10 +26,10 @@ export default function RoundedBars() {
 
 const tiles = ({ compliance, employment, accessibility }: RoundedBarsProps) => [
   {
-    title: "COMPLIANCE SCORE",
-    value: compliance,
-    color: "#E53761",
-    label: getSuitableTitleForScore(compliance, "accessibility")
+    title: "TOTAL ACCESSIBILITY SCORE",
+    value: accessibility,
+    color: "#F2A735",
+    label: getSuitableTitleForScore(accessibility, "accessibility")
   },
   {
     title: "5% EMPLOYMENT QUOTA",
@@ -38,9 +38,9 @@ const tiles = ({ compliance, employment, accessibility }: RoundedBarsProps) => [
     label: getSuitableTitleForScore(employment, "compliance")
   },
   {
-    title: "ACCESSIBILITY",
-    value: accessibility,
-    color: "#F2A735",
-    label: getSuitableTitleForScore(accessibility, "accessibility")
+    title: "TOTAL COMPLIANCE SCORE",
+    value: compliance,
+    color: "#E53761",
+    label: getSuitableTitleForScore(compliance, "accessibility")
   }
 ];

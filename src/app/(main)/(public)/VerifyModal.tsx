@@ -88,25 +88,25 @@ const tiles = ({
   security: number;
 }) => [
   {
-    title: "COMPLIANCE SCORE",
+    title: "TOTAL ACCESSIBILITY SCORE",
+    value: accessibility,
+    color: "#F2A735",
+    label: getSuitableTitleForScore(accessibility, 'accessibility'),
+  },
+    {
+      title: "5% EMPLOYMENT QUOTA",
+      value: employment,
+      color: "#27A468",
+      label: getSuitableTitleForScore(employment, 'compliance'),
+    },
+  {
+    title: "TOTAL COMPLIANCE SCORE",
     value: compliance,
     color: "#E53761",
     label: getSuitableTitleForScore(compliance, 'accessibility'),
   },
   {
-    title: "5% EMPLOYMENT QUOTA",
-    value: employment,
-    color: "#27A468",
-    label: getSuitableTitleForScore(employment, 'compliance'),
-  },
-  {
-    title: "ACCESSIBILITY",
-    value: accessibility,
-    color: "#F2A735",
-    label: getSuitableTitleForScore(accessibility, 'accessibility'),
-  },
-  {
-    title: "SECURITY",
+    title: "TOTAL SECURITY SCORE",
     value: security,
     color: "#F2A7dd",
     label: getSuitableTitleForScore(security, 'accessibility'),
