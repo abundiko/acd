@@ -52,7 +52,7 @@ const useFormSubmit = <T>({
       headers = { ...headers, "x-access-token": getCookie("token")! };
 
     try {
-      console.log(formDataToObject(formData));
+      // console.log(formDataToObject(formData));
       let _hasFile: boolean = !!hasFile;
       if (typeof hasFile == "string") _hasFile = formData.get(hasFile) != null;
       const response = await fetch(url, {
@@ -67,13 +67,14 @@ const useFormSubmit = <T>({
       });
 
       const data = await response.json();
+      data.message = data.message || data.error;
 
       onComplete(data);
 
-      console.log(data, 10);
+      // console.log(data, 10);
     } catch (error) {
       setErrorMessage("An error occurred");
-      console.error(error);
+      console.error({error});
     } finally {
       setLoading(false);
     }

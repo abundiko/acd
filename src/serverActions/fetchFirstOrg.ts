@@ -23,12 +23,12 @@ export async function fetchFirstOrg(): Promise<
     });
 
     const res = (await req.json()) as ApiCompressedData;
-    console.log(res);
+    // console.log(res);
     const data = decompressApi<ApiDashboardOrganizationData>(res.data.data);
     if (data.stats && data.stats._id) return data;
     else return 404;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     return null;
   }
 }

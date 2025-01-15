@@ -49,7 +49,7 @@ export default function EvaluationForm() {
         <DatePicker
           value={getCookie("evaluation-date") ?? ""}
           onValueChange={(_) => {
-            console.log(errors);
+            // console.log(errors);
             setErrors((prev) =>
               prev.map((error, index) => (index === 0 ? false : error))
             );

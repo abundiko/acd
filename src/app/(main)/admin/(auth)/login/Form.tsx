@@ -23,7 +23,7 @@ export default function LoginForm() {
   } = useFormSubmit<ApiSignupData>({
     url: `${API}`,
     onComplete(data) {
-      if (!data.message || !data) return setErrorMessage("An error occurred");
+      if ((!data.message) || !data) return setErrorMessage("An error occurred");
       if (data.message === "login successful") {
         reset();
         setSuccessMessage("Signed In Successfully");

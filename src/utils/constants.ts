@@ -6,7 +6,7 @@ export const formSchemas = {
     .regex(/^(100(\.0+)?|\d{1,2}(\.\d)?)$/, "provide numbers 1.0 - 100")
 };
 
-export const API = `https://acd-ei4s.onrender.com/`;
+export const API = `https://acd-g9tp.onrender.com/`;
 
 export const NIGERIAN_STATES = [
   "Abia",

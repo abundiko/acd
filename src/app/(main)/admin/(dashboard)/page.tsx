@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import Dashboard from "./Dashboard";
 import { fetchVisitCount } from "@/serverActions/fetchVisitCount";
+import Dashboard from "./Dashboard";
 
 export default async function Page() {
   const data = await fetchVisitCount();

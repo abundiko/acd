@@ -20,7 +20,7 @@ export default function VerifyAccessibility() {
   function checkAccessibility(e: any) {
     e.preventDefault();
     const formdata = new FormData(e.target);
-    console.log(formDataToObject(formdata));
+    // console.log(formDataToObject(formdata));
 
     if (!formdata.get("org")) return;
     router.push(`/?org=${formdata.get("org")}`);

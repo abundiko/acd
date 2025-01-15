@@ -23,7 +23,7 @@ export default function Teamcard({
   >(
     `${API}admin/deletestats/${_id}`,
     data => {
-      console.log(data);
+      // console.log(data);
       if (!data) return;
       if (data.message === "stats deleted") {
         setMainData(true);
