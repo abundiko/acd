@@ -53,36 +53,36 @@ function SelectModal() {
   const [_id, setId] = useState(organizations[0]._id);
   const router = useRouter();
 
-  useEffect(()=>{
-    if(!org) return;
-    setId(org._id)
+  useEffect(() => {
+    if (!org) return;
+    setId(org._id);
     setCat(org.category);
     setLoc(org.location);
-  }, [org])
+  }, [org]);
 
   function checkAccessibility() {
     if (!_id) return;
     router.push(`/dashboard/${_id}`);
   }
 
-  function hendleCategoryChange(e: string, id:string) {
+  function hendleCategoryChange(e: string, id: string) {
     setCat(e);
   }
   function hendleLocationChange(value: string) {
     setLoc(value);
   }
-  function hendleOrgChange(value:string) {
+  function hendleOrgChange(value: string) {
     setId(value);
   }
 
-   const [availableOrgs, setAvailableOrgs] = useState(organizations.filter(
-    (_) => _.category === cat && _.location === loc
-  ));
+  const [availableOrgs, setAvailableOrgs] = useState(
+    organizations.filter((_) => _.category === cat && _.location === loc)
+  );
 
   useEffect(() => {
-    setAvailableOrgs(organizations.filter(
-      (_) => _.category === cat && _.location === loc
-    ));
+    setAvailableOrgs(
+      organizations.filter((_) => _.category === cat && _.location === loc)
+    );
   }, [cat, loc, organizations]);
 
   useEffect(() => {
@@ -104,13 +104,14 @@ function SelectModal() {
   function SelectFields() {
     return (
       <>
-        <CategorySelect categories={categories} 
-        lastOrgCategory={cat} 
-        value={_id} 
-         onChange={hendleCategoryChange}
-         className="topbar-select"
-          />
-        
+        <CategorySelect
+          categories={categories}
+          lastOrgCategory={cat}
+          value={_id}
+          onChange={hendleCategoryChange}
+          className="topbar-select"
+        />
+
         <AppSelect
           className="topbar-select md:max-w-[30%]"
           value={loc}
@@ -121,10 +122,10 @@ function SelectModal() {
         />
         <AppSelect
           className="topbar-select"
-          value={_id}
+          value={org._id ?? _id}
           name="org"
           title="Organisation:"
-          items={availableOrgs.map(_=>({value:_._id,label:_?.name}))}
+          items={availableOrgs.map((_) => ({ value: _._id, label: _?.name }))}
           onChange={hendleOrgChange}
         />
       </>
@@ -152,7 +153,9 @@ function SelectModal() {
                 onClick={checkAccessibility}
                 disabled={!_id}
                 className="md:hidden w-full bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark"
-              >Verify</FormButton>
+              >
+                Verify
+              </FormButton>
             </div>
           </Popover.Content>
         </Popover.Root>

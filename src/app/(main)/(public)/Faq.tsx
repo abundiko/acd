@@ -1,5 +1,5 @@
 export default function Faq() {
-  return <section className="facts container lg:mb-52" id="_faqs">
+  return <section className="facts container lg:mb-20" id="_faqs">
       <h1 className="font-bold">Frequently Asked Questions</h1>
 
       <div className="questions">

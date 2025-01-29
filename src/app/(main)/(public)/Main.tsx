@@ -27,6 +27,7 @@ import {HelmetProvider, Helmet} from 'react-helmet-async'
 import VerifyModal from './VerifyModal';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Partners from './Partners';
 
 type PageProps = {
   evaluationDates: ApiEvaluationData[];
@@ -35,10 +36,11 @@ type PageProps = {
   organizations: ApiOrganizationData[];
   testimonials: ApiTestimonialData[];
   logos: ApiLogoData[];
+  partners: ApiLogoData[];
 }
 
 export default function Main({
-  evaluationDates, team , testimonials, organizations, categories, logos
+  evaluationDates, team , testimonials, organizations, categories, logos, partners
 }:PageProps) {
   const pathname = usePathname()
   
@@ -79,6 +81,7 @@ return <>
   <ApplyForEvaluation />
   <TheTeam />
   <Faq />
+  <Partners data={partners} />
   <Footer />
   </main>
   <VerifyModal />

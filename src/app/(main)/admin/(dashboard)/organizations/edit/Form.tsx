@@ -18,6 +18,7 @@ import { getCookie } from "@/utils/functions/cookies";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
 import { useRouter } from "next/navigation";
 import CategorySelect from "@/components/OrgSelect";
+import PolicyInputField from "@/components/ui/PolicyInputField";
 
 export default function Page({
   _id,
@@ -37,6 +38,9 @@ export default function Page({
   point,
   emergency,
   categories,
+  employessWithDisability,
+  numberOfEmployees,
+  policy,
 }: ApiOrganizationData & { categories: ApiCategoryData[] }) {
   const orgFields: AppInputProps[] = [
     {
@@ -54,6 +58,22 @@ export default function Page({
       value: quota,
       placeholder: "quota",
       schema: z.string().min(1, "role is required"),
+    },
+    {
+      name: "numberOfEmployees",
+      title: " Number of employees",
+      type: "number",
+      placeholder: "number of employees",
+      schema: formSchemas.validNumber,
+      value: numberOfEmployees,
+    },
+    {
+      name: "employessWithDisability",
+      title: "Employees with disabilities",
+      type: "number",
+      placeholder: "enployees with disabilities",
+      schema: formSchemas.validNumber,
+      value: employessWithDisability,
     },
     {
       name: "rating",
@@ -248,6 +268,8 @@ export default function Page({
             />
           );
         })}
+
+        <PolicyInputField policy={policy} />
         <FormMessage {...formState} />
         <FormButton
           loading={formState.loading}

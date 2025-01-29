@@ -24,6 +24,7 @@ import useRunOnce from "@/hooks/useRunOnce";
 import { getCookie } from "@/utils/functions/cookies";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { GoPeople } from "react-icons/go";
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useNavState();
@@ -131,6 +132,11 @@ const actions = (id: string) => [
         icon: <FormatQuote />,
         href: `/admin/testimonials`,
       },
+      {
+        name: "Partners",
+        icon: <GoPeople />,
+        href: `/admin/partners`,
+      },
     ],
   },
   {
@@ -165,6 +171,11 @@ const actions = (id: string) => [
         name: "New Testimonial",
         icon: <FormatQuote />,
         href: `/admin/testimonials/new`,
+      },
+      {
+        name: "New Partner",
+        icon: <GoPeople />,
+        href: `/admin/partners/new`,
       },
     ],
   },

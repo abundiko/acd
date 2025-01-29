@@ -5,13 +5,15 @@ export default function RoundedCard({
   value,
   color,
   label,
-  showBlueBar
+  showBlueBar,
+  extra = '',
 }: {
   title: string;
   value: number;
   color: string;
   showBlueBar?: boolean;
   label?: string;
+  extra?: string;
 }) {
   return (
     <div className=" bg-light flex flex-col  gap-3 items-center justify-between rounded-lg overflow-hidden text-center border">
@@ -21,10 +23,11 @@ export default function RoundedCard({
         </h1>
         <CircularProgressbar
           value={value}
-          text={`${value}%`}
+          text={`${value}% ${extra}`}
+
           styles={buildStyles({
             rotation: 0,
-            textSize: "16px",
+            textSize: "12px",
             pathTransitionDuration: 0.5,
             pathColor: color,
             textColor: "#121212",

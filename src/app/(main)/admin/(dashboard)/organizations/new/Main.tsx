@@ -13,6 +13,7 @@ import { getCookie } from "@/utils/functions/cookies";
 import revalidateRoutes from "@/serverActions";
 import { ApiCategoryData } from "@/utils/types/companyTypes";
 import CategorySelect from "@/components/OrgSelect";
+import PolicyInputField from "@/components/ui/PolicyInputField";
 
 type Props = {
   categories: ApiCategoryData[];
@@ -126,6 +127,7 @@ export default function NewOrgForm({ categories }: Props) {
             />
           );
         })}
+        <PolicyInputField />
         <FormMessage {...formState} />
         <FormButton
           loading={formState.loading}
@@ -153,6 +155,22 @@ const orgFields: AppInputProps[] = [
     title: " 5% Employment Quota",
     type: "number",
     placeholder: "enployment quota",
+    schema: formSchemas.validNumber,
+    required: true,
+  },
+  {
+    name: "numberOfEmployees",
+    title: " Number of employees",
+    type: "number",
+    placeholder: "number of employees",
+    schema: formSchemas.validNumber,
+    required: true,
+  },
+  {
+    name: "employessWithDisability",
+    title: "Employees with disabilities",
+    type: "number",
+    placeholder: "enployees with disabilities",
     schema: formSchemas.validNumber,
     required: true,
   },
@@ -207,7 +225,7 @@ const securityFields: {
 const compFields: AppInputProps[] = [
   {
     name: "external",
-          title: "External Way Finding",
+    title: "External Way Finding",
     type: "number",
     placeholder: "external",
     schema: formSchemas.validNumber,
@@ -215,7 +233,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "goods",
-          title: "Accessible Goods & Services",
+    title: "Accessible Goods & Services",
     type: "number",
     placeholder: "goods",
     schema: formSchemas.validNumber,
@@ -223,7 +241,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "fixtures",
-          title: "Accessible Furniture, Fixtures & Utilities",
+    title: "Accessible Furniture, Fixtures & Utilities",
     type: "number",
     placeholder: "fixtures",
     schema: formSchemas.validNumber,
@@ -231,7 +249,7 @@ const compFields: AppInputProps[] = [
   },
   {
     name: "amenities",
-          title: "Accessible Additional Amenities",
+    title: "Accessible Additional Amenities",
     type: "number",
     placeholder: "amenities",
     schema: formSchemas.validNumber,

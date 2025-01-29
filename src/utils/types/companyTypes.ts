@@ -77,6 +77,9 @@ export type ApiOrganizationData = {
   goods: string;
   fixtures: string;
   amenities: string;
+  numberOfEmployees?: string;
+  employessWithDisability?: string;
+  policy?:string;
 };
 
 export type ApiDashboardOrganizationData = {

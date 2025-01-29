@@ -40,7 +40,10 @@ export default function Dashboard({
 
   if (organization)
     return (
-      <section className="flex max-md:flex-wrap gap-3 sm:gap-4 md:gap-2 lg:gap-4 bg-light-gray p-4">
+      <section className=" bg-light-gray p-4">
+        <h1 className="w-full font-semibold text-xl md:text-2xl pb-4">{org.name}</h1>
+        <div className="flex max-md:flex-wrap gap-3 sm:gap-4 md:gap-2 lg:gap-4">
+
         <div className="flex flex-col gap-4 lg:w-[55%] w-full">
           <RoundedBars />
           <StructuralComplianceMetrics />
@@ -48,6 +51,7 @@ export default function Dashboard({
         <div className="flex flex-col gap-4 lg:w-[45%] w-full">
           <SecurityRating />
           <Others />
+        </div>
         </div>
       </section>
     );

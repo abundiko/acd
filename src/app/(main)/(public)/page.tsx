@@ -6,6 +6,7 @@ import { fetchCategories } from "@/serverActions/fetchCategories";
 import { fetchOrganizations } from "@/serverActions/fetchOrganizations";
 import { fetchTestimonials } from "@/serverActions/fetchTestimonials";
 import { fetchLogos } from "@/serverActions/fetchLogos";
+import { fetchPartners } from "@/serverActions/fetchPartners";
 
 export default async function Page() {
   const evaluationDates = await fetchEvaluationDates();
@@ -14,6 +15,7 @@ export default async function Page() {
   const team = await fetchTeam();
   const testimonials = await fetchTestimonials();
   const logos = await fetchLogos();
+  const partners = await fetchPartners();
 
   if (
     !evaluationDates ||
@@ -21,7 +23,8 @@ export default async function Page() {
     !testimonials ||
     !organizations ||
     !categories ||
-    !logos
+    !logos ||
+    !partners
   )
     throw new Error("Unable to connect, try again");
 
@@ -34,6 +37,7 @@ export default async function Page() {
         organizations={organizations}
         team={team}
         logos={logos}
+        partners={partners}
       />
     </main>
   );
