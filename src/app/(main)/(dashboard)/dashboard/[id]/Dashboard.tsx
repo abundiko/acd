@@ -5,7 +5,7 @@ import { useDashboardState } from "@/state/dashboardStore";
 import {
   ApiEvaluationData,
   ApiOrganizationData,
-  ApiCategoryData
+  ApiCategoryData,
 } from "@/utils/types/companyTypes";
 import Others from "./Others";
 import RoundedBars from "./RoundedBars";
@@ -21,14 +21,14 @@ export default function Dashboard({
   evaluationDates,
   organizations,
   categories,
-  org
+  org,
 }: PageProps) {
   const {
     setEvaluationDates,
     setOrg,
     setCategories,
     setOrganizations,
-    org: organization
+    org: organization,
   } = useDashboardState();
 
   useRunOnce(() => {
@@ -41,17 +41,26 @@ export default function Dashboard({
   if (organization)
     return (
       <section className=" bg-light-gray p-4">
-        <h1 className="w-full font-semibold text-xl md:text-2xl pb-4">{org.name}</h1>
+        <h1 className="w-full font-semibold text-xl md:text-2xl pb-4">
+          {org.name}
+        </h1>
         <div className="flex max-md:flex-wrap gap-3 sm:gap-4 md:gap-2 lg:gap-4">
-
-        <div className="flex flex-col gap-4 lg:w-[55%] w-full">
-          <RoundedBars />
-          <StructuralComplianceMetrics />
-        </div>
-        <div className="flex flex-col gap-4 lg:w-[45%] w-full">
-          <SecurityRating />
-          <Others />
-        </div>
+          <div className="flex flex-col gap-4 lg:w-[55%] w-full">
+            <RoundedBars />
+            <StructuralComplianceMetrics />
+            <div className="dashboard-card flex flex-col gap-3">
+              <h3 className="font-semiblod text-sm">Inclusive Statement</h3>
+              <p className="mt-2 text-gray-800 md:text-lg">
+                {organization.policy
+                  ? organization.policy
+                  : "No Inclusive Statement"}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 lg:w-[45%] w-full">
+            <SecurityRating />
+            <Others />
+          </div>
         </div>
       </section>
     );

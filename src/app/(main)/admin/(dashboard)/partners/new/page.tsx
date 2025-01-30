@@ -1,16 +1,15 @@
 "use client";
 
+import AdminAuth from "@/components/AdminAuth";
 import AppInput, { AppInputProps } from "@/components/ui/AppInput";
 import FormButton from "@/components/ui/FormButton";
-import { z } from "zod";
-import React, { useState } from "react";
-import useFormSubmit from "@/hooks/useFormSubmit";
 import FormMessage from "@/components/ui/FormMessage";
+import useFormSubmit from "@/hooks/useFormSubmit";
+import revalidateRoutes from "@/serverActions";
 import { API } from "@/utils/constants";
 import { ApiFormMessage } from "@/utils/types/basicTypes";
-import { getCookie } from "@/utils/functions/cookies";
-import AdminAuth from "@/components/AdminAuth";
-import revalidateRoutes from "@/serverActions";
+import { useState } from "react";
+import { z } from "zod";
 
 export default function Page() {
   const [errors, setErrors] = useState([true]);

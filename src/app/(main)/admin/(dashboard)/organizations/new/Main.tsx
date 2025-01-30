@@ -163,7 +163,7 @@ const orgFields: AppInputProps[] = [
     title: " Number of employees",
     type: "number",
     placeholder: "number of employees",
-    schema: formSchemas.validNumber,
+    schema: formSchemas.numberOnly,
     required: true,
   },
   {
@@ -171,7 +171,7 @@ const orgFields: AppInputProps[] = [
     title: "Employees with disabilities",
     type: "number",
     placeholder: "enployees with disabilities",
-    schema: formSchemas.validNumber,
+    schema: formSchemas.numberOnly,
     required: true,
   },
   {

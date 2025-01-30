@@ -5,7 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme, Popover, Select } from "@radix-ui/themes";
 import { NIGERIAN_STATES } from "@/utils/constants";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDashboardState } from "@/state/dashboardStore";
 import { formDataToObject } from "@/utils/functions/test";
 import AppSelect from "@/components/ui/AppSelect";
@@ -16,9 +16,16 @@ export default function VerifyAccessibility() {
   const router = useRouter();
   const categories = useDashboardState((s) => s.categories);
   const organizations = useDashboardState((s) => s.organizations);
+  const pathname = usePathname();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [pathname]);
 
   function checkAccessibility(e: any) {
     e.preventDefault();
+    setLoading(true);
     const formdata = new FormData(e.target);
     // console.log(formDataToObject(formdata));
 
@@ -36,9 +43,9 @@ export default function VerifyAccessibility() {
           <div className=" md:w-9/12">
             <SelectModal />
           </div>
-          <button className="max-md:hidden md:w-3/12 bg-primary text-nowrap px-4 text-light font-semibold rounded-md py-2 hover:bg-primary-dark">
+          <FormButton loading={loading} className="max-md:hidden md:w-3/12 bg-primary text-nowrap px-4 text-light text-center inline-flex justify-center items-center font-semibold rounded-md py-2 hover:bg-primary-dark">
             Verify
-          </button>
+          </FormButton>
         </div>
       </form>
     );

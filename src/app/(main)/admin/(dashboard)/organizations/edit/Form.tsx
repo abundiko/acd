@@ -64,7 +64,7 @@ export default function Page({
       title: " Number of employees",
       type: "number",
       placeholder: "number of employees",
-      schema: formSchemas.validNumber,
+      schema: formSchemas.numberOnly,
       value: numberOfEmployees,
     },
     {
@@ -72,7 +72,7 @@ export default function Page({
       title: "Employees with disabilities",
       type: "number",
       placeholder: "enployees with disabilities",
-      schema: formSchemas.validNumber,
+      schema: formSchemas.numberOnly,
       value: employessWithDisability,
     },
     {

@@ -9,7 +9,7 @@ export default function Partners({ data }: { data: ApiLogoData[] }) {
       </h3>
       <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
         {data.map((i, j) => (
-          <img key={j} src={i.img} className="w-[30%] md:!w-3/12 lg:!w-[15%]" alt="partner logo" />
+          <img key={j} src={i.img} className="w-[30%] md:!w-3/12 lg:!w-[15%] object-contain" alt="partner logo" />
         ))}
       </div>
     </div>

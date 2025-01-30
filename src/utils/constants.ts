@@ -3,7 +3,8 @@ import { z } from "zod";
 export const formSchemas = {
   validNumber: z
     .string()
-    .regex(/^(100(\.0+)?|\d{1,2}(\.\d)?)$/, "provide numbers 1.0 - 100")
+    .regex(/^(100(\.0+)?|\d{1,2}(\.\d)?)$/, "provide numbers 1.0 - 100"),
+  numberOnly: z.string().regex(/^\d+$/, "enter a valid number"),
 };
 
 export const API = `https://acd-g9tp.onrender.com/`;
@@ -45,5 +46,5 @@ export const NIGERIAN_STATES = [
   "Taraba",
   "Yobe",
   "Zamfara",
-  "FCT Abuja"
+  "FCT Abuja",
 ];

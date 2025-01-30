@@ -63,14 +63,16 @@ export default function VerifyModal() {
                 compliance: organization ? Number(organization.compScore) : 0,
                 employment: organization ? Number(organization.quota) : 0,
                 accessibility: organization ? Number(organization.rating) : 0,
-                security: organization ? Number(organization.srating) : 0
-              }).map(tile => <RoundedCard key={tile.title} {...tile} showBlueBar />)}
+                security: organization ? Number(organization.srating) : 0,
+                employees: `${organization?.employessWithDisability ?? ""}/${organization?.numberOfEmployees ?? ""}`
+              }).map(tile => <RoundedCard key={tile.title} {...tile} showBlueBar
+               />)}
             </div>
             <Link href={`/dashboard/${organization?._id}`} className="btn-primary w-full py-2">
             Go to Dashboard
             </Link>
           </div>
-        </Dialog.Content>
+        </Dialog.Content> 
       </Dialog.Root>
     </Theme>
   );
@@ -80,12 +82,14 @@ const tiles = ({
   compliance,
   employment,
   accessibility,
-  security
+  security,
+  employees
 }: {
   compliance: number;
   employment: number;
   accessibility: number;
   security: number;
+  employees: string;
 }) => [
   {
     title: "TOTAL ACCESSIBILITY SCORE",
@@ -98,6 +102,7 @@ const tiles = ({
       value: employment,
       color: "#27A468",
       label: getSuitableTitleForScore(employment, 'compliance'),
+      extra: employees
     },
   {
     title: "TOTAL COMPLIANCE SCORE",
