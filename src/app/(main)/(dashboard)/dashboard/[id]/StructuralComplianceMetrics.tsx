@@ -87,9 +87,7 @@ export default function StructuralComplianceMetrics() {
       <h3 className="font-semiblod text-sm">Structural Compliance Metrics</h3>
       <div className="w-[300px]">
         <Suspense>
-          <Bar options={options} data={data} className="w-full h-[200px]" style={{
-            height: "300"
-          }} />
+          <Bar options={options} data={data} className="w-full "  />
         </Suspense>
       </div>
     </div>

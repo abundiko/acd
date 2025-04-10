@@ -49,7 +49,18 @@ export default function Dashboard({
             <RoundedBars />
             <StructuralComplianceMetrics />
             <div className="dashboard-card flex flex-col gap-3">
-              <h3 className="font-semiblod text-sm">Inclusive Statement</h3>
+              <h3 className="font-semiblod text-sm">
+                Inclusive Statement{" "}
+                {organization.policy ? (
+                  <span className="inline-flex px-3 py-1 text-xs font-medium text-green-600 bg-green-100 rounded-xl">
+                    AVAILABLE
+                  </span>
+                ) : (
+                  <span className="inline-flex px-3 py-1 text-xs font-medium text-red-600 bg-red-100 rounded-xl">
+                    NOT AVAILABLE
+                  </span>
+                )}
+              </h3>
               <p className="mt-2 text-gray-800 md:text-lg">
                 {organization.policy
                   ? organization.policy

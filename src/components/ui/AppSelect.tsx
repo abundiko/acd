@@ -42,7 +42,7 @@ export default function AppSelect({
     <Theme>
         <Select.Root disabled={!items || items.length === 0} size="2" onValueChange={handleChange}  value={v} name={name}>
       <Select.Trigger
-      className="px-1 overflow-x-hidden max-w-full line-clamp-1 w-full"
+      className="px-1 overflow-x-hidden max-w-full line-clamp-1 w-full min-h-[20px]"
         variant="ghost"
         value={placeholder??title}
         
