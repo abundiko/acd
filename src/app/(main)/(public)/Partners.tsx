@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ApiLogoData } from "@/utils/types/companyTypes";
+import Marquee from "react-fast-marquee";
 
 export default function Partners({ data }: { data: ApiLogoData[] }) {
   return (
@@ -7,11 +8,13 @@ export default function Partners({ data }: { data: ApiLogoData[] }) {
       <h3 className="font-semibold text-xl md:text-2xl text-center mb-6">
         Our Partners
       </h3>
-      <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
+      <Marquee className="gap-4"
+      autoFill
+      >
         {data.map((i, j) => (
-          <img key={j} src={i.img} className="w-[30%] md:!w-3/12 lg:!w-[15%] object-contain" alt="partner logo" />
+          <img key={j} src={i.img} className="h-20 object-contain mr-4 md:mr-8" alt="partner logo" />
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 }
