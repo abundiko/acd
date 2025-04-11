@@ -7,7 +7,7 @@ export const formSchemas = {
   numberOnly: z.string().regex(/^\d+$/, "enter a valid number"),
 };
 
-export const API = `https://acd-g9tp.onrender.com/`;
+export const API = `https://backend-5zfp.onrender.com/`;
 
 export const NIGERIAN_STATES = [
   "Abia",

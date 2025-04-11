@@ -1,3 +1,4 @@
+import { useScreenReaderHotkeys } from "@/hooks/useScreenReaderHotkeys";
 import { useEffect, useState } from "react";
 import { SpeakerDisable } from "react-huge-icons/solid";
 
@@ -103,6 +104,42 @@ export default function Tts() {
       setReady(true);
     }, 10000);
   }, [enabled]);
+
+  useEffect(() => {
+    async function init() {
+      console.log("yes window", !!window.speechSynthesis);
+  
+      const msg = await getVoice();
+      msg.text = "Press Alt + S to start screen reader and Alt + X to stop it.";
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(msg);
+    }
+  
+    function handleUserInteraction() {
+      init();
+      // Remove listener after first interaction
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("keydown", handleUserInteraction);
+    }
+  
+    window.addEventListener("click", handleUserInteraction);
+    window.addEventListener("keydown", handleUserInteraction);
+  
+    return () => {
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("keydown", handleUserInteraction);
+    };
+  }, []);
+  
+
+  useScreenReaderHotkeys({
+    onStart: () => {
+      setEnabled(true);
+    },
+    onStop: () => {
+      setEnabled(false);
+    },
+  });
 
   if (ready)
     return (
